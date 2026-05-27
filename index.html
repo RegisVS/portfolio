@@ -250,7 +250,7 @@
       }
 
       .strip {
-        padding: clamp(46px, 7vw, 86px) 0;
+        padding: clamp(22px, 3.2vw, 42px) 0 clamp(42px, 6vw, 76px);
         border-bottom: 1px solid var(--line);
       }
 
@@ -261,7 +261,7 @@
         gap: 18px;
         align-items: end;
         justify-items: start;
-        margin: 0 auto clamp(24px, 4vw, 44px);
+        margin: 0 auto clamp(18px, 2.4vw, 30px);
       }
 
       h2 {
@@ -326,10 +326,15 @@
       }
 
       .video-layout {
+        --video-gap: clamp(16px, 1.8vw, 24px);
+        --video-column: calc((min(1440px, calc(100vw - clamp(44px, 10vw, 144px))) - (3 * var(--video-gap))) / 4);
+        --video-caption-height: 78px;
+        --video-frame-height: calc(var(--video-column) * 16 / 9);
+        --video-card-height: calc(var(--video-caption-height) + var(--video-frame-height));
         width: min(1440px, calc(100% - clamp(44px, 10vw, 144px)));
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: clamp(16px, 1.8vw, 24px);
+        gap: var(--video-gap);
         align-items: start;
         margin: 0 auto;
       }
@@ -350,18 +355,19 @@
       }
 
       .video-stack {
-        height: min(78vh, 840px);
+        height: var(--video-card-height);
         flex-direction: column;
         overscroll-behavior-y: contain;
         scroll-snap-type: y proximity;
-        padding: 0 0 6px;
+        padding: 0;
       }
 
       .video-board {
+        height: var(--video-card-height);
         overflow-y: hidden;
         overscroll-behavior-x: contain;
         scroll-snap-type: x proximity;
-        padding: 0 0 6px;
+        padding: 0;
       }
 
       .video-stack::-webkit-scrollbar,
@@ -378,10 +384,15 @@
         scroll-snap-align: start;
         display: flex;
         flex-direction: column;
+        height: var(--video-card-height);
       }
 
       .story-card {
         flex-basis: auto;
+      }
+
+      .video-board .video-card {
+        flex-basis: calc(var(--video-column) * 256 / 81);
       }
 
       .video-frame {
@@ -402,8 +413,13 @@
       }
 
       .story-card .video-frame {
-        height: auto;
-        aspect-ratio: 9 / 16;
+        height: var(--video-frame-height);
+        aspect-ratio: auto;
+      }
+
+      .video-board .video-frame {
+        height: var(--video-frame-height);
+        aspect-ratio: auto;
       }
 
       .video-frame video {
@@ -419,7 +435,7 @@
         justify-content: space-between;
         gap: 18px;
         order: -1;
-        min-height: 78px;
+        min-height: var(--video-caption-height);
         padding: 18px 20px 16px;
       }
 
@@ -589,9 +605,13 @@
         }
 
         .video-layout {
+          --video-gap: 42px;
+          --video-column: calc(100vw - 48px);
+          --video-frame-height: 52vh;
+          --video-card-height: calc(var(--video-caption-height) + var(--video-frame-height));
           width: calc(100% - 48px);
           grid-template-columns: 1fr;
-          gap: 42px;
+          gap: var(--video-gap);
         }
 
         .video-panel {
@@ -624,7 +644,16 @@
           flex-basis: min(78vw, calc(52vh * 16 / 9));
         }
 
+        .video-board .video-card {
+          flex-basis: min(78vw, calc(52vh * 16 / 9));
+        }
+
         .video-frame {
+          height: 52vh;
+          aspect-ratio: auto;
+        }
+
+        .video-board .video-frame {
           height: 52vh;
           aspect-ratio: auto;
         }
@@ -662,7 +691,7 @@
           <p class="micro">Audiovisual / Fotografia / Arte Gráfica</p>
           <h1>Regis Kraeski</h1>
           <div class="hero-foot">
-            <p>Design, branding, manejamento e SEO de redes sociais. Criação, direção e edição de conteúdo audiovisual para empresas, campanhas, marcas e bandas.</p>
+            <p>Criação, VFX, direção e edição audiovisual para empresas, campanhas e marcas.<br />Fotografia, design, clipes e conteúdo para bandas e criadores.</p>
           </div>
         </div>
       </section>
