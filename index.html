@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Regis Kraeski</title>
+    <title>Régis Kraeski</title>
     <meta
       name="description"
-      content="Regis Kraeski - audiovisual, motion, fotografia e design."
+      content="Régis Kraeski - audiovisual, motion, fotografia e design."
     />
     <meta name="theme-color" content="#050505" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -296,7 +296,7 @@
       }
 
       .strip {
-        padding: clamp(22px, 3.2vw, 42px) 0 clamp(42px, 6vw, 76px);
+        padding: clamp(34px, 4.6vw, 60px) 0 clamp(54px, 7vw, 92px);
         border-bottom: 1px solid var(--line);
       }
 
@@ -307,7 +307,7 @@
         gap: 18px;
         align-items: end;
         justify-items: start;
-        margin: 0 auto clamp(18px, 2.4vw, 30px);
+        margin: 0 auto clamp(28px, 3.4vw, 46px);
       }
 
       .videos .strip-head {
@@ -381,11 +381,11 @@
         --video-gap: clamp(14px, 1.6vw, 24px);
         --story-width: clamp(220px, 22vw, 360px);
         --video-caption-height: 66px;
-        --horizontal-column: clamp(440px, 38vw, 620px);
         --story-frame-height: calc(var(--story-width) * 16 / 9);
-        --horizontal-frame-height: calc(var(--horizontal-column) * 9 / 16);
+        --horizontal-frame-height: var(--story-frame-height);
+        --horizontal-column: calc(var(--horizontal-frame-height) * 16 / 9);
         --story-card-height: calc(var(--video-caption-height) + var(--story-frame-height));
-        --horizontal-card-height: calc(var(--video-caption-height) + var(--horizontal-frame-height));
+        --horizontal-card-height: var(--story-card-height);
         width: 100vw;
         padding-inline: var(--video-side);
         display: grid;
@@ -761,7 +761,7 @@
     </header>
 
     <main id="top">
-      <section class="hero" aria-label="Regis Kraeski">
+      <section class="hero" aria-label="Régis Kraeski">
         <div class="video-bg" aria-hidden="true">
           <video autoplay muted loop playsinline preload="auto">
             <source src="assets/videos/hero2.mp4" type="video/mp4" />
@@ -770,7 +770,7 @@
         <button class="hero-sound" type="button" aria-label="Ativar som do video principal" aria-pressed="false">Som</button>
         <div class="hero-inner">
           <p class="micro">Audiovisual / Design / Tecnologia</p>
-          <h1>Regis Kraeski</h1>
+          <h1>Régis Kraeski</h1>
           <div class="hero-foot">
             <p>Criação, VFX, direção e edição audiovisual para empresas, campanhas e marcas.<br />Fotografia, design, clipes e conteúdo para bandas e criadores.</p>
           </div>
@@ -1011,7 +1011,7 @@
           <p class="micro">Contato</p>
           <h2>Vamos criar algo juntos?</h2>
           <div class="contact-row">
-            <a class="button" href="mailto:regiskraeski@gmail.com?subject=Projeto%20para%20Regis%20Kraeski">Email</a>
+            <a class="button" href="mailto:regiskraeski@gmail.com?subject=Projeto%20para%20R%C3%A9gis%20Kraeski">Email</a>
             <a class="button" href="https://wa.me/5561981638256" rel="noreferrer">WhatsApp</a>
             <a class="button" href="https://www.instagram.com/regiskraeski" rel="noreferrer">Instagram</a>
           </div>
@@ -1029,18 +1029,18 @@
         photo: {
           count: 32,
           prefix: "assets/fotografia/photo-",
-          alt: "Fotografia de Regis Kraeski",
+          alt: "Fotografia de Régis Kraeski",
         },
         art: {
           count: 27,
           prefix: "assets/arte-grafica/art-",
-          alt: "Arte grafica de Regis Kraeski",
+          alt: "Arte grafica de Régis Kraeski",
           exclude: [1, 6, 12, 22],
         },
         design: {
           indexes: [6],
           prefix: "assets/arte-grafica/art-",
-          alt: "Design de Regis Kraeski",
+          alt: "Design de Régis Kraeski",
         },
       };
 
