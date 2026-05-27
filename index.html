@@ -377,14 +377,13 @@
       }
 
       .video-layout {
-        --video-side: clamp(10px, 1.5vw, 24px);
-        --video-gap: clamp(8px, 1vw, 14px);
-        --video-width: calc(100vw - (2 * var(--video-side)));
-        --story-width: clamp(112px, 8vw, 164px);
+        --video-side: clamp(14px, 2vw, 28px);
+        --video-gap: clamp(14px, 1.6vw, 24px);
+        --story-width: clamp(220px, 22vw, 360px);
         --video-caption-height: 66px;
-        --horizontal-column: calc((var(--video-width) - var(--story-width) - (3 * var(--video-gap))) / 3);
+        --horizontal-column: clamp(440px, 38vw, 620px);
         --story-frame-height: calc(var(--story-width) * 16 / 9);
-        --horizontal-frame-height: var(--story-frame-height);
+        --horizontal-frame-height: calc(var(--horizontal-column) * 9 / 16);
         --story-card-height: calc(var(--video-caption-height) + var(--story-frame-height));
         --horizontal-card-height: calc(var(--video-caption-height) + var(--horizontal-frame-height));
         width: 100vw;
@@ -424,7 +423,7 @@
         overflow-y: hidden;
         overscroll-behavior-x: contain;
         scroll-snap-type: x proximity;
-        padding: 0;
+        padding: 0 var(--video-side) 0 0;
       }
 
       .video-stack::-webkit-scrollbar,
@@ -501,15 +500,15 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 18px;
+        gap: 14px;
         order: -1;
         min-height: var(--video-caption-height);
-        padding: 18px 20px 16px;
+        padding: 18px 18px 16px;
       }
 
       .video-caption p {
         margin: 0;
-        font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+        font-size: clamp(0.95rem, 1.15vw, 1.25rem);
         font-weight: 900;
         line-height: 1.1;
       }
@@ -673,14 +672,14 @@
         }
 
         .video-layout {
-          --video-side: 12px;
-          --video-gap: 18px;
+          --video-side: 16px;
+          --video-gap: 16px;
           --video-caption-height: 66px;
-          --story-width: min(68vw, calc(52vh * 9 / 16));
+          --story-width: min(74vw, calc(58vh * 9 / 16));
           --story-frame-height: calc(var(--story-width) * 16 / 9);
           --story-card-height: calc(var(--video-caption-height) + var(--story-frame-height));
-          --horizontal-column: min(82vw, calc(var(--story-frame-height) * 16 / 9));
-          --horizontal-frame-height: var(--story-frame-height);
+          --horizontal-column: min(86vw, 560px);
+          --horizontal-frame-height: calc(var(--horizontal-column) * 9 / 16);
           --horizontal-card-height: calc(var(--video-caption-height) + var(--horizontal-frame-height));
           width: 100vw;
           padding-inline: var(--video-side);
@@ -701,7 +700,7 @@
 
         .video-stack {
           width: var(--story-width);
-          height: min(64vh, var(--story-card-height));
+          height: min(70vh, var(--story-card-height));
           flex-direction: column;
           overscroll-behavior-y: contain;
           scroll-snap-type: y proximity;
