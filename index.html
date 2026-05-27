@@ -265,7 +265,8 @@
       }
 
       .videos .strip-head {
-        width: min(1760px, calc(100% - clamp(24px, 4vw, 56px)));
+        width: 100vw;
+        padding-inline: clamp(10px, 1.5vw, 24px);
       }
 
       h2 {
@@ -330,8 +331,9 @@
       }
 
       .video-layout {
+        --video-side: clamp(10px, 1.5vw, 24px);
         --video-gap: clamp(8px, 1vw, 14px);
-        --video-width: min(1760px, calc(100% - clamp(24px, 4vw, 56px)));
+        --video-width: calc(100vw - (2 * var(--video-side)));
         --story-width: clamp(112px, 8vw, 164px);
         --video-caption-height: 66px;
         --horizontal-column: calc((var(--video-width) - var(--story-width) - (3 * var(--video-gap))) / 3);
@@ -339,12 +341,13 @@
         --horizontal-frame-height: var(--story-frame-height);
         --story-card-height: calc(var(--video-caption-height) + var(--story-frame-height));
         --horizontal-card-height: calc(var(--video-caption-height) + var(--horizontal-frame-height));
-        width: var(--video-width);
+        width: 100vw;
+        padding-inline: var(--video-side);
         display: grid;
         grid-template-columns: var(--story-width) minmax(0, 1fr);
         gap: var(--video-gap);
         align-items: start;
-        margin: 0 auto;
+        margin: 0;
       }
 
       .video-panel {
@@ -624,6 +627,7 @@
         }
 
         .video-layout {
+          --video-side: 12px;
           --video-gap: 18px;
           --video-caption-height: 66px;
           --story-width: min(68vw, calc(52vh * 9 / 16));
@@ -632,7 +636,8 @@
           --horizontal-column: min(82vw, calc(var(--story-frame-height) * 16 / 9));
           --horizontal-frame-height: var(--story-frame-height);
           --horizontal-card-height: calc(var(--video-caption-height) + var(--horizontal-frame-height));
-          width: calc(100% - 48px);
+          width: 100vw;
+          padding-inline: var(--video-side);
           grid-template-columns: 1fr;
           gap: var(--video-gap);
         }
