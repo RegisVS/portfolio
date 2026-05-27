@@ -35,7 +35,11 @@
       body {
         margin: 0;
         color: var(--white);
-        background: var(--black);
+        background:
+          linear-gradient(90deg, rgb(5 5 5 / 0.9), rgb(5 5 5 / 0.62) 48%, rgb(5 5 5 / 0.9)),
+          linear-gradient(0deg, rgb(5 5 5 / 0.78), rgb(5 5 5 / 0.38)),
+          url("assets/site-background.jpg") center / cover fixed no-repeat,
+          var(--black);
         font-family: Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         overflow-x: hidden;
       }
@@ -136,7 +140,10 @@
         inset: 0;
         z-index: -3;
         overflow: hidden;
-        background: #000;
+        background:
+          linear-gradient(90deg, rgb(5 5 5 / 0.72), rgb(5 5 5 / 0.18), rgb(5 5 5 / 0.7)),
+          url("assets/site-background.jpg") center / cover no-repeat,
+          #000;
       }
 
       .video-bg video {
@@ -147,6 +154,8 @@
         height: 100%;
         object-fit: cover;
         transform: translate(-50%, -50%);
+        opacity: 0.22;
+        mix-blend-mode: screen;
         pointer-events: none;
       }
 
