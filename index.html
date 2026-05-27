@@ -332,11 +332,11 @@
       .video-layout {
         --video-gap: clamp(8px, 1vw, 14px);
         --video-width: min(1760px, calc(100% - clamp(24px, 4vw, 56px)));
-        --story-width: clamp(132px, 11vw, 190px);
+        --story-width: clamp(112px, 8vw, 164px);
         --video-caption-height: 66px;
-        --horizontal-column: calc((100% - (2 * var(--video-gap))) / 3);
+        --horizontal-column: calc((var(--video-width) - var(--story-width) - (3 * var(--video-gap))) / 3);
         --story-frame-height: calc(var(--story-width) * 16 / 9);
-        --horizontal-frame-height: min(44vh, calc(var(--horizontal-column) * 9 / 16));
+        --horizontal-frame-height: var(--story-frame-height);
         --story-card-height: calc(var(--video-caption-height) + var(--story-frame-height));
         --horizontal-card-height: calc(var(--video-caption-height) + var(--horizontal-frame-height));
         width: var(--video-width);
@@ -401,9 +401,9 @@
       }
 
       .video-board .video-card {
-        flex: 0 0 auto;
-        width: max-content;
-        max-width: none;
+        flex: 0 0 var(--horizontal-column);
+        width: var(--horizontal-column);
+        max-width: var(--horizontal-column);
         height: var(--horizontal-card-height);
       }
 
@@ -430,8 +430,8 @@
       }
 
       .video-board .video-frame {
-        width: max-content;
-        max-width: none;
+        width: 100%;
+        max-width: 100%;
         height: var(--horizontal-frame-height);
         aspect-ratio: auto;
       }
@@ -444,8 +444,8 @@
       }
 
       .video-board .video-frame video {
-        width: auto;
-        max-width: none;
+        width: 100%;
+        max-width: 100%;
       }
 
       .video-caption {
@@ -629,8 +629,8 @@
           --story-width: min(68vw, calc(52vh * 9 / 16));
           --story-frame-height: calc(var(--story-width) * 16 / 9);
           --story-card-height: calc(var(--video-caption-height) + var(--story-frame-height));
-          --horizontal-column: min(82vw, calc(52vh * 16 / 9));
-          --horizontal-frame-height: calc(var(--horizontal-column) * 9 / 16);
+          --horizontal-column: min(82vw, calc(var(--story-frame-height) * 16 / 9));
+          --horizontal-frame-height: var(--story-frame-height);
           --horizontal-card-height: calc(var(--video-caption-height) + var(--horizontal-frame-height));
           width: calc(100% - 48px);
           grid-template-columns: 1fr;
@@ -670,9 +670,9 @@
         }
 
         .video-board .video-card {
-          flex: 0 0 auto;
-          width: max-content;
-          max-width: none;
+          flex: 0 0 var(--horizontal-column);
+          width: var(--horizontal-column);
+          max-width: var(--horizontal-column);
           height: var(--horizontal-card-height);
         }
 
@@ -682,8 +682,8 @@
         }
 
         .video-board .video-frame {
-          width: max-content;
-          max-width: none;
+          width: 100%;
+          max-width: 100%;
           height: var(--horizontal-frame-height);
           aspect-ratio: auto;
         }
