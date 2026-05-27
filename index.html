@@ -195,6 +195,52 @@
         width: min(1280px, 100%);
       }
 
+      .hero-sound {
+        position: absolute;
+        right: clamp(18px, 3vw, 42px);
+        bottom: clamp(18px, 3vw, 38px);
+        z-index: 5;
+        min-height: 38px;
+        border: 1px solid rgb(245 241 232 / 0.36);
+        border-radius: 999px;
+        padding: 0 14px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--paper);
+        background: rgb(5 5 5 / 0.42);
+        font: 700 0.72rem/1 var(--font);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+        backdrop-filter: blur(12px);
+        transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+      }
+
+      .hero-sound::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--muted);
+        box-shadow: 0 0 0 4px rgb(245 241 232 / 0.08);
+      }
+
+      .hero-sound[aria-pressed="true"] {
+        border-color: rgb(242 107 47 / 0.72);
+        background: rgb(5 5 5 / 0.58);
+      }
+
+      .hero-sound[aria-pressed="true"]::before {
+        background: var(--accent);
+        box-shadow: 0 0 0 4px rgb(242 107 47 / 0.18);
+      }
+
+      .hero-sound:hover {
+        transform: translateY(-1px);
+        border-color: rgb(245 241 232 / 0.58);
+      }
+
       .micro {
         margin: 0 0 14px;
         color: var(--accent);
@@ -722,6 +768,7 @@
             <source src="assets/videos/next-level-sports.mp4" type="video/mp4" />
           </video>
         </div>
+        <button class="hero-sound" type="button" aria-label="Ativar som do video principal" aria-pressed="false">Som</button>
         <div class="hero-inner">
           <p class="micro">Audiovisual / Design / Tecnologia</p>
           <h1>Regis Kraeski</h1>
@@ -1012,10 +1059,34 @@
       const lightbox = document.querySelector(".lightbox");
       const lightboxImage = lightbox.querySelector("img");
       const heroVideo = document.querySelector(".video-bg video");
+      const heroSoundButton = document.querySelector(".hero-sound");
 
       if (heroVideo) {
+        heroVideo.volume = 0.5;
         heroVideo.play().catch(() => {
           heroVideo.controls = false;
+        });
+      }
+
+      if (heroVideo && heroSoundButton) {
+        const setHeroSound = (enabled) => {
+          heroVideo.volume = 0.5;
+          heroVideo.muted = !enabled;
+          heroSoundButton.setAttribute("aria-pressed", String(enabled));
+          heroSoundButton.textContent = enabled ? "Som 50%" : "Som";
+          heroSoundButton.setAttribute(
+            "aria-label",
+            enabled ? "Desativar som do video principal" : "Ativar som do video principal"
+          );
+        };
+
+        setHeroSound(false);
+        heroSoundButton.addEventListener("click", () => {
+          const enabled = heroVideo.muted;
+          setHeroSound(enabled);
+          heroVideo.play().catch(() => {
+            setHeroSound(false);
+          });
         });
       }
 
