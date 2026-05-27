@@ -36,8 +36,8 @@
         margin: 0;
         color: var(--white);
         background:
-          linear-gradient(90deg, rgb(5 5 5 / 0.9), rgb(5 5 5 / 0.62) 48%, rgb(5 5 5 / 0.9)),
-          linear-gradient(0deg, rgb(5 5 5 / 0.78), rgb(5 5 5 / 0.38)),
+          linear-gradient(90deg, rgb(5 5 5 / 0.76), rgb(5 5 5 / 0.42) 48%, rgb(5 5 5 / 0.76)),
+          linear-gradient(0deg, rgb(5 5 5 / 0.58), rgb(5 5 5 / 0.24)),
           url("assets/site-background.jpg") center / cover fixed no-repeat,
           var(--black);
         font-family: Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -138,12 +138,9 @@
       .video-bg {
         position: absolute;
         inset: 0;
-        z-index: -3;
+        z-index: 0;
         overflow: hidden;
-        background:
-          linear-gradient(90deg, rgb(5 5 5 / 0.72), rgb(5 5 5 / 0.18), rgb(5 5 5 / 0.7)),
-          url("assets/site-background.jpg") center / cover no-repeat,
-          #000;
+        background: transparent;
       }
 
       .video-bg video {
@@ -154,8 +151,8 @@
         height: 100%;
         object-fit: cover;
         transform: translate(-50%, -50%);
-        opacity: 0.22;
-        mix-blend-mode: screen;
+        z-index: 0;
+        opacity: 0.34;
         pointer-events: none;
       }
 
@@ -164,12 +161,11 @@
         position: absolute;
         inset: 0;
         z-index: 1;
-        opacity: 0.3;
+        opacity: 0.16;
         background-image:
           radial-gradient(circle at 20% 10%, rgb(255 255 255 / 0.18) 0 1px, transparent 1px),
           radial-gradient(circle at 70% 70%, rgb(255 255 255 / 0.12) 0 1px, transparent 1px);
         background-size: 5px 5px, 7px 7px;
-        mix-blend-mode: overlay;
       }
 
       .video-bg::after {
@@ -178,16 +174,16 @@
         inset: 0;
         z-index: 2;
         background:
-          linear-gradient(90deg, rgb(5 5 5 / 0.84), rgb(5 5 5 / 0.26), rgb(5 5 5 / 0.72)),
-          linear-gradient(0deg, rgb(5 5 5 / 0.88), rgb(5 5 5 / 0.08) 54%, rgb(5 5 5 / 0.5));
+          linear-gradient(90deg, rgb(5 5 5 / 0.66), rgb(5 5 5 / 0.12), rgb(5 5 5 / 0.58)),
+          linear-gradient(0deg, rgb(5 5 5 / 0.72), rgb(5 5 5 / 0.03) 54%, rgb(5 5 5 / 0.36));
       }
 
       .hero::after {
         content: "";
         position: absolute;
         inset: 0;
-        z-index: -1;
-        opacity: 0.18;
+        z-index: 1;
+        opacity: 0.12;
         background-image:
           linear-gradient(rgb(245 241 232 / 0.18) 1px, transparent 1px),
           linear-gradient(90deg, rgb(245 241 232 / 0.16) 1px, transparent 1px);
@@ -196,6 +192,8 @@
       }
 
       .hero-inner {
+        position: relative;
+        z-index: 3;
         width: min(1280px, 100%);
       }
 
