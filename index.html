@@ -1,0 +1,1038 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Regis Kraeski</title>
+    <meta
+      name="description"
+      content="Regis Kraeski - audiovisual, motion, fotografia e design."
+    />
+    <meta name="theme-color" content="#050505" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;650;750;850&family=Space+Grotesk:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --black: #050505;
+        --white: #f5f1e8;
+        --muted: rgb(245 241 232 / 0.68);
+        --line: rgb(245 241 232 / 0.16);
+        --accent: #f26b2f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--white);
+        background: var(--black);
+        font-family: Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .topbar {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 30;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 24px;
+        padding: 24px clamp(22px, 5vw, 72px);
+        background: linear-gradient(180deg, rgb(5 5 5 / 0.78), rgb(5 5 5 / 0));
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+      }
+
+      .brand,
+      .nav a,
+      .micro,
+      .meta,
+      .button,
+      .counter {
+        font-size: 0.9rem;
+        font-weight: 850;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .nav a,
+      h1,
+      h2,
+      .video-caption p,
+      .button,
+      .arrow {
+        font-family: "Space Grotesk", Manrope, ui-sans-serif, system-ui, sans-serif;
+      }
+
+      .brand,
+      .nav a {
+        text-decoration: none;
+      }
+
+      .nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: end;
+        gap: clamp(10px, 1.6vw, 18px);
+        color: rgb(245 241 232 / 0.82);
+      }
+
+      .nav a {
+        min-height: 54px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgb(245 241 232 / 0.5);
+        border-radius: 4px;
+        padding: 16px 22px;
+        background: rgb(5 5 5 / 0.28);
+        font-size: clamp(1.08rem, 1.5vw, 1.42rem);
+      }
+
+      .nav a:hover {
+        color: var(--white);
+        border-color: var(--accent);
+        background: rgb(242 107 47 / 0.22);
+      }
+
+      .hero {
+        position: relative;
+        min-height: 100svh;
+        display: grid;
+        align-items: end;
+        overflow: hidden;
+        isolation: isolate;
+        padding: 118px clamp(22px, 5vw, 72px) 54px;
+      }
+
+      .video-bg {
+        position: absolute;
+        inset: 0;
+        z-index: -3;
+        overflow: hidden;
+        background: #000;
+      }
+
+      .video-bg video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+      }
+
+      .video-bg::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        opacity: 0.3;
+        background-image:
+          radial-gradient(circle at 20% 10%, rgb(255 255 255 / 0.18) 0 1px, transparent 1px),
+          radial-gradient(circle at 70% 70%, rgb(255 255 255 / 0.12) 0 1px, transparent 1px);
+        background-size: 5px 5px, 7px 7px;
+        mix-blend-mode: overlay;
+      }
+
+      .video-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        background:
+          linear-gradient(90deg, rgb(5 5 5 / 0.84), rgb(5 5 5 / 0.26), rgb(5 5 5 / 0.72)),
+          linear-gradient(0deg, rgb(5 5 5 / 0.88), rgb(5 5 5 / 0.08) 54%, rgb(5 5 5 / 0.5));
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        opacity: 0.18;
+        background-image:
+          linear-gradient(rgb(245 241 232 / 0.18) 1px, transparent 1px),
+          linear-gradient(90deg, rgb(245 241 232 / 0.16) 1px, transparent 1px);
+        background-size: 64px 64px;
+        mask-image: linear-gradient(180deg, transparent, #000 30%, #000 80%, transparent);
+      }
+
+      .hero-inner {
+        width: min(1280px, 100%);
+      }
+
+      .micro {
+        margin: 0 0 14px;
+        color: var(--accent);
+      }
+
+      h1,
+      h2,
+      p {
+        overflow-wrap: anywhere;
+      }
+
+      h1 {
+        max-width: 9ch;
+        margin: 0;
+        font-size: clamp(4.8rem, 14vw, 13.8rem);
+        line-height: 0.78;
+        letter-spacing: 0;
+      }
+
+      .hero-foot {
+        display: block;
+        gap: 18px;
+        align-items: end;
+        width: min(980px, 100%);
+        margin-top: 28px;
+      }
+
+      .hero-foot p {
+        margin: 0;
+        color: var(--muted);
+        font-size: clamp(1.08rem, 1.9vw, 1.35rem);
+        line-height: 1.45;
+      }
+
+      .button {
+        min-height: 46px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--white);
+        border-radius: 4px;
+        padding: 12px 16px;
+        background: rgb(5 5 5 / 0.34);
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .button:hover {
+        color: #16110d;
+        border-color: var(--accent);
+        background: var(--accent);
+      }
+
+      .strip {
+        padding: clamp(74px, 10vw, 132px) 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .strip-head {
+        width: min(1280px, calc(100% - clamp(44px, 10vw, 144px)));
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 18px;
+        align-items: end;
+        justify-items: start;
+        margin: 0 auto clamp(44px, 6vw, 76px);
+      }
+
+      h2 {
+        margin: 0;
+        font-size: clamp(2.35rem, 5.8vw, 5.8rem);
+        line-height: 0.9;
+        letter-spacing: 0;
+      }
+
+      .counter {
+        color: var(--muted);
+      }
+
+      .rail {
+        display: flex;
+        gap: 18px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x proximity;
+        scroll-padding-inline: clamp(22px, 5vw, 72px);
+        padding: 0 clamp(22px, 5vw, 72px) 24px;
+        cursor: grab;
+        user-select: none;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .rail.is-dragging,
+      .video-board.is-dragging {
+        cursor: grabbing;
+        scroll-snap-type: none;
+      }
+
+      .rail::-webkit-scrollbar {
+        height: 12px;
+      }
+
+      .rail::-webkit-scrollbar-track {
+        background: rgb(245 241 232 / 0.08);
+      }
+
+      .rail::-webkit-scrollbar-thumb {
+        border-radius: 999px;
+        background: rgb(245 241 232 / 0.42);
+      }
+
+      .piece {
+        flex: 0 0 auto;
+        width: auto;
+        margin: 0;
+        scroll-snap-align: center;
+        background: #0d0d0d;
+        cursor: zoom-in;
+      }
+
+      .piece img {
+        display: block;
+        width: auto;
+        max-width: none;
+        height: min(70vh, 760px);
+        object-fit: contain;
+      }
+
+      .design .piece {
+        background: #f5f1e8;
+      }
+
+      .rail-tools {
+        width: min(1280px, calc(100% - clamp(44px, 10vw, 144px)));
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+        margin: clamp(22px, 3vw, 38px) auto 0;
+      }
+
+      .video-board {
+        display: flex;
+        gap: 18px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x proximity;
+        scroll-padding-inline: clamp(22px, 5vw, 72px);
+        padding: 0 clamp(22px, 5vw, 72px) 24px;
+        cursor: grab;
+        user-select: none;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .video-board::-webkit-scrollbar {
+        height: 12px;
+      }
+
+      .video-board::-webkit-scrollbar-track {
+        background: rgb(245 241 232 / 0.08);
+      }
+
+      .video-board::-webkit-scrollbar-thumb {
+        border-radius: 999px;
+        background: rgb(245 241 232 / 0.42);
+      }
+
+      .video-card {
+        flex: 0 0 min(1280px, calc(100vw - clamp(44px, 10vw, 144px)));
+        margin: 0;
+        border: 1px solid var(--line);
+        background: rgb(245 241 232 / 0.025);
+        scroll-snap-align: start;
+      }
+
+      .video-frame {
+        display: grid;
+        place-items: center;
+        height: min(70vh, 760px);
+        background: #000;
+        overflow: hidden;
+      }
+
+      .video-frame video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .video-caption {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 18px 20px;
+      }
+
+      .video-caption p {
+        margin: 0;
+        font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+        font-weight: 900;
+        line-height: 1.1;
+      }
+
+      .video-caption span {
+        color: var(--accent);
+        font-weight: 900;
+      }
+
+      .arrow {
+        width: clamp(68px, 6vw, 86px);
+        aspect-ratio: 1;
+        display: inline-grid;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        color: var(--white);
+        background: transparent;
+        cursor: pointer;
+        font-size: clamp(2rem, 3vw, 3.1rem);
+        line-height: 1;
+      }
+
+      .arrow:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .contact {
+        min-height: 54svh;
+        display: grid;
+        align-items: start;
+        padding: clamp(56px, 7vw, 92px) clamp(22px, 5vw, 72px) clamp(88px, 11vw, 148px);
+        border-top: 1px solid var(--line);
+      }
+
+      .contact-inner {
+        width: min(1280px, 100%);
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .contact h2 {
+        max-width: 16ch;
+        margin: 0 auto;
+        font-size: clamp(2.5rem, 5.8vw, 5.6rem);
+        line-height: 0.94;
+      }
+
+      .contact .micro {
+        margin-bottom: 18px;
+      }
+
+      .contact-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: clamp(20px, 3vw, 34px);
+        margin-top: clamp(44px, 5vw, 72px);
+      }
+
+      .contact .button {
+        min-height: 72px;
+        min-width: 208px;
+        padding: 22px 32px;
+        font-size: 1.08rem;
+        background: rgb(245 241 232 / 0.06);
+      }
+
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 80;
+        display: none;
+        place-items: center;
+        padding: 24px;
+        background: rgb(0 0 0 / 0.92);
+      }
+
+      .lightbox.is-open {
+        display: grid;
+      }
+
+      .lightbox img {
+        max-width: 96vw;
+        max-height: 90vh;
+        object-fit: contain;
+      }
+
+      .close {
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        width: 44px;
+        aspect-ratio: 1;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        color: var(--white);
+        background: rgb(0 0 0 / 0.32);
+        cursor: pointer;
+      }
+
+      @media (max-width: 760px) {
+        .topbar {
+          position: absolute;
+          padding: 20px 24px;
+        }
+
+        .nav {
+          display: none;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 10px 14px;
+          max-width: 100%;
+          overflow: visible;
+        }
+
+        .nav a {
+          min-height: 42px;
+          padding: 10px 12px;
+          font-size: 0.78rem;
+        }
+
+        .hero {
+          min-height: 92svh;
+        }
+
+        .strip-head {
+          grid-template-columns: 1fr;
+          justify-items: start;
+          width: calc(100% - 48px);
+        }
+
+        .strip-head > * {
+          min-width: 0;
+        }
+
+        h1 {
+          font-size: clamp(3.6rem, 17vw, 4.4rem);
+        }
+
+        .hero-foot {
+          width: min(100%, 340px);
+        }
+
+        .hero-foot p {
+          font-size: 1rem;
+        }
+
+        .button {
+          width: 100%;
+        }
+
+        .contact .button {
+          min-width: 0;
+          width: 100%;
+        }
+
+        .piece img {
+          height: 56vh;
+        }
+
+        .rail {
+          scroll-padding-inline: 24px;
+          padding-inline: 24px;
+        }
+
+        .video-board {
+          scroll-padding-inline: 24px;
+          padding-inline: 24px;
+        }
+
+        .video-card {
+          flex-basis: calc(56vh * 16 / 9);
+        }
+
+        .video-frame {
+          height: 56vh;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <nav class="nav" aria-label="Navegacao">
+        <a href="#fotografia">Fotografia</a>
+        <a href="#videos">Vídeos</a>
+        <a href="#arte-grafica">Arte Gráfica</a>
+        <a href="#contact">Contato</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-label="Regis Kraeski">
+        <div class="video-bg" aria-hidden="true">
+          <video autoplay muted loop playsinline preload="auto">
+            <source src="assets/videos/next-level-sports.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="hero-inner">
+          <p class="micro">Audiovisual / Fotografia / Arte Gráfica</p>
+          <h1>Regis Kraeski</h1>
+          <div class="hero-foot">
+            <p>Criação, direção e produção de conteúdo audiovisual para clipes, marcas, empresas e campanhas.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="strip videos" id="videos">
+        <div class="strip-head">
+          <h2>Vídeos</h2>
+          <span class="counter">21</span>
+        </div>
+        <div class="video-board" tabindex="0" aria-label="Galeria horizontal de vídeos">
+          <article class="video-card">
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="assets/videos/acao-club-309.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="video-caption">
+              <p>Ação Club 309</p>
+              <span>01</span>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="assets/videos/animacao-jusmobile.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="video-caption">
+              <p>Animação JusMobile</p>
+              <span>02</span>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="assets/videos/15-de-beethoven.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="video-caption">
+              <p>15 de Beethoven</p>
+              <span>03</span>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="assets/videos/next-level-sports.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="video-caption">
+              <p>Next Level Sports</p>
+              <span>04</span>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="assets/videos/drinks-e-makebele.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="video-caption">
+              <p>Drinks e Makebelê</p>
+              <span>05</span>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="assets/videos/institucional-vital-implantes.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="video-caption">
+              <p>Institucional Vital Implantes</p>
+              <span>06</span>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="assets/videos/campanha-gochape.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="video-caption">
+              <p>Campanha #GoChape</p>
+              <span>07</span>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="assets/videos/jameson-planned-heat.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="video-caption">
+              <p>Jameson - Planned Heat</p>
+              <span>08</span>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="assets/videos/acao-top-body-federal-music.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="video-caption">
+              <p>Ação Top Body + Federal Music</p>
+              <span>09</span>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="assets/videos/colecao-closet-delas.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="video-caption">
+              <p>Coleção Closet Delas</p>
+              <span>10</span>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="assets/videos/confraternizacao-assor-1.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="video-caption">
+              <p>Confraternização ASSOR 1</p>
+              <span>11</span>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="assets/videos/confraternizacao-assor-2.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="video-caption">
+              <p>Confraternização ASSOR 2</p>
+              <span>12</span>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="assets/videos/criacao-de-drinks-lindos.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="video-caption">
+              <p>Criação de Drinks Lindos</p>
+              <span>13</span>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="assets/videos/eu-e-o-mundo.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="video-caption">
+              <p>Eu e o Mundo</p>
+              <span>14</span>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="assets/videos/natal-rouge.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="video-caption">
+              <p>Natal Rouge</p>
+              <span>15</span>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="assets/videos/publicidade-bodywork.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="video-caption">
+              <p>Publicidade Bodywork</p>
+              <span>16</span>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="assets/videos/rouge-hair-2.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="video-caption">
+              <p>Rouge Hair 2</p>
+              <span>17</span>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="assets/videos/showreel-o-plantae.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="video-caption">
+              <p>Showreel O Plantae</p>
+              <span>18</span>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="assets/videos/teaser-raxo-do-ceu.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="video-caption">
+              <p>Teaser Raxo do Céu</p>
+              <span>19</span>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="assets/videos/33story.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="video-caption">
+              <p>33Story</p>
+              <span>20</span>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="assets/videos/23feed.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="video-caption">
+              <p>23Feed</p>
+              <span>21</span>
+            </div>
+          </article>
+        </div>
+        <div class="rail-tools">
+          <button class="arrow" type="button" data-left aria-label="Voltar">&#8249;</button>
+          <button class="arrow" type="button" data-right aria-label="Avancar">&#8250;</button>
+        </div>
+      </section>
+
+      <section class="strip fotografia" id="fotografia" data-gallery="photo">
+        <div class="strip-head">
+          <h2>Fotografia</h2>
+          <span class="counter"></span>
+        </div>
+        <div class="rail" tabindex="0" aria-label="Galeria horizontal de fotografia"></div>
+        <div class="rail-tools">
+          <button class="arrow" type="button" data-left aria-label="Voltar">&#8249;</button>
+          <button class="arrow" type="button" data-right aria-label="Avancar">&#8250;</button>
+        </div>
+      </section>
+
+      <section class="strip design" id="arte-grafica" data-gallery="art">
+        <div class="strip-head">
+          <h2>Arte Gráfica</h2>
+          <span class="counter"></span>
+        </div>
+        <div class="rail" tabindex="0" aria-label="Galeria horizontal de arte grafica"></div>
+        <div class="rail-tools">
+          <button class="arrow" type="button" data-left aria-label="Voltar">&#8249;</button>
+          <button class="arrow" type="button" data-right aria-label="Avancar">&#8250;</button>
+        </div>
+      </section>
+
+      <section class="contact" id="contact">
+        <div class="contact-inner">
+          <p class="micro">Contato</p>
+          <h2>Vamos criar algo juntos?</h2>
+          <div class="contact-row">
+            <a class="button" href="mailto:regiskraeski@gmail.com?subject=Projeto%20para%20Regis%20Kraeski">Email</a>
+            <a class="button" href="https://wa.me/5561981638256" rel="noreferrer">WhatsApp</a>
+            <a class="button" href="https://www.instagram.com/regiskraeski" rel="noreferrer">Instagram</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="lightbox" aria-hidden="true">
+      <button class="close" type="button" aria-label="Fechar">x</button>
+      <img alt="" />
+    </div>
+
+    <script>
+      const galleries = {
+        photo: {
+          count: 32,
+          prefix: "assets/fotografia/photo-",
+          alt: "Fotografia de Regis Kraeski",
+        },
+        art: {
+          count: 27,
+          prefix: "assets/arte-grafica/art-",
+          alt: "Arte grafica de Regis Kraeski",
+          exclude: [1, 12, 22],
+        },
+      };
+
+      const pad = (value) => String(value).padStart(2, "0");
+      const lightbox = document.querySelector(".lightbox");
+      const lightboxImage = lightbox.querySelector("img");
+      const heroVideo = document.querySelector(".video-bg video");
+
+      if (heroVideo) {
+        heroVideo.play().catch(() => {
+          heroVideo.controls = false;
+        });
+      }
+
+      function openLightbox(image) {
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
+        lightbox.classList.add("is-open");
+        lightbox.setAttribute("aria-hidden", "false");
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("is-open");
+        lightbox.setAttribute("aria-hidden", "true");
+        lightboxImage.removeAttribute("src");
+      }
+
+      function enableDragScroll(rail) {
+        let isDragging = false;
+        let didDrag = false;
+        let startX = 0;
+        let scrollLeft = 0;
+
+        rail.addEventListener("pointerdown", (event) => {
+          if (event.target.closest("video, button, a")) return;
+
+          isDragging = true;
+          didDrag = false;
+          startX = event.clientX;
+          scrollLeft = rail.scrollLeft;
+          rail.classList.add("is-dragging");
+          rail.setPointerCapture(event.pointerId);
+        });
+
+        rail.addEventListener("pointermove", (event) => {
+          if (!isDragging) return;
+          if (Math.abs(event.clientX - startX) > 4) didDrag = true;
+          event.preventDefault();
+          rail.scrollLeft = scrollLeft - (event.clientX - startX);
+        });
+
+        const stopDragging = (event) => {
+          if (!isDragging) return;
+          isDragging = false;
+          rail.classList.remove("is-dragging");
+          if (rail.hasPointerCapture(event.pointerId)) {
+            rail.releasePointerCapture(event.pointerId);
+          }
+        };
+
+        rail.addEventListener("pointerup", stopDragging);
+        rail.addEventListener("pointercancel", stopDragging);
+        rail.addEventListener("click", (event) => {
+          if (!didDrag) return;
+          event.preventDefault();
+          event.stopPropagation();
+          didDrag = false;
+        }, true);
+        rail.addEventListener("mouseleave", () => {
+          isDragging = false;
+          rail.classList.remove("is-dragging");
+        });
+      }
+
+      document.querySelector(".close").addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeLightbox();
+      });
+
+      document.querySelectorAll("[data-gallery]").forEach((gallery) => {
+        const type = gallery.dataset.gallery;
+        const config = galleries[type];
+        const rail = gallery.querySelector(".rail");
+        const counter = gallery.querySelector(".counter");
+
+        const indexes = Array.from({ length: config.count }, (_, index) => index + 1)
+          .filter((index) => !config.exclude?.includes(index));
+
+        indexes.forEach((index) => {
+          const figure = document.createElement("figure");
+          figure.className = "piece";
+
+          const image = document.createElement("img");
+          image.src = `${config.prefix}${pad(index)}.jpg`;
+          image.alt = `${config.alt} ${index}`;
+          image.loading = index <= 4 ? "eager" : "lazy";
+          image.decoding = "async";
+          image.draggable = false;
+
+          image.addEventListener("click", () => openLightbox(image));
+          figure.append(image);
+          rail.append(figure);
+        });
+
+        counter.textContent = `${indexes.length}`;
+
+        const scrollByImage = (direction) => {
+          const firstImage = rail.querySelector(".piece");
+          const amount = firstImage ? firstImage.getBoundingClientRect().width + 18 : rail.clientWidth;
+          rail.scrollBy({ left: direction * amount, behavior: "smooth" });
+        };
+
+        enableDragScroll(rail);
+        gallery.querySelector("[data-left]").addEventListener("click", () => scrollByImage(-1));
+        gallery.querySelector("[data-right]").addEventListener("click", () => scrollByImage(1));
+      });
+
+      document.querySelectorAll(".videos").forEach((section) => {
+        const rail = section.querySelector(".video-board");
+        const scrollByVideo = (direction) => {
+          const firstVideo = rail.querySelector(".video-card");
+          const amount = firstVideo ? firstVideo.getBoundingClientRect().width + 18 : rail.clientWidth;
+          rail.scrollBy({ left: direction * amount, behavior: "smooth" });
+        };
+
+        enableDragScroll(rail);
+        section.querySelector("[data-left]").addEventListener("click", () => scrollByVideo(-1));
+        section.querySelector("[data-right]").addEventListener("click", () => scrollByVideo(1));
+      });
+    </script>
+  </body>
+</html>
+
+
+
+
