@@ -129,6 +129,7 @@
         align-items: end;
         overflow: hidden;
         isolation: isolate;
+        background: #000;
         padding: 118px clamp(22px, 5vw, 72px) 54px;
       }
 
@@ -149,7 +150,7 @@
         object-fit: cover;
         transform: translate(-50%, -50%);
         z-index: 0;
-        opacity: 0.34;
+        opacity: 1;
         pointer-events: none;
       }
 
@@ -171,8 +172,8 @@
         inset: 0;
         z-index: 2;
         background:
-          linear-gradient(90deg, rgb(5 5 5 / 0.66), rgb(5 5 5 / 0.12), rgb(5 5 5 / 0.58)),
-          linear-gradient(0deg, rgb(5 5 5 / 0.72), rgb(5 5 5 / 0.03) 54%, rgb(5 5 5 / 0.36));
+          linear-gradient(90deg, rgb(5 5 5 / 0.54), rgb(5 5 5 / 0.04), rgb(5 5 5 / 0.28)),
+          linear-gradient(0deg, rgb(5 5 5 / 0.62), rgb(5 5 5 / 0) 54%, rgb(5 5 5 / 0.2));
       }
 
       .hero::after {
@@ -226,6 +227,7 @@
         color: var(--muted);
         font-size: clamp(1.08rem, 1.9vw, 1.35rem);
         line-height: 1.45;
+        text-shadow: 0 2px 18px rgb(0 0 0 / 0.8);
       }
 
       .button {
@@ -324,31 +326,23 @@
       }
 
       .video-layout {
-        width: min(1280px, calc(100% - clamp(44px, 10vw, 144px)));
+        width: min(1440px, calc(100% - clamp(44px, 10vw, 144px)));
         display: grid;
-        grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: clamp(18px, 2.4vw, 30px);
         align-items: stretch;
         margin: 0 auto;
       }
 
       .video-panel {
-        min-width: 0;
-      }
-
-      .video-panel-title {
-        display: flex;
-        justify-content: space-between;
-        gap: 18px;
-        margin: 0 0 14px;
-        color: var(--muted);
+        display: contents;
       }
 
       .video-stack,
       .video-board {
-        display: flex;
+        display: contents;
         gap: 18px;
-        overflow: auto;
+        overflow: visible;
         cursor: grab;
         user-select: none;
         -webkit-overflow-scrolling: touch;
@@ -356,18 +350,11 @@
       }
 
       .video-stack {
-        height: min(82vh, 900px);
-        flex-direction: column;
-        overscroll-behavior-y: contain;
-        scroll-snap-type: y proximity;
-        padding: 0 0 6px;
+        height: auto;
       }
 
       .video-board {
-        overflow-y: hidden;
-        overscroll-behavior-x: contain;
-        scroll-snap-type: x proximity;
-        padding: 0 0 6px;
+        padding: 0;
       }
 
       .video-stack::-webkit-scrollbar,
@@ -376,22 +363,25 @@
       }
 
       .video-card {
-        flex: 0 0 min(640px, 100%);
+        min-width: 0;
         margin: 0;
         border: 1px solid var(--line);
         background: rgb(245 241 232 / 0.025);
         scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
       }
 
       .story-card {
-        flex-basis: auto;
+        width: auto;
       }
 
       .video-frame {
         position: relative;
         display: grid;
         place-items: center;
-        height: min(54vh, 600px);
+        height: auto;
+        aspect-ratio: 16 / 9;
         background: #000;
         overflow: hidden;
       }
@@ -400,10 +390,12 @@
         content: "";
         position: absolute;
         inset: 0 0 56px;
+        pointer-events: none;
       }
 
       .story-card .video-frame {
-        height: min(76vh, 840px);
+        height: auto;
+        aspect-ratio: 9 / 16;
       }
 
       .video-frame video {
@@ -418,7 +410,9 @@
         align-items: center;
         justify-content: space-between;
         gap: 18px;
-        padding: 18px 20px;
+        order: -1;
+        min-height: 78px;
+        padding: 18px 20px 16px;
       }
 
       .video-caption p {
@@ -592,8 +586,30 @@
           gap: 42px;
         }
 
+        .video-panel {
+          display: block;
+        }
+
+        .video-stack,
+        .video-board {
+          display: flex;
+          gap: 18px;
+          overflow: auto;
+        }
+
         .video-stack {
           height: 64vh;
+          flex-direction: column;
+          overscroll-behavior-y: contain;
+          scroll-snap-type: y proximity;
+          padding: 0 0 6px;
+        }
+
+        .video-board {
+          overflow-y: hidden;
+          overscroll-behavior-x: contain;
+          scroll-snap-type: x proximity;
+          padding: 0 0 6px;
         }
 
         .video-card {
@@ -602,6 +618,7 @@
 
         .video-frame {
           height: 52vh;
+          aspect-ratio: auto;
         }
 
         .story-card {
@@ -610,6 +627,7 @@
 
         .story-card .video-frame {
           height: 52vh;
+          aspect-ratio: auto;
         }
       }
     </style>
@@ -647,9 +665,6 @@
         </div>
         <div class="video-layout">
           <div class="video-panel">
-            <div class="video-panel-title micro">
-              <span>Stories / Verticais</span>
-            </div>
             <div class="video-stack" tabindex="0" aria-label="Galeria vertical de vídeos story">
               <article class="video-card story-card">
                 <div class="video-frame">
@@ -684,9 +699,6 @@
             </div>
           </div>
           <div class="video-panel">
-            <div class="video-panel-title micro">
-              <span>Horizontais</span>
-            </div>
             <div class="video-board" tabindex="0" aria-label="Galeria horizontal de vídeos">
               <article class="video-card">
                 <div class="video-frame">
