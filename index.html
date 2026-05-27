@@ -336,7 +336,7 @@
         --video-caption-height: 66px;
         --horizontal-column: calc((100% - (2 * var(--video-gap))) / 3);
         --story-frame-height: calc(var(--story-width) * 16 / 9);
-        --horizontal-frame-height: calc(var(--horizontal-column) * 9 / 16);
+        --horizontal-frame-height: min(44vh, calc(var(--horizontal-column) * 9 / 16));
         --story-card-height: calc(var(--video-caption-height) + var(--story-frame-height));
         --horizontal-card-height: calc(var(--video-caption-height) + var(--horizontal-frame-height));
         width: var(--video-width);
@@ -401,7 +401,9 @@
       }
 
       .video-board .video-card {
-        flex-basis: var(--horizontal-column);
+        flex: 0 0 auto;
+        width: max-content;
+        max-width: none;
         height: var(--horizontal-card-height);
       }
 
@@ -428,8 +430,10 @@
       }
 
       .video-board .video-frame {
-        width: 100%;
-        aspect-ratio: 16 / 9;
+        width: max-content;
+        max-width: none;
+        height: var(--horizontal-frame-height);
+        aspect-ratio: auto;
       }
 
       .video-frame video {
@@ -437,6 +441,11 @@
         width: 100%;
         height: 100%;
         object-fit: contain;
+      }
+
+      .video-board .video-frame video {
+        width: auto;
+        max-width: none;
       }
 
       .video-caption {
@@ -661,7 +670,9 @@
         }
 
         .video-board .video-card {
-          flex-basis: var(--horizontal-column);
+          flex: 0 0 auto;
+          width: max-content;
+          max-width: none;
           height: var(--horizontal-card-height);
         }
 
@@ -671,7 +682,10 @@
         }
 
         .video-board .video-frame {
-          aspect-ratio: 16 / 9;
+          width: max-content;
+          max-width: none;
+          height: var(--horizontal-frame-height);
+          aspect-ratio: auto;
         }
 
         .story-card {
