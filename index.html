@@ -264,6 +264,10 @@
         margin: 0 auto clamp(18px, 2.4vw, 30px);
       }
 
+      .videos .strip-head {
+        width: min(1760px, calc(100% - clamp(24px, 4vw, 56px)));
+      }
+
       h2 {
         margin: 0;
         font-size: clamp(2.35rem, 5.8vw, 5.8rem);
@@ -326,14 +330,18 @@
       }
 
       .video-layout {
-        --video-gap: clamp(16px, 1.8vw, 24px);
-        --video-column: calc((min(1440px, calc(100vw - clamp(44px, 10vw, 144px))) - (3 * var(--video-gap))) / 4);
-        --video-caption-height: 78px;
-        --video-frame-height: calc(var(--video-column) * 16 / 9);
-        --video-card-height: calc(var(--video-caption-height) + var(--video-frame-height));
-        width: min(1440px, calc(100% - clamp(44px, 10vw, 144px)));
+        --video-gap: clamp(8px, 1vw, 14px);
+        --video-width: min(1760px, calc(100% - clamp(24px, 4vw, 56px)));
+        --story-width: clamp(132px, 11vw, 190px);
+        --video-caption-height: 66px;
+        --horizontal-column: calc((100% - (2 * var(--video-gap))) / 3);
+        --story-frame-height: calc(var(--story-width) * 16 / 9);
+        --horizontal-frame-height: calc(var(--horizontal-column) * 9 / 16);
+        --story-card-height: calc(var(--video-caption-height) + var(--story-frame-height));
+        --horizontal-card-height: calc(var(--video-caption-height) + var(--horizontal-frame-height));
+        width: var(--video-width);
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: var(--story-width) minmax(0, 1fr);
         gap: var(--video-gap);
         align-items: start;
         margin: 0 auto;
@@ -346,7 +354,7 @@
       .video-stack,
       .video-board {
         display: flex;
-        gap: 18px;
+        gap: var(--video-gap);
         overflow: auto;
         cursor: grab;
         user-select: none;
@@ -355,7 +363,7 @@
       }
 
       .video-stack {
-        height: var(--video-card-height);
+        height: var(--story-card-height);
         flex-direction: column;
         overscroll-behavior-y: contain;
         scroll-snap-type: y proximity;
@@ -363,7 +371,7 @@
       }
 
       .video-board {
-        height: var(--video-card-height);
+        height: var(--horizontal-card-height);
         overflow-y: hidden;
         overscroll-behavior-x: contain;
         scroll-snap-type: x proximity;
@@ -384,15 +392,17 @@
         scroll-snap-align: start;
         display: flex;
         flex-direction: column;
-        height: var(--video-card-height);
       }
 
       .story-card {
-        flex-basis: auto;
+        flex-basis: var(--story-card-height);
+        height: var(--story-card-height);
+        width: var(--story-width);
       }
 
       .video-board .video-card {
-        flex-basis: calc(var(--video-column) * 256 / 81);
+        flex-basis: var(--horizontal-column);
+        height: var(--horizontal-card-height);
       }
 
       .video-frame {
@@ -413,13 +423,13 @@
       }
 
       .story-card .video-frame {
-        height: var(--video-frame-height);
-        aspect-ratio: auto;
+        width: 100%;
+        aspect-ratio: 9 / 16;
       }
 
       .video-board .video-frame {
-        height: var(--video-frame-height);
-        aspect-ratio: auto;
+        width: 100%;
+        aspect-ratio: 16 / 9;
       }
 
       .video-frame video {
@@ -605,10 +615,14 @@
         }
 
         .video-layout {
-          --video-gap: 42px;
-          --video-column: calc(100vw - 48px);
-          --video-frame-height: 52vh;
-          --video-card-height: calc(var(--video-caption-height) + var(--video-frame-height));
+          --video-gap: 18px;
+          --video-caption-height: 66px;
+          --story-width: min(68vw, calc(52vh * 9 / 16));
+          --story-frame-height: calc(var(--story-width) * 16 / 9);
+          --story-card-height: calc(var(--video-caption-height) + var(--story-frame-height));
+          --horizontal-column: min(82vw, calc(52vh * 16 / 9));
+          --horizontal-frame-height: calc(var(--horizontal-column) * 9 / 16);
+          --horizontal-card-height: calc(var(--video-caption-height) + var(--horizontal-frame-height));
           width: calc(100% - 48px);
           grid-template-columns: 1fr;
           gap: var(--video-gap);
@@ -621,50 +635,52 @@
         .video-stack,
         .video-board {
           display: flex;
-          gap: 18px;
+          gap: var(--video-gap);
           overflow: auto;
         }
 
         .video-stack {
-          height: 64vh;
+          width: var(--story-width);
+          height: min(64vh, var(--story-card-height));
           flex-direction: column;
           overscroll-behavior-y: contain;
           scroll-snap-type: y proximity;
-          padding: 0 0 6px;
+          padding: 0;
         }
 
         .video-board {
+          height: var(--horizontal-card-height);
           overflow-y: hidden;
           overscroll-behavior-x: contain;
           scroll-snap-type: x proximity;
-          padding: 0 0 6px;
+          padding: 0;
         }
 
         .video-card {
-          flex-basis: min(78vw, calc(52vh * 16 / 9));
+          flex-basis: var(--story-card-height);
         }
 
         .video-board .video-card {
-          flex-basis: min(78vw, calc(52vh * 16 / 9));
+          flex-basis: var(--horizontal-column);
+          height: var(--horizontal-card-height);
         }
 
         .video-frame {
-          height: 52vh;
-          aspect-ratio: auto;
+          width: 100%;
+          height: auto;
         }
 
         .video-board .video-frame {
-          height: 52vh;
-          aspect-ratio: auto;
+          aspect-ratio: 16 / 9;
         }
 
         .story-card {
-          width: min(78vw, 360px);
+          width: var(--story-width);
+          height: var(--story-card-height);
         }
 
         .story-card .video-frame {
-          height: 52vh;
-          aspect-ratio: auto;
+          aspect-ratio: 9 / 16;
         }
       }
     </style>
@@ -787,10 +803,6 @@
                   <p>Makebelê</p>
                 </div>
               </article>
-            </div>
-          </div>
-          <div class="video-panel">
-            <div class="video-board" tabindex="0" aria-label="Galeria horizontal de vídeos">
               <article class="video-card">
                 <div class="video-frame">
                   <video controls playsinline preload="metadata">
@@ -841,10 +853,6 @@
                   <p>Churrascaria Pampas</p>
                 </div>
               </article>
-            </div>
-          </div>
-          <div class="video-panel">
-            <div class="video-board" tabindex="0" aria-label="Galeria horizontal de vídeos">
               <article class="video-card">
                 <div class="video-frame">
                   <video controls playsinline preload="metadata">
