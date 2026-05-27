@@ -280,25 +280,18 @@
         cursor: grab;
         user-select: none;
         -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
       }
 
       .rail.is-dragging,
-      .video-board.is-dragging {
+      .video-board.is-dragging,
+      .video-stack.is-dragging {
         cursor: grabbing;
         scroll-snap-type: none;
       }
 
       .rail::-webkit-scrollbar {
-        height: 12px;
-      }
-
-      .rail::-webkit-scrollbar-track {
-        background: rgb(245 241 232 / 0.08);
-      }
-
-      .rail::-webkit-scrollbar-thumb {
-        border-radius: 999px;
-        background: rgb(245 241 232 / 0.42);
+        display: none;
       }
 
       .piece {
@@ -330,46 +323,87 @@
         margin: clamp(22px, 3vw, 38px) auto 0;
       }
 
+      .video-layout {
+        width: min(1280px, calc(100% - clamp(44px, 10vw, 144px)));
+        display: grid;
+        grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
+        gap: clamp(18px, 2.4vw, 30px);
+        align-items: stretch;
+        margin: 0 auto;
+      }
+
+      .video-panel {
+        min-width: 0;
+      }
+
+      .video-panel-title {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        margin: 0 0 14px;
+        color: var(--muted);
+      }
+
+      .video-stack,
       .video-board {
         display: flex;
         gap: 18px;
-        overflow-x: auto;
-        overscroll-behavior-x: contain;
-        scroll-snap-type: x proximity;
-        scroll-padding-inline: clamp(22px, 5vw, 72px);
-        padding: 0 clamp(22px, 5vw, 72px) 24px;
+        overflow: auto;
         cursor: grab;
         user-select: none;
         -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
       }
 
+      .video-stack {
+        height: min(66vh, 720px);
+        flex-direction: column;
+        overscroll-behavior-y: contain;
+        scroll-snap-type: y proximity;
+        padding: 0 0 6px;
+      }
+
+      .video-board {
+        overflow-y: hidden;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x proximity;
+        padding: 0 0 6px;
+      }
+
+      .video-stack::-webkit-scrollbar,
       .video-board::-webkit-scrollbar {
-        height: 12px;
-      }
-
-      .video-board::-webkit-scrollbar-track {
-        background: rgb(245 241 232 / 0.08);
-      }
-
-      .video-board::-webkit-scrollbar-thumb {
-        border-radius: 999px;
-        background: rgb(245 241 232 / 0.42);
+        display: none;
       }
 
       .video-card {
-        flex: 0 0 min(1280px, calc(100vw - clamp(44px, 10vw, 144px)));
+        flex: 0 0 min(640px, 100%);
         margin: 0;
         border: 1px solid var(--line);
         background: rgb(245 241 232 / 0.025);
         scroll-snap-align: start;
       }
 
+      .story-card {
+        flex-basis: auto;
+      }
+
       .video-frame {
+        position: relative;
         display: grid;
         place-items: center;
-        height: min(70vh, 760px);
+        height: min(54vh, 600px);
         background: #000;
         overflow: hidden;
+      }
+
+      .video-frame::after {
+        content: "";
+        position: absolute;
+        inset: 0 0 56px;
+      }
+
+      .story-card .video-frame {
+        height: min(54vh, 600px);
       }
 
       .video-frame video {
@@ -557,17 +591,30 @@
           padding-inline: 24px;
         }
 
-        .video-board {
-          scroll-padding-inline: 24px;
-          padding-inline: 24px;
+        .video-layout {
+          width: calc(100% - 48px);
+          grid-template-columns: 1fr;
+          gap: 42px;
+        }
+
+        .video-stack {
+          height: 64vh;
         }
 
         .video-card {
-          flex-basis: calc(56vh * 16 / 9);
+          flex-basis: min(78vw, calc(52vh * 16 / 9));
         }
 
         .video-frame {
-          height: 56vh;
+          height: 52vh;
+        }
+
+        .story-card {
+          width: min(78vw, 360px);
+        }
+
+        .story-card .video-frame {
+          height: 52vh;
         }
       }
     </style>
@@ -601,244 +648,234 @@
       <section class="strip videos" id="videos">
         <div class="strip-head">
           <h2>Vídeos</h2>
-          <span class="counter">21</span>
+          <span class="counter">19</span>
         </div>
-        <div class="video-board" tabindex="0" aria-label="Galeria horizontal de vídeos">
-          <article class="video-card">
-            <div class="video-frame">
-              <video controls playsinline preload="metadata">
-                <source src="assets/videos/acao-club-309.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="video-caption">
-              <p>Ação Club 309</p>
-              <span>01</span>
-            </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <video controls playsinline preload="metadata">
-                <source src="assets/videos/animacao-jusmobile.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="video-caption">
-              <p>Animação JusMobile</p>
-              <span>02</span>
-            </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <video controls playsinline preload="metadata">
-                <source src="assets/videos/15-de-beethoven.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="video-caption">
-              <p>15 de Beethoven</p>
+        <div class="video-layout">
+          <div class="video-panel">
+            <div class="video-panel-title micro">
+              <span>Stories / Verticais</span>
               <span>03</span>
             </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <video controls playsinline preload="metadata">
-                <source src="assets/videos/next-level-sports.mp4" type="video/mp4" />
-              </video>
+            <div class="video-stack" tabindex="0" aria-label="Galeria vertical de vídeos story">
+              <article class="video-card story-card">
+                <div class="video-frame">
+                  <video controls playsinline preload="metadata">
+                    <source src="assets/videos/jameson-planned-heat.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="video-caption">
+                  <p>Jameson - Planned Heat</p>
+                  <span>01</span>
+                </div>
+              </article>
+              <article class="video-card story-card">
+                <div class="video-frame">
+                  <video controls playsinline preload="metadata">
+                    <source src="assets/videos/33story.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="video-caption">
+                  <p>33Story</p>
+                  <span>02</span>
+                </div>
+              </article>
+              <article class="video-card story-card">
+                <div class="video-frame">
+                  <video controls playsinline preload="metadata">
+                    <source src="assets/videos/23feed.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="video-caption">
+                  <p>23Feed</p>
+                  <span>03</span>
+                </div>
+              </article>
             </div>
-            <div class="video-caption">
-              <p>Next Level Sports</p>
-              <span>04</span>
-            </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <video controls playsinline preload="metadata">
-                <source src="assets/videos/drinks-e-makebele.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="video-caption">
-              <p>Drinks e Makebelê</p>
-              <span>05</span>
-            </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <video controls playsinline preload="metadata">
-                <source src="assets/videos/institucional-vital-implantes.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="video-caption">
-              <p>Institucional Vital Implantes</p>
-              <span>06</span>
-            </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <video controls playsinline preload="metadata">
-                <source src="assets/videos/campanha-gochape.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="video-caption">
-              <p>Campanha #GoChape</p>
-              <span>07</span>
-            </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <video controls playsinline preload="metadata">
-                <source src="assets/videos/jameson-planned-heat.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="video-caption">
-              <p>Jameson - Planned Heat</p>
-              <span>08</span>
-            </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <video controls playsinline preload="metadata">
-                <source src="assets/videos/acao-top-body-federal-music.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="video-caption">
-              <p>Ação Top Body + Federal Music</p>
-              <span>09</span>
-            </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <video controls playsinline preload="metadata">
-                <source src="assets/videos/colecao-closet-delas.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="video-caption">
-              <p>Coleção Closet Delas</p>
-              <span>10</span>
-            </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <video controls playsinline preload="metadata">
-                <source src="assets/videos/confraternizacao-assor-1.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="video-caption">
-              <p>Confraternização ASSOR 1</p>
-              <span>11</span>
-            </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <video controls playsinline preload="metadata">
-                <source src="assets/videos/confraternizacao-assor-2.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="video-caption">
-              <p>Confraternização ASSOR 2</p>
-              <span>12</span>
-            </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <video controls playsinline preload="metadata">
-                <source src="assets/videos/criacao-de-drinks-lindos.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="video-caption">
-              <p>Criação de Drinks Lindos</p>
-              <span>13</span>
-            </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <video controls playsinline preload="metadata">
-                <source src="assets/videos/eu-e-o-mundo.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="video-caption">
-              <p>Eu e o Mundo</p>
-              <span>14</span>
-            </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <video controls playsinline preload="metadata">
-                <source src="assets/videos/natal-rouge.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="video-caption">
-              <p>Natal Rouge</p>
-              <span>15</span>
-            </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <video controls playsinline preload="metadata">
-                <source src="assets/videos/publicidade-bodywork.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="video-caption">
-              <p>Publicidade Bodywork</p>
+          </div>
+          <div class="video-panel">
+            <div class="video-panel-title micro">
+              <span>Horizontais</span>
               <span>16</span>
             </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <video controls playsinline preload="metadata">
-                <source src="assets/videos/rouge-hair-2.mp4" type="video/mp4" />
-              </video>
+            <div class="video-board" tabindex="0" aria-label="Galeria horizontal de vídeos">
+              <article class="video-card">
+                <div class="video-frame">
+                  <video controls playsinline preload="metadata">
+                    <source src="assets/videos/acao-club-309.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="video-caption">
+                  <p>Ação Club 309</p>
+                  <span>01</span>
+                </div>
+              </article>
+              <article class="video-card">
+                <div class="video-frame">
+                  <video controls playsinline preload="metadata">
+                    <source src="assets/videos/animacao-jusmobile.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="video-caption">
+                  <p>Animação JusMobile</p>
+                  <span>02</span>
+                </div>
+              </article>
+              <article class="video-card">
+                <div class="video-frame">
+                  <video controls playsinline preload="metadata">
+                    <source src="assets/videos/15-de-beethoven.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="video-caption">
+                  <p>15 de Beethoven</p>
+                  <span>03</span>
+                </div>
+              </article>
+              <article class="video-card">
+                <div class="video-frame">
+                  <video controls playsinline preload="metadata">
+                    <source src="assets/videos/next-level-sports.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="video-caption">
+                  <p>Next Level Sports</p>
+                  <span>04</span>
+                </div>
+              </article>
+              <article class="video-card">
+                <div class="video-frame">
+                  <video controls playsinline preload="metadata">
+                    <source src="assets/videos/drinks-e-makebele.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="video-caption">
+                  <p>Drinks e Makebelê</p>
+                  <span>05</span>
+                </div>
+              </article>
+              <article class="video-card">
+                <div class="video-frame">
+                  <video controls playsinline preload="metadata">
+                    <source src="assets/videos/institucional-vital-implantes.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="video-caption">
+                  <p>Institucional Vital Implantes</p>
+                  <span>06</span>
+                </div>
+              </article>
+              <article class="video-card">
+                <div class="video-frame">
+                  <video controls playsinline preload="metadata">
+                    <source src="assets/videos/campanha-gochape.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="video-caption">
+                  <p>Campanha #GoChape</p>
+                  <span>07</span>
+                </div>
+              </article>
+              <article class="video-card">
+                <div class="video-frame">
+                  <video controls playsinline preload="metadata">
+                    <source src="assets/videos/acao-top-body-federal-music.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="video-caption">
+                  <p>Ação Top Body + Federal Music</p>
+                  <span>08</span>
+                </div>
+              </article>
+              <article class="video-card">
+                <div class="video-frame">
+                  <video controls playsinline preload="metadata">
+                    <source src="assets/videos/colecao-closet-delas.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="video-caption">
+                  <p>Coleção Closet Delas</p>
+                  <span>09</span>
+                </div>
+              </article>
+              <article class="video-card">
+                <div class="video-frame">
+                  <video controls playsinline preload="metadata">
+                    <source src="assets/videos/confraternizacao-assor-1.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="video-caption">
+                  <p>Confraternização ASSOR 1</p>
+                  <span>10</span>
+                </div>
+              </article>
+              <article class="video-card">
+                <div class="video-frame">
+                  <video controls playsinline preload="metadata">
+                    <source src="assets/videos/criacao-de-drinks-lindos.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="video-caption">
+                  <p>Criação de Drinks Lindos</p>
+                  <span>11</span>
+                </div>
+              </article>
+              <article class="video-card">
+                <div class="video-frame">
+                  <video controls playsinline preload="metadata">
+                    <source src="assets/videos/eu-e-o-mundo.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="video-caption">
+                  <p>Eu e o Mundo</p>
+                  <span>12</span>
+                </div>
+              </article>
+              <article class="video-card">
+                <div class="video-frame">
+                  <video controls playsinline preload="metadata">
+                    <source src="assets/videos/natal-rouge.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="video-caption">
+                  <p>Natal Rouge</p>
+                  <span>13</span>
+                </div>
+              </article>
+              <article class="video-card">
+                <div class="video-frame">
+                  <video controls playsinline preload="metadata">
+                    <source src="assets/videos/publicidade-bodywork.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="video-caption">
+                  <p>Publicidade Bodywork</p>
+                  <span>14</span>
+                </div>
+              </article>
+              <article class="video-card">
+                <div class="video-frame">
+                  <video controls playsinline preload="metadata">
+                    <source src="assets/videos/rouge-hair-2.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="video-caption">
+                  <p>Rouge Hair 2</p>
+                  <span>15</span>
+                </div>
+              </article>
+              <article class="video-card">
+                <div class="video-frame">
+                  <video controls playsinline preload="metadata">
+                    <source src="assets/videos/showreel-o-plantae.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="video-caption">
+                  <p>Showreel O Plantae</p>
+                  <span>16</span>
+                </div>
+              </article>
             </div>
-            <div class="video-caption">
-              <p>Rouge Hair 2</p>
-              <span>17</span>
-            </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <video controls playsinline preload="metadata">
-                <source src="assets/videos/showreel-o-plantae.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="video-caption">
-              <p>Showreel O Plantae</p>
-              <span>18</span>
-            </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <video controls playsinline preload="metadata">
-                <source src="assets/videos/teaser-raxo-do-ceu.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="video-caption">
-              <p>Teaser Raxo do Céu</p>
-              <span>19</span>
-            </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <video controls playsinline preload="metadata">
-                <source src="assets/videos/33story.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="video-caption">
-              <p>33Story</p>
-              <span>20</span>
-            </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <video controls playsinline preload="metadata">
-                <source src="assets/videos/23feed.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="video-caption">
-              <p>23Feed</p>
-              <span>21</span>
-            </div>
-          </article>
-        </div>
-        <div class="rail-tools">
-          <button class="arrow" type="button" data-left aria-label="Voltar">&#8249;</button>
-          <button class="arrow" type="button" data-right aria-label="Avancar">&#8250;</button>
+          </div>
         </div>
       </section>
 
@@ -923,28 +960,38 @@
         lightboxImage.removeAttribute("src");
       }
 
-      function enableDragScroll(rail) {
+      function enableDragScroll(rail, axis = "x") {
         let isDragging = false;
         let didDrag = false;
         let startX = 0;
+        let startY = 0;
         let scrollLeft = 0;
+        let scrollTop = 0;
 
         rail.addEventListener("pointerdown", (event) => {
-          if (event.target.closest("video, button, a")) return;
+          if (event.target.closest("button, a")) return;
 
           isDragging = true;
           didDrag = false;
           startX = event.clientX;
+          startY = event.clientY;
           scrollLeft = rail.scrollLeft;
+          scrollTop = rail.scrollTop;
           rail.classList.add("is-dragging");
           rail.setPointerCapture(event.pointerId);
         });
 
         rail.addEventListener("pointermove", (event) => {
           if (!isDragging) return;
-          if (Math.abs(event.clientX - startX) > 4) didDrag = true;
+          const deltaX = event.clientX - startX;
+          const deltaY = event.clientY - startY;
+          if (Math.abs(deltaX) > 4 || Math.abs(deltaY) > 4) didDrag = true;
           event.preventDefault();
-          rail.scrollLeft = scrollLeft - (event.clientX - startX);
+          if (axis === "y") {
+            rail.scrollTop = scrollTop - deltaY;
+          } else {
+            rail.scrollLeft = scrollLeft - deltaX;
+          }
         });
 
         const stopDragging = (event) => {
@@ -1017,18 +1064,8 @@
         gallery.querySelector("[data-right]").addEventListener("click", () => scrollByImage(1));
       });
 
-      document.querySelectorAll(".videos").forEach((section) => {
-        const rail = section.querySelector(".video-board");
-        const scrollByVideo = (direction) => {
-          const firstVideo = rail.querySelector(".video-card");
-          const amount = firstVideo ? firstVideo.getBoundingClientRect().width + 18 : rail.clientWidth;
-          rail.scrollBy({ left: direction * amount, behavior: "smooth" });
-        };
-
-        enableDragScroll(rail);
-        section.querySelector("[data-left]").addEventListener("click", () => scrollByVideo(-1));
-        section.querySelector("[data-right]").addEventListener("click", () => scrollByVideo(1));
-      });
+      document.querySelectorAll(".video-board").forEach((rail) => enableDragScroll(rail, "x"));
+      document.querySelectorAll(".video-stack").forEach((rail) => enableDragScroll(rail, "y"));
     </script>
   </body>
 </html>
