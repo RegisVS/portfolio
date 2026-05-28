@@ -131,6 +131,30 @@
         background: rgb(242 107 47 / 0.22);
       }
 
+      .menu-toggle {
+        display: none;
+        min-height: 44px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgb(245 241 232 / 0.5);
+        border-radius: 4px;
+        padding: 11px 16px;
+        color: rgb(245 241 232 / 0.88);
+        background: rgb(5 5 5 / 0.42);
+        font-size: 0.76rem;
+        font-weight: 850;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .menu-toggle:hover,
+      .menu-toggle[aria-expanded="true"] {
+        color: var(--white);
+        border-color: var(--accent);
+        background: rgb(242 107 47 / 0.22);
+      }
+
       .hero {
         position: relative;
         height: max(100svh, 56.25vw);
@@ -660,23 +684,47 @@
 
       @media (max-width: 760px) {
         .topbar {
-          position: absolute;
+          position: fixed;
+          justify-content: flex-end;
+          align-items: flex-end;
+          flex-direction: column;
+          gap: 10px;
           padding: 20px 24px;
+          background: linear-gradient(180deg, rgb(5 5 5 / 0.62), rgb(5 5 5 / 0));
+          pointer-events: none;
+        }
+
+        .menu-toggle {
+          display: inline-flex;
+          pointer-events: auto;
         }
 
         .nav {
           display: none;
           flex-direction: column;
           align-items: flex-end;
-          gap: 10px 14px;
-          max-width: 100%;
+          gap: 8px;
+          width: min(220px, calc(100vw - 48px));
+          max-width: calc(100vw - 48px);
           overflow: visible;
+          padding: 10px;
+          border: 1px solid rgb(245 241 232 / 0.18);
+          border-radius: 6px;
+          background: rgb(5 5 5 / 0.76);
+          backdrop-filter: blur(14px);
+          pointer-events: auto;
+        }
+
+        .topbar.is-open .nav {
+          display: flex;
         }
 
         .nav a {
+          width: 100%;
           min-height: 42px;
-          padding: 10px 12px;
-          font-size: 0.68rem;
+          padding: 10px 14px;
+          font-size: 0.72rem;
+          background: rgb(245 241 232 / 0.04);
         }
 
         .hero {
@@ -817,7 +865,8 @@
   </head>
   <body>
     <header class="topbar">
-      <nav class="nav" aria-label="Navegacao">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="nav" id="site-nav" aria-label="Navegacao">
         <a href="#videos">Vídeos</a>
         <a href="#fotografia">Fotografia</a>
         <a href="#arte-grafica">Arte Gráfica</a>
@@ -1123,6 +1172,23 @@
       const cvFrame = cvViewer.querySelector(".cv-frame");
       const heroVideo = document.querySelector(".video-bg video");
       const heroSoundButton = document.querySelector(".hero-sound");
+      const topbar = document.querySelector(".topbar");
+      const menuToggle = document.querySelector(".menu-toggle");
+      const nav = document.querySelector(".nav");
+
+      const closeMenu = () => {
+        topbar.classList.remove("is-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+      };
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen = topbar.classList.toggle("is-open");
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+      });
+
+      nav.addEventListener("click", (event) => {
+        if (event.target.closest("a")) closeMenu();
+      });
 
       if (heroVideo && heroSoundButton) {
         const setHeroSound = (enabled) => {
@@ -1242,6 +1308,7 @@
         if (event.key === "Escape") {
           closeLightbox();
           closeCvViewer();
+          closeMenu();
         }
       });
 
