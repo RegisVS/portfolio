@@ -234,30 +234,25 @@
         right: clamp(18px, 3vw, 42px);
         bottom: clamp(18px, 3vw, 38px);
         z-index: 5;
-        min-height: 38px;
+        width: 44px;
+        min-height: 44px;
         border: 1px solid rgb(245 241 232 / 0.36);
-        border-radius: 999px;
-        padding: 0 14px;
+        border-radius: 50%;
+        padding: 0;
         display: inline-flex;
         align-items: center;
-        gap: 8px;
+        justify-content: center;
         color: var(--paper);
         background: rgb(5 5 5 / 0.42);
-        font: 700 0.72rem/1 var(--font);
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
         cursor: pointer;
         backdrop-filter: blur(12px);
         transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
       }
 
-      .hero-sound::before {
-        content: "";
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--muted);
-        box-shadow: 0 0 0 4px rgb(245 241 232 / 0.08);
+      .hero-sound svg {
+        width: 20px;
+        height: 20px;
+        stroke: currentColor;
       }
 
       .hero-sound[aria-pressed="true"] {
@@ -265,9 +260,17 @@
         background: rgb(5 5 5 / 0.58);
       }
 
-      .hero-sound[aria-pressed="true"]::before {
-        background: var(--accent);
-        box-shadow: 0 0 0 4px rgb(242 107 47 / 0.18);
+      .sound-on {
+        display: none;
+      }
+
+      .hero-sound[aria-pressed="true"] .sound-off {
+        display: none;
+      }
+
+      .hero-sound[aria-pressed="true"] .sound-on {
+        display: block;
+        color: var(--accent);
       }
 
       .hero-sound:hover {
@@ -746,8 +749,8 @@
           top: 82px;
           right: 24px;
           bottom: auto;
-          min-height: 40px;
-          padding: 0 15px;
+          width: 46px;
+          min-height: 46px;
           z-index: 31;
         }
 
@@ -902,7 +905,18 @@
             <source src="assets/hero2-web.mp4" type="video/mp4" />
           </video>
         </div>
-        <button class="hero-sound" type="button" aria-label="Ativar som do video principal" aria-pressed="false">Som</button>
+        <button class="hero-sound" type="button" aria-label="Ativar som do video principal" aria-pressed="false">
+          <svg class="sound-off" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="22" y1="9" x2="16" y2="15"></line>
+            <line x1="16" y1="9" x2="22" y2="15"></line>
+          </svg>
+          <svg class="sound-on" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.5 8.5a5 5 0 0 1 0 7"></path>
+            <path d="M19 5a10 10 0 0 1 0 14"></path>
+          </svg>
+        </button>
         <div class="hero-inner">
           <p class="micro">Audiovisual / Comunicação / Tecnologia</p>
           <h1>Régis Kraeski</h1>
@@ -1214,7 +1228,6 @@
           heroVideo.volume = 0.5;
           heroVideo.muted = !enabled;
           heroSoundButton.setAttribute("aria-pressed", String(enabled));
-          heroSoundButton.textContent = enabled ? "Som 50%" : "Som";
           heroSoundButton.setAttribute(
             "aria-label",
             enabled ? "Desativar som do video principal" : "Ativar som do video principal"
