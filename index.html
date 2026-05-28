@@ -592,6 +592,28 @@
         object-fit: contain;
       }
 
+      .cv-viewer {
+        position: fixed;
+        inset: 0;
+        z-index: 82;
+        display: none;
+        place-items: center;
+        padding: 24px;
+        background: rgb(0 0 0 / 0.92);
+      }
+
+      .cv-viewer.is-open {
+        display: grid;
+      }
+
+      .cv-frame {
+        width: min(96vw, 980px);
+        height: min(90vh, 1240px);
+        border: 1px solid rgb(245 241 232 / 0.28);
+        border-radius: 4px;
+        background: rgb(245 241 232 / 0.96);
+      }
+
       .close {
         position: fixed;
         top: 18px;
@@ -789,6 +811,7 @@
         <a href="#fotografia">Fotografia</a>
         <a href="#arte-grafica">Arte Gráfica</a>
         <a href="#design">Design</a>
+        <a href="assets/curriculo-regis-2026.pdf" data-cv-open>Currículo</a>
         <a href="#contact">Contato</a>
       </nav>
     </header>
@@ -1057,6 +1080,11 @@
       <img alt="" />
     </div>
 
+    <div class="cv-viewer" aria-hidden="true">
+      <button class="close" type="button" aria-label="Fechar currículo">x</button>
+      <iframe class="cv-frame" title="Currículo de Régis Kraeski" src="" data-src="assets/curriculo-regis-2026.pdf"></iframe>
+    </div>
+
     <script>
       const galleries = {
         photo: {
@@ -1080,6 +1108,8 @@
       const pad = (value) => String(value).padStart(2, "0");
       const lightbox = document.querySelector(".lightbox");
       const lightboxImage = lightbox.querySelector("img");
+      const cvViewer = document.querySelector(".cv-viewer");
+      const cvFrame = cvViewer.querySelector(".cv-frame");
       const heroVideo = document.querySelector(".video-bg video");
       const heroSoundButton = document.querySelector(".hero-sound");
 
@@ -1112,6 +1142,18 @@
         lightbox.classList.remove("is-open");
         lightbox.setAttribute("aria-hidden", "true");
         lightboxImage.removeAttribute("src");
+      }
+
+      function openCvViewer() {
+        cvFrame.src = cvFrame.dataset.src;
+        cvViewer.classList.add("is-open");
+        cvViewer.setAttribute("aria-hidden", "false");
+      }
+
+      function closeCvViewer() {
+        cvViewer.classList.remove("is-open");
+        cvViewer.setAttribute("aria-hidden", "true");
+        cvFrame.removeAttribute("src");
       }
 
       function enableDragScroll(rail, axis = "x") {
@@ -1175,9 +1217,21 @@
       lightbox.addEventListener("click", (event) => {
         if (event.target === lightbox) closeLightbox();
       });
+      cvViewer.querySelector(".close").addEventListener("click", closeCvViewer);
+      cvViewer.addEventListener("click", (event) => {
+        if (event.target === cvViewer) closeCvViewer();
+      });
+
+      document.querySelector("[data-cv-open]").addEventListener("click", (event) => {
+        event.preventDefault();
+        openCvViewer();
+      });
 
       document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") closeLightbox();
+        if (event.key === "Escape") {
+          closeLightbox();
+          closeCvViewer();
+        }
       });
 
       document.querySelectorAll("[data-gallery]").forEach((gallery) => {
