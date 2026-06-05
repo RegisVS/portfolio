@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
@@ -685,6 +685,387 @@
         }
       }
 
+
+
+      /* Project cards redesign: readable separated projects with expandable galleries */
+      .strip {
+        position: relative;
+        padding: clamp(24px, 3.2vw, 42px) clamp(18px, 5vw, 72px);
+        border-bottom: 1px solid rgb(245 241 232 / 0.1);
+      }
+
+      .hero + .strip {
+        padding-top: clamp(36px, 4.8vw, 64px);
+      }
+
+      .section-summary.strip-head,
+      .videos .section-summary.strip-head {
+        padding: clamp(26px, 3vw, 44px) clamp(26px, 3.6vw, 52px);
+      }
+
+      .strip::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(circle at 12% 0%, rgb(242 107 47 / 0.1), transparent 28%),
+          linear-gradient(180deg, rgb(245 241 232 / 0.03), transparent 34%);
+      }
+
+      .strip-head,
+      .videos .strip-head {
+        position: relative;
+        width: min(1280px, 100%);
+        padding-inline: 0;
+        grid-template-columns: minmax(0, 0.9fr) minmax(240px, 0.55fr);
+        align-items: end;
+        margin-bottom: clamp(24px, 3.6vw, 48px);
+      }
+
+      .strip-copy {
+        margin: 0;
+        color: rgb(245 241 232 / 0.82);
+        font-size: clamp(0.95rem, 1.28vw, 1.12rem);
+        line-height: 1.55;
+        text-wrap: pretty;
+      }
+
+
+
+      .section-accordion {
+        position: relative;
+        width: min(1280px, 100%);
+        margin: 0 auto;
+      }
+
+      .section-accordion > summary {
+        list-style: none;
+      }
+
+      .section-accordion > summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .section-summary {
+        cursor: pointer;
+        margin-bottom: 0;
+        min-height: clamp(104px, 9vw, 144px);
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        padding: clamp(26px, 3vw, 44px) clamp(26px, 3.6vw, 52px);
+        border: 1px solid rgb(245 241 232 / 0.16);
+        border-radius: 22px;
+        background:
+          linear-gradient(180deg, rgb(245 241 232 / 0.085), rgb(245 241 232 / 0.03)),
+          rgb(5 5 5 / 0.62);
+        box-shadow: 0 22px 80px rgb(0 0 0 / 0.24);
+        transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+      }
+
+      .section-summary:hover,
+      .section-accordion:focus-within .section-summary {
+        border-color: rgb(242 107 47 / 0.62);
+        background:
+          linear-gradient(180deg, rgb(245 241 232 / 0.11), rgb(245 241 232 / 0.04)),
+          rgb(5 5 5 / 0.72);
+      }
+
+      .section-summary h2 {
+        margin: 0;
+      }
+
+      .section-expand {
+        justify-self: end;
+        align-self: center;
+        width: 52px;
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgb(245 241 232 / 0.24);
+        border-radius: 50%;
+        color: var(--white);
+        background: rgb(245 241 232 / 0.045);
+        font-size: 1.7rem;
+        line-height: 1;
+        transition: transform 180ms ease, border-color 180ms ease, color 180ms ease;
+      }
+
+      .section-accordion[open] .section-summary {
+        border-color: rgb(242 107 47 / 0.72);
+        background: rgb(9 9 9 / 0.9);
+      }
+
+      .section-accordion[open] .section-expand {
+        transform: rotate(45deg);
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .section-panel {
+        margin-top: clamp(16px, 2.4vw, 30px);
+      }
+
+      .project-grid {
+        position: relative;
+        width: min(1280px, 100%);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(16px, 2vw, 26px);
+      }
+
+      .project-card {
+        min-width: 0;
+        border: 1px solid rgb(245 241 232 / 0.16);
+        border-radius: 22px;
+        background:
+          linear-gradient(180deg, rgb(245 241 232 / 0.085), rgb(245 241 232 / 0.03)),
+          rgb(5 5 5 / 0.62);
+        box-shadow: 0 22px 80px rgb(0 0 0 / 0.28);
+        overflow: clip;
+        transition: border-color 180ms ease, transform 180ms ease, background 180ms ease;
+      }
+
+      .project-card:hover,
+      .project-card:focus-within {
+        border-color: rgb(242 107 47 / 0.62);
+        transform: translateY(-2px);
+        background:
+          linear-gradient(180deg, rgb(245 241 232 / 0.11), rgb(245 241 232 / 0.04)),
+          rgb(5 5 5 / 0.72);
+      }
+
+      .project-card[open] {
+        grid-column: 1 / -1;
+        border-color: rgb(242 107 47 / 0.72);
+        background: rgb(9 9 9 / 0.92);
+      }
+
+      .project-card summary {
+        list-style: none;
+        cursor: pointer;
+      }
+
+      .project-card summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .project-summary {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        min-height: 100%;
+      }
+
+      .project-cover {
+        position: relative;
+        aspect-ratio: 4 / 3;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        background: #080808;
+      }
+
+      .video-project .project-cover {
+        aspect-ratio: 16 / 9;
+      }
+
+      .project-cover img,
+      .project-cover video {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        transition: transform 300ms ease, opacity 300ms ease;
+      }
+
+      .design .project-cover img,
+      .design-project .project-cover img {
+        object-fit: contain;
+        background: #f5f1e8;
+      }
+
+      .project-card:hover .project-cover img,
+      .project-card:hover .project-cover video {
+        transform: scale(1.035);
+        opacity: 0.92;
+      }
+
+      .project-count {
+        position: absolute;
+        left: 14px;
+        top: 14px;
+        padding: 8px 11px;
+        border: 1px solid rgb(245 241 232 / 0.22);
+        border-radius: 999px;
+        color: var(--white);
+        background: rgb(5 5 5 / 0.72);
+        backdrop-filter: blur(12px);
+        font-size: 0.68rem;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .project-body {
+        display: grid;
+        gap: 14px;
+        padding: clamp(18px, 2.2vw, 26px);
+      }
+
+      .project-title-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        align-items: start;
+      }
+
+      .project-title-row h3 {
+        margin: 0;
+        font-size: clamp(1.18rem, 1.9vw, 1.72rem);
+        line-height: 1.04;
+        letter-spacing: -0.03em;
+        text-wrap: pretty;
+      }
+
+      .project-meta {
+        margin: 0;
+        color: rgb(245 241 232 / 0.62);
+        font-size: 0.78rem;
+        font-weight: 850;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .project-expand {
+        flex: 0 0 auto;
+        width: 42px;
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgb(245 241 232 / 0.22);
+        border-radius: 50%;
+        color: var(--white);
+        font-size: 1.35rem;
+        line-height: 1;
+        transition: transform 180ms ease, border-color 180ms ease, color 180ms ease;
+      }
+
+      .project-card[open] .project-expand {
+        transform: rotate(45deg);
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .project-description {
+        margin: 0;
+        color: rgb(245 241 232 / 0.72);
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      .project-panel {
+        padding: 0 clamp(16px, 2.4vw, 28px) clamp(18px, 2.8vw, 32px);
+      }
+
+      .media-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: clamp(10px, 1.4vw, 18px);
+      }
+
+      .media-grid figure {
+        margin: 0;
+        border: 1px solid rgb(245 241 232 / 0.12);
+        border-radius: 16px;
+        background: rgb(245 241 232 / 0.04);
+        overflow: clip;
+      }
+
+      .media-grid img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        cursor: zoom-in;
+      }
+
+      .design .media-grid img,
+      .design-project .media-grid img {
+        object-fit: contain;
+        background: #f5f1e8;
+      }
+
+      .video-expanded {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 280px;
+        gap: clamp(14px, 2vw, 26px);
+        align-items: start;
+      }
+
+      .video-expanded video {
+        width: 100%;
+        max-height: 72vh;
+        border-radius: 16px;
+        background: #000;
+      }
+
+      .video-notes {
+        margin: 0;
+        color: rgb(245 241 232 / 0.7);
+        font-size: 0.98rem;
+        line-height: 1.55;
+      }
+
+      .rail-tools,
+      .rail,
+      .video-layout {
+        display: none;
+      }
+
+      @media (max-width: 980px) {
+        .strip-head,
+        .videos .strip-head {
+          grid-template-columns: 1fr;
+        }
+
+        .project-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .media-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .video-expanded {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .strip {
+          padding-inline: 18px;
+        }
+
+        .project-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .project-card[open] {
+          grid-column: auto;
+        }
+
+        .project-cover,
+        .video-project .project-cover {
+          aspect-ratio: 16 / 10;
+        }
+
+        .media-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
       @media (max-width: 760px) {
         .topbar {
           position: fixed;
@@ -883,6 +1264,149 @@
           aspect-ratio: 9 / 16;
         }
       }
+
+      /* Compact accordion mode: clean when closed, rich when opened */
+      .project-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .project-card {
+        border-radius: 16px;
+        box-shadow: 0 14px 44px rgb(0 0 0 / 0.18);
+      }
+
+      .project-card[open] {
+        border-radius: 22px;
+      }
+
+      .project-summary {
+        grid-template-columns: 112px minmax(0, 1fr);
+        grid-template-rows: auto;
+        align-items: stretch;
+        min-height: 92px;
+      }
+
+      .project-cover,
+      .video-project .project-cover {
+        width: 112px;
+        height: 100%;
+        min-height: 92px;
+        aspect-ratio: auto;
+      }
+
+      .project-body {
+        align-content: center;
+        gap: 7px;
+        padding: 14px 14px 14px 16px;
+      }
+
+      .project-title-row {
+        align-items: center;
+      }
+
+      .project-title-row h3 {
+        font-size: clamp(1rem, 1.35vw, 1.28rem);
+        line-height: 1.1;
+      }
+
+      .project-meta {
+        font-size: 0.66rem;
+        color: rgb(245 241 232 / 0.72);
+      }
+
+      .project-count {
+        left: 8px;
+        top: 8px;
+        padding: 6px 8px;
+        font-size: 0.58rem;
+        letter-spacing: 0.09em;
+      }
+
+      .project-expand {
+        width: 34px;
+        font-size: 1.08rem;
+        background: rgb(245 241 232 / 0.045);
+      }
+
+      .project-description {
+        display: none;
+      }
+
+      .project-card[open] .project-summary {
+        grid-template-columns: minmax(180px, 0.34fr) minmax(0, 1fr);
+        min-height: 150px;
+        border-bottom: 1px solid rgb(245 241 232 / 0.1);
+      }
+
+      .project-card[open] .project-cover,
+      .project-card[open].video-project .project-cover {
+        width: 100%;
+        min-height: 150px;
+        aspect-ratio: 16 / 9;
+      }
+
+      .project-card[open] .project-body {
+        padding: clamp(18px, 2.4vw, 28px);
+      }
+
+      .project-card[open] .project-title-row h3 {
+        font-size: clamp(1.35rem, 2.6vw, 2.3rem);
+      }
+
+      .project-card[open] .project-description {
+        display: block;
+        max-width: 62ch;
+      }
+
+      .project-panel {
+        padding-top: clamp(14px, 2vw, 24px);
+      }
+
+      @media (max-width: 980px) {
+        .project-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .project-summary,
+        .project-card[open] .project-summary {
+          grid-template-columns: 88px minmax(0, 1fr);
+          min-height: 82px;
+        }
+
+        .project-cover,
+        .video-project .project-cover,
+        .project-card[open] .project-cover,
+        .project-card[open].video-project .project-cover {
+          width: 88px;
+          min-height: 82px;
+          aspect-ratio: auto;
+        }
+
+        .project-body,
+        .project-card[open] .project-body {
+          padding: 12px;
+        }
+
+        .project-card[open] .project-title-row h3,
+        .project-title-row h3 {
+          font-size: 1rem;
+        }
+
+        .project-meta {
+          font-size: 0.58rem;
+        }
+
+        .project-expand {
+          width: 30px;
+        }
+
+        .project-card[open] .project-description {
+          display: none;
+        }
+      }
     </style>
   </head>
   <body>
@@ -927,232 +1451,59 @@
       </section>
 
       <section class="strip videos" id="videos">
-        <div class="strip-head">
-          <h2>Vídeos</h2>
-        </div>
-        <div class="video-layout">
-          <div class="video-panel">
-            <div class="video-stack" tabindex="0" aria-label="Galeria vertical de vídeos story">
-              <article class="video-card story-card">
-                <div class="video-frame">
-                  <video controls playsinline preload="metadata">
-                    <source src="assets/videos/jameson-planned-heat.mp4" type="video/mp4" />
-                  </video>
-                </div>
-                <div class="video-caption">
-                  <p>Jameson - Planned Heat</p>
-                </div>
-              </article>
-              <article class="video-card story-card">
-                <div class="video-frame">
-                  <video controls playsinline preload="metadata">
-                    <source src="assets/videos/33story.mp4" type="video/mp4" />
-                  </video>
-                </div>
-                <div class="video-caption">
-                  <p>Storys Animados</p>
-                </div>
-              </article>
-              <article class="video-card story-card">
-                <div class="video-frame">
-                  <video controls playsinline preload="metadata">
-                    <source src="assets/videos/23feed.mp4" type="video/mp4" />
-                  </video>
-                </div>
-                <div class="video-caption">
-                  <p>Cards Animados</p>
-                </div>
-              </article>
+        <details class="section-accordion">
+          <summary class="strip-head section-summary">
+            <div>
+              <h2>Vídeos</h2>
             </div>
+            <span class="section-expand" aria-hidden="true">+</span>
+          </summary>
+          <div class="section-panel">
+            <div class="project-grid" data-video-projects aria-label="Projetos de vídeo"></div>
           </div>
-          <div class="video-panel">
-            <div class="video-board" tabindex="0" aria-label="Galeria horizontal de vídeos">
-              <article class="video-card">
-                <div class="video-frame">
-                  <video controls playsinline preload="metadata">
-                    <source src="assets/videos/acao-club-309.mp4" type="video/mp4" />
-                  </video>
-                </div>
-                <div class="video-caption">
-                  <p>Club 309</p>
-                </div>
-              </article>
-              <article class="video-card">
-                <div class="video-frame">
-                  <video controls playsinline preload="metadata">
-                    <source src="assets/videos/animacao-jusmobile.mp4" type="video/mp4" />
-                  </video>
-                </div>
-                <div class="video-caption">
-                  <p>JusMobile</p>
-                </div>
-              </article>
-              <article class="video-card">
-                <div class="video-frame">
-                  <video controls playsinline preload="metadata">
-                    <source src="assets/videos/15-de-beethoven.mp4" type="video/mp4" />
-                  </video>
-                </div>
-                <div class="video-caption">
-                  <p>Barbearia Dom João</p>
-                </div>
-              </article>
-              <article class="video-card">
-                <div class="video-frame">
-                  <video controls playsinline preload="metadata">
-                    <source src="assets/videos/next-level-sports.mp4" type="video/mp4" />
-                  </video>
-                </div>
-                <div class="video-caption">
-                  <p>Next Level Sports</p>
-                </div>
-              </article>
-              <article class="video-card">
-                <div class="video-frame">
-                  <video controls playsinline preload="metadata">
-                    <source src="assets/videos/drinks-e-makebele.mp4" type="video/mp4" />
-                  </video>
-                </div>
-                <div class="video-caption">
-                  <p>Makebelê</p>
-                </div>
-              </article>
-              <article class="video-card">
-                <div class="video-frame">
-                  <video controls playsinline preload="metadata">
-                    <source src="assets/videos/institucional-vital-implantes.mp4" type="video/mp4" />
-                  </video>
-                </div>
-                <div class="video-caption">
-                  <p>Vital Implantes</p>
-                </div>
-              </article>
-              <article class="video-card">
-                <div class="video-frame">
-                  <video controls playsinline preload="metadata">
-                    <source src="assets/videos/campanha-gochape.mp4" type="video/mp4" />
-                  </video>
-                </div>
-                <div class="video-caption">
-                  <p>Campanha #GoChape</p>
-                </div>
-              </article>
-              <article class="video-card">
-                <div class="video-frame">
-                  <video controls playsinline preload="metadata">
-                    <source src="assets/videos/acao-top-body-federal-music.mp4" type="video/mp4" />
-                  </video>
-                </div>
-                <div class="video-caption">
-                  <p>Top Body + Federal Music</p>
-                </div>
-              </article>
-              <article class="video-card">
-                <div class="video-frame">
-                  <video controls playsinline preload="metadata">
-                    <source src="assets/videos/colecao-closet-delas.mp4" type="video/mp4" />
-                  </video>
-                </div>
-                <div class="video-caption">
-                  <p>Closet Delas</p>
-                </div>
-              </article>
-              <article class="video-card">
-                <div class="video-frame">
-                  <video controls playsinline preload="metadata">
-                    <source src="assets/videos/criacao-de-drinks-lindos.mp4" type="video/mp4" />
-                  </video>
-                </div>
-                <div class="video-caption">
-                  <p>Drinks&amp;Tips</p>
-                </div>
-              </article>
-              <article class="video-card">
-                <div class="video-frame">
-                  <video controls playsinline preload="metadata">
-                    <source src="assets/videos/eu-e-o-mundo.mp4" type="video/mp4" />
-                  </video>
-                </div>
-                <div class="video-caption">
-                  <p>Eu e o Mundo</p>
-                </div>
-              </article>
-              <article class="video-card">
-                <div class="video-frame">
-                  <video controls playsinline preload="metadata">
-                    <source src="assets/videos/natal-rouge.mp4" type="video/mp4" />
-                  </video>
-                </div>
-                <div class="video-caption">
-                  <p>Natal Rouge</p>
-                </div>
-              </article>
-              <article class="video-card">
-                <div class="video-frame">
-                  <video controls playsinline preload="metadata">
-                    <source src="assets/videos/publicidade-bodywork.mp4" type="video/mp4" />
-                  </video>
-                </div>
-                <div class="video-caption">
-                  <p>Bodywork</p>
-                </div>
-              </article>
-              <article class="video-card">
-                <div class="video-frame">
-                  <video controls playsinline preload="metadata">
-                    <source src="assets/videos/rouge-hair-2.mp4" type="video/mp4" />
-                  </video>
-                </div>
-                <div class="video-caption">
-                  <p>Rouge Hair</p>
-                </div>
-              </article>
-              <article class="video-card">
-                <div class="video-frame">
-                  <video controls playsinline preload="metadata">
-                    <source src="assets/videos/showreel-o-plantae.mp4" type="video/mp4" />
-                  </video>
-                </div>
-                <div class="video-caption">
-                  <p>O Plantae Showreel</p>
-                </div>
-              </article>
+        </details>
+      </section>
+
+      <section class="strip fotografia" id="fotografia" data-project-gallery="photo">
+        <details class="section-accordion">
+          <summary class="strip-head section-summary">
+            <div>
+              <h2>Fotografia</h2>
             </div>
+            <span class="section-expand" aria-hidden="true">+</span>
+          </summary>
+          <div class="section-panel">
+            <div class="project-grid" aria-label="Projetos de fotografia"></div>
           </div>
-        </div>
+        </details>
       </section>
 
-      <section class="strip fotografia" id="fotografia" data-gallery="photo">
-        <div class="strip-head">
-          <h2>Fotografia</h2>
-        </div>
-        <div class="rail" tabindex="0" aria-label="Galeria horizontal de fotografia"></div>
-        <div class="rail-tools">
-          <button class="arrow" type="button" data-left aria-label="Voltar">&#8249;</button>
-          <button class="arrow" type="button" data-right aria-label="Avancar">&#8250;</button>
-        </div>
+      <section class="strip design" id="arte-grafica" data-project-gallery="art">
+        <details class="section-accordion">
+          <summary class="strip-head section-summary">
+            <div>
+              <h2>Arte Gráfica</h2>
+            </div>
+            <span class="section-expand" aria-hidden="true">+</span>
+          </summary>
+          <div class="section-panel">
+            <div class="project-grid" aria-label="Projetos de arte gráfica"></div>
+          </div>
+        </details>
       </section>
 
-      <section class="strip design" id="arte-grafica" data-gallery="art">
-        <div class="strip-head">
-          <h2>Arte Gráfica</h2>
-        </div>
-        <div class="rail" tabindex="0" aria-label="Galeria horizontal de arte grafica"></div>
-        <div class="rail-tools">
-          <button class="arrow" type="button" data-left aria-label="Voltar">&#8249;</button>
-          <button class="arrow" type="button" data-right aria-label="Avancar">&#8250;</button>
-        </div>
-      </section>
-
-      <section class="strip design" id="design" data-gallery="design">
-        <div class="strip-head">
-          <h2>Design</h2>
-        </div>
-        <div class="rail" tabindex="0" aria-label="Galeria horizontal de design"></div>
-        <div class="rail-tools">
-          <button class="arrow" type="button" data-left aria-label="Voltar">&#8249;</button>
-          <button class="arrow" type="button" data-right aria-label="Avancar">&#8250;</button>
-        </div>
+      <section class="strip design" id="design" data-project-gallery="design">
+        <details class="section-accordion">
+          <summary class="strip-head section-summary">
+            <div>
+              <h2>Design</h2>
+            </div>
+            <span class="section-expand" aria-hidden="true">+</span>
+          </summary>
+          <div class="section-panel">
+            <div class="project-grid" aria-label="Projetos de design"></div>
+          </div>
+        </details>
       </section>
 
       <section class="contact" id="contact">
@@ -1179,23 +1530,43 @@
     </div>
 
     <script>
-      const galleries = {
-        photo: {
-          count: 32,
-          prefix: "assets/fotografia/photo-",
-          alt: "Fotografia de Régis Kraeski",
-        },
-        art: {
-          count: 27,
-          prefix: "assets/arte-grafica/art-",
-          alt: "Arte grafica de Régis Kraeski",
-          exclude: [1, 6, 12, 22],
-        },
-        design: {
-          indexes: [6],
-          prefix: "assets/arte-grafica/art-",
-          alt: "Design de Régis Kraeski",
-        },
+      const videoProjects = [
+        { title: "Jameson - Planned Heat", category: "Vertical / Campanha", src: "assets/videos/jameson-planned-heat.mp4", note: "Formato vertical pensado para redes sociais, com foco em impacto rápido e leitura direta." },
+        { title: "Storys Animados", category: "Motion / Social", src: "assets/videos/33story.mp4", note: "Peças animadas para stories, com ritmo de consumo mobile." },
+        { title: "Cards Animados", category: "Motion / Feed", src: "assets/videos/23feed.mp4", note: "Cards animados para feed e campanhas digitais." },
+        { title: "Club 309", category: "Ação / Evento", src: "assets/videos/acao-club-309.mp4", note: "Registro audiovisual com linguagem de ação e presença de marca." },
+        { title: "JusMobile", category: "Animação / Institucional", src: "assets/videos/animacao-jusmobile.mp4", note: "Vídeo de animação para comunicação de produto e serviço." },
+        { title: "Barbearia Dom João", category: "Publicidade", src: "assets/videos/15-de-beethoven.mp4", note: "Peça publicitária com foco em atmosfera, cortes e identidade do cliente." },
+        { title: "Next Level Sports", category: "Esporte / Publicidade", src: "assets/videos/next-level-sports.mp4", note: "Conteúdo esportivo com energia de campanha e performance." },
+        { title: "Makebelê", category: "Beleza / Conteúdo", src: "assets/videos/drinks-e-makebele.mp4", note: "Conteúdo visual para marca de beleza, com apelo social e comercial." },
+        { title: "Vital Implantes", category: "Institucional", src: "assets/videos/institucional-vital-implantes.mp4", note: "Vídeo institucional para apresentar estrutura, confiança e serviço." },
+        { title: "Campanha #GoChape", category: "Campanha", src: "assets/videos/campanha-gochape.mp4", note: "Campanha com ritmo de chamada e reforço de mensagem." },
+        { title: "Top Body + Federal Music", category: "Evento / Marca", src: "assets/videos/acao-top-body-federal-music.mp4", note: "Ação de marca integrada a evento musical." },
+        { title: "Closet Delas", category: "Moda / Coleção", src: "assets/videos/colecao-closet-delas.mp4", note: "Peça para coleção de moda com foco em produto e lifestyle." },
+        { title: "Drinks&Tips", category: "Gastronomia / Social", src: "assets/videos/criacao-de-drinks-lindos.mp4", note: "Conteúdo de preparo e apresentação de drinks para redes sociais." },
+        { title: "Eu e o Mundo", category: "Clipe / Música", src: "assets/videos/eu-e-o-mundo.mp4", note: "Projeto musical com narrativa e direção audiovisual." },
+        { title: "Natal Rouge", category: "Campanha sazonal", src: "assets/videos/natal-rouge.mp4", note: "Conteúdo sazonal para marca, com estética de campanha." },
+        { title: "Bodywork", category: "Publicidade", src: "assets/videos/publicidade-bodywork.mp4", note: "Vídeo publicitário para serviço/produto com entrega comercial." },
+        { title: "Rouge Hair", category: "Beleza / Marca", src: "assets/videos/rouge-hair-2.mp4", note: "Conteúdo para marca de beleza com foco em acabamento visual." },
+        { title: "O Plantae Showreel", category: "Showreel", src: "assets/videos/showreel-o-plantae.mp4", note: "Compilado/showreel de projeto audiovisual." },
+      ];
+
+      const projectGalleries = {
+        photo: [
+          { title: "Fotografia / Projeto 01", category: "Fotografia", indexes: [22, 5, 16, 18, 15, 21, 14, 30], prefix: "assets/fotografia/photo-", alt: "Fotografia de Régis Kraeski" },
+          { title: "Fotografia / Projeto 02", category: "Fotografia", indexes: [9, 25, 19, 7, 28, 26, 32, 12], prefix: "assets/fotografia/photo-", alt: "Fotografia de Régis Kraeski" },
+          { title: "Fotografia / Projeto 03", category: "Fotografia", indexes: [31, 13, 8, 11, 20, 3, 17, 1], prefix: "assets/fotografia/photo-", alt: "Fotografia de Régis Kraeski" },
+          { title: "Fotografia / Projeto 04", category: "Fotografia", indexes: [6, 24, 4, 10, 29, 23, 2, 27], prefix: "assets/fotografia/photo-", alt: "Fotografia de Régis Kraeski" },
+        ],
+        art: [
+          { title: "Arte Gráfica / Projeto 01", category: "Identidade visual", indexes: [25, 23, 17, 3, 16, 24], prefix: "assets/arte-grafica/art-", alt: "Arte grafica de Régis Kraeski" },
+          { title: "Arte Gráfica / Projeto 02", category: "Peças promocionais", indexes: [19, 15, 26, 11, 18, 21], prefix: "assets/arte-grafica/art-", alt: "Arte grafica de Régis Kraeski" },
+          { title: "Arte Gráfica / Projeto 03", category: "Social / Impressos", indexes: [7, 14, 13, 10, 8, 20], prefix: "assets/arte-grafica/art-", alt: "Arte grafica de Régis Kraeski" },
+          { title: "Arte Gráfica / Projeto 04", category: "Campanhas", indexes: [27, 4, 5, 9, 2], prefix: "assets/arte-grafica/art-", alt: "Arte grafica de Régis Kraeski" },
+        ],
+        design: [
+          { title: "Design / Projeto 01", category: "Case em construção", indexes: [6], prefix: "assets/arte-grafica/art-", alt: "Design de Régis Kraeski" },
+        ],
       };
 
       const pad = (value) => String(value).padStart(2, "0");
@@ -1263,6 +1634,98 @@
         cvViewer.classList.remove("is-open");
         cvViewer.setAttribute("aria-hidden", "true");
         cvFrame.removeAttribute("src");
+      }
+
+      function createImageFigure(project, index, eager = false) {
+        const figure = document.createElement("figure");
+        const image = document.createElement("img");
+        image.src = `${project.prefix}${pad(index)}.jpg`;
+        image.alt = `${project.alt} ${index}`;
+        image.loading = eager ? "eager" : "lazy";
+        image.decoding = "async";
+        image.draggable = false;
+        image.addEventListener("click", () => openLightbox(image));
+        figure.append(image);
+        return figure;
+      }
+
+      function renderProjectGallery(section) {
+        const type = section.dataset.projectGallery;
+        const projects = projectGalleries[type] || [];
+        const grid = section.querySelector(".project-grid");
+        grid.innerHTML = "";
+
+        projects.forEach((project, projectIndex) => {
+          const details = document.createElement("details");
+          details.className = `project-card ${type === "design" ? "design-project" : ""}`;
+
+          const summary = document.createElement("summary");
+          summary.className = "project-summary";
+          const coverIndex = project.indexes[0];
+          summary.innerHTML = `
+            <div class="project-cover">
+              <img src="${project.prefix}${pad(coverIndex)}.jpg" alt="${project.alt} ${coverIndex}" loading="${projectIndex === 0 ? "eager" : "lazy"}" decoding="async" draggable="false" />
+              <span class="project-count">${project.indexes.length} imagens</span>
+            </div>
+            <div class="project-body">
+              <p class="project-meta">${project.category}</p>
+              <div class="project-title-row">
+                <h3>${project.title}</h3>
+                <span class="project-expand" aria-hidden="true">+</span>
+              </div>
+              <p class="project-description">Clique para expandir e ver todas as imagens deste projeto.</p>
+            </div>
+          `;
+
+          const panel = document.createElement("div");
+          panel.className = "project-panel";
+          const mediaGrid = document.createElement("div");
+          mediaGrid.className = "media-grid";
+          project.indexes.forEach((index, imageIndex) => mediaGrid.append(createImageFigure(project, index, projectIndex === 0 && imageIndex < 2)));
+          panel.append(mediaGrid);
+          details.append(summary, panel);
+          grid.append(details);
+        });
+      }
+
+      function videoPoster(src) {
+        const fileName = src.split("/").pop().replace(/\.mp4$/i, ".jpg");
+        return `assets/video-posters/${fileName}`;
+      }
+
+      function renderVideoProjects() {
+        const grid = document.querySelector("[data-video-projects]");
+        if (!grid) return;
+        grid.innerHTML = "";
+
+        videoProjects.forEach((project, index) => {
+          const poster = videoPoster(project.src);
+          const details = document.createElement("details");
+          details.className = "project-card video-project";
+          details.innerHTML = `
+            <summary class="project-summary">
+              <div class="project-cover">
+                <video muted playsinline preload="metadata" poster="${poster}" src="${project.src}"></video>
+                <span class="project-count">Vídeo</span>
+              </div>
+              <div class="project-body">
+                <p class="project-meta">${project.category}</p>
+                <div class="project-title-row">
+                  <h3>${project.title}</h3>
+                  <span class="project-expand" aria-hidden="true">+</span>
+                </div>
+                <p class="project-description">Clique para abrir este projeto em destaque.</p>
+              </div>
+            </summary>
+            <div class="project-panel">
+              <div class="video-expanded">
+                <video controls playsinline preload="metadata" poster="${poster}" src="${project.src}"></video>
+                <p class="video-notes">${project.note}</p>
+              </div>
+            </div>
+          `;
+          grid.append(details);
+        });
       }
 
       function enableDragScroll(rail, axis = "x") {
@@ -1344,40 +1807,37 @@
         }
       });
 
-      document.querySelectorAll("[data-gallery]").forEach((gallery) => {
-        const type = gallery.dataset.gallery;
-        const config = galleries[type];
-        const rail = gallery.querySelector(".rail");
+      renderVideoProjects();
+      document.querySelectorAll("[data-project-gallery]").forEach(renderProjectGallery);
 
-        const sourceIndexes = config.indexes ?? Array.from({ length: config.count }, (_, index) => index + 1);
-        const indexes = sourceIndexes
-          .filter((index) => !config.exclude?.includes(index));
 
-        indexes.forEach((index) => {
-          const figure = document.createElement("figure");
-          figure.className = "piece";
 
-          const image = document.createElement("img");
-          image.src = `${config.prefix}${pad(index)}.jpg`;
-          image.alt = `${config.alt} ${index}`;
-          image.loading = index <= 4 ? "eager" : "lazy";
-          image.decoding = "async";
-          image.draggable = false;
-
-          image.addEventListener("click", () => openLightbox(image));
-          figure.append(image);
-          rail.append(figure);
+      document.querySelectorAll(".section-accordion").forEach((sectionDetails) => {
+        sectionDetails.addEventListener("toggle", () => {
+          if (!sectionDetails.open) {
+            sectionDetails.querySelectorAll("details.project-card[open]").forEach((card) => {
+              card.open = false;
+            });
+          }
         });
+      });
 
-        const scrollByImage = (direction) => {
-          const firstImage = rail.querySelector(".piece");
-          const amount = firstImage ? firstImage.getBoundingClientRect().width + 18 : rail.clientWidth;
-          rail.scrollBy({ left: direction * amount, behavior: "smooth" });
-        };
+      document.querySelectorAll('.nav a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", () => {
+          const target = document.querySelector(link.getAttribute("href"));
+          const accordion = target?.querySelector(".section-accordion");
+          if (accordion) accordion.open = true;
+        });
+      });
 
-        enableDragScroll(rail);
-        gallery.querySelector("[data-left]").addEventListener("click", () => scrollByImage(-1));
-        gallery.querySelector("[data-right]").addEventListener("click", () => scrollByImage(1));
+      document.querySelectorAll(".project-grid").forEach((grid) => {
+        grid.addEventListener("toggle", (event) => {
+          const opened = event.target;
+          if (!opened.matches("details.project-card") || !opened.open) return;
+          grid.querySelectorAll("details.project-card[open]").forEach((card) => {
+            if (card !== opened) card.open = false;
+          });
+        }, true);
       });
 
       document.querySelectorAll(".video-board").forEach((rail) => enableDragScroll(rail, "x"));
