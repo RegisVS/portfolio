@@ -1225,7 +1225,7 @@
 
       if (heroVideo && heroSoundButton) {
         const setHeroSound = (enabled) => {
-          heroVideo.volume = 0.5;
+          heroVideo.volume = 1;
           heroVideo.muted = !enabled;
           heroSoundButton.setAttribute("aria-pressed", String(enabled));
           heroSoundButton.setAttribute(
