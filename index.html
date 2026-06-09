@@ -1565,6 +1565,16 @@
           { title: "Arte Gráfica / Projeto 04", category: "Campanhas", indexes: [27, 4, 5, 9, 2], prefix: "assets/arte-grafica/art-", alt: "Arte grafica de Régis Kraeski" },
         ],
         design: [
+          {
+            title: "Avafer + Baurufer",
+            category: "Design gráfico / Social media",
+            files: [
+              "assets/design/avafer-baurufer/avafer-ferramenta.jpg",
+              "assets/design/avafer-baurufer/avafer-precisao.jpg",
+              "assets/design/avafer-baurufer/baurufer-confianca.jpg",
+            ],
+            alt: "Design gráfico para Avafer e Baurufer"
+          },
           { title: "Design / Projeto 01", category: "Case em construção", indexes: [6], prefix: "assets/arte-grafica/art-", alt: "Design de Régis Kraeski" },
         ],
       };
@@ -1636,11 +1646,23 @@
         cvFrame.removeAttribute("src");
       }
 
-      function createImageFigure(project, index, eager = false) {
+      function imageSource(project, item) {
+        return typeof item === "string" ? item : `${project.prefix}${pad(item)}.jpg`;
+      }
+
+      function imageAlt(project, item) {
+        return typeof item === "string" ? project.alt : `${project.alt} ${item}`;
+      }
+
+      function projectItems(project) {
+        return project.files || project.indexes || [];
+      }
+
+      function createImageFigure(project, item, eager = false) {
         const figure = document.createElement("figure");
         const image = document.createElement("img");
-        image.src = `${project.prefix}${pad(index)}.jpg`;
-        image.alt = `${project.alt} ${index}`;
+        image.src = imageSource(project, item);
+        image.alt = imageAlt(project, item);
         image.loading = eager ? "eager" : "lazy";
         image.decoding = "async";
         image.draggable = false;
@@ -1661,11 +1683,12 @@
 
           const summary = document.createElement("summary");
           summary.className = "project-summary";
-          const coverIndex = project.indexes[0];
+          const items = projectItems(project);
+          const coverItem = items[0];
           summary.innerHTML = `
             <div class="project-cover">
-              <img src="${project.prefix}${pad(coverIndex)}.jpg" alt="${project.alt} ${coverIndex}" loading="${projectIndex === 0 ? "eager" : "lazy"}" decoding="async" draggable="false" />
-              <span class="project-count">${project.indexes.length} imagens</span>
+              <img src="${imageSource(project, coverItem)}" alt="${imageAlt(project, coverItem)}" loading="${projectIndex === 0 ? "eager" : "lazy"}" decoding="async" draggable="false" />
+              <span class="project-count">${items.length} imagens</span>
             </div>
             <div class="project-body">
               <p class="project-meta">${project.category}</p>
@@ -1681,7 +1704,7 @@
           panel.className = "project-panel";
           const mediaGrid = document.createElement("div");
           mediaGrid.className = "media-grid";
-          project.indexes.forEach((index, imageIndex) => mediaGrid.append(createImageFigure(project, index, projectIndex === 0 && imageIndex < 2)));
+          items.forEach((item, imageIndex) => mediaGrid.append(createImageFigure(project, item, projectIndex === 0 && imageIndex < 2)));
           panel.append(mediaGrid);
           details.append(summary, panel);
           grid.append(details);
@@ -1830,6 +1853,10 @@
         });
       });
 
+      const initialHashTarget = window.location.hash ? document.querySelector(window.location.hash) : null;
+      const initialAccordion = initialHashTarget?.querySelector(".section-accordion");
+      if (initialAccordion) initialAccordion.open = true;
+
       document.querySelectorAll(".project-grid").forEach((grid) => {
         grid.addEventListener("toggle", (event) => {
           const opened = event.target;
@@ -1845,6 +1872,3 @@
     </script>
   </body>
 </html>
-
-
-
