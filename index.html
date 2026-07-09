@@ -6,18 +6,18 @@
     <title>Régis Kraeski</title>
     <meta
       name="description"
-      content="Régis Kraeski - audiovisual, motion, fotografia e design."
+      content="Vídeos comerciais e institucionais para marcas, campanhas e redes. Filmagem, direção, VFX, edição, sound design e finalização."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://regisvs.github.io/portfolio/" />
     <meta property="og:title" content="Régis Kraeski" />
-    <meta property="og:description" content="Audiovisual, motion, fotografia e design." />
+    <meta property="og:description" content="Vídeos comerciais e institucionais para marcas, campanhas e redes. Filmagem, direção, VFX, edição, sound design e finalização." />
     <meta property="og:image" content="https://regisvs.github.io/portfolio/assets/social-thumb.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Régis Kraeski" />
-    <meta name="twitter:description" content="Audiovisual, motion, fotografia e design." />
+    <meta name="twitter:description" content="Vídeos comerciais e institucionais para marcas, campanhas e redes. Filmagem, direção, VFX, edição, sound design e finalização." />
     <meta name="twitter:image" content="https://regisvs.github.io/portfolio/assets/social-thumb.png" />
     <meta name="theme-color" content="#050505" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -47,10 +47,10 @@
         margin: 0;
         color: var(--white);
         background:
-          linear-gradient(90deg, rgb(5 5 5 / 0.76), rgb(5 5 5 / 0.42) 48%, rgb(5 5 5 / 0.76)),
-          linear-gradient(0deg, rgb(5 5 5 / 0.58), rgb(5 5 5 / 0.24)),
+          linear-gradient(90deg, rgb(0 0 0 / 0.88), rgb(0 0 0 / 0.66) 48%, rgb(0 0 0 / 0.88)),
+          linear-gradient(0deg, rgb(0 0 0 / 0.78), rgb(0 0 0 / 0.5)),
           url("assets/site-background.jpg") center / cover fixed no-repeat,
-          var(--black);
+          #000;
         font-family: Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         overflow-x: hidden;
       }
@@ -229,27 +229,33 @@
         width: min(1280px, 100%);
       }
 
-      .hero-sound {
+      .hero-controls {
         position: absolute;
         right: clamp(18px, 3vw, 42px);
         bottom: clamp(18px, 3vw, 38px);
         z-index: 5;
+        display: flex;
+        gap: 10px;
+      }
+
+      .hero-action {
         width: 44px;
-        min-height: 44px;
+        height: 44px;
+        flex: 0 0 44px;
         border: 1px solid rgb(245 241 232 / 0.36);
         border-radius: 50%;
         padding: 0;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        color: var(--paper);
+        color: var(--white);
         background: rgb(5 5 5 / 0.42);
         cursor: pointer;
         backdrop-filter: blur(12px);
         transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
       }
 
-      .hero-sound svg {
+      .hero-action svg {
         width: 20px;
         height: 20px;
         stroke: currentColor;
@@ -273,7 +279,7 @@
         color: var(--accent);
       }
 
-      .hero-sound:hover {
+      .hero-action:hover {
         transform: translateY(-1px);
         border-color: rgb(245 241 232 / 0.58);
       }
@@ -322,8 +328,10 @@
         border-radius: 4px;
         padding: 12px 16px;
         background: rgb(5 5 5 / 0.34);
+        color: var(--white);
         text-decoration: none;
         white-space: nowrap;
+        cursor: pointer;
       }
 
       .button:hover {
@@ -333,6 +341,7 @@
       }
 
       .strip {
+        scroll-margin-top: 118px;
         padding: clamp(34px, 4.6vw, 60px) 0 clamp(54px, 7vw, 92px);
         border-bottom: 1px solid var(--line);
       }
@@ -402,7 +411,7 @@
       }
 
       .design .piece {
-        background: #f5f1e8;
+        background: transparent;
       }
 
       .rail-tools {
@@ -610,6 +619,181 @@
         background: rgb(245 241 232 / 0.06);
       }
 
+      .legacy-work {
+        border-bottom: 0;
+        padding-top: clamp(16px, 2.4vw, 30px);
+        padding-bottom: clamp(28px, 4vw, 52px);
+      }
+
+      .legacy-accordion {
+        text-align: center;
+      }
+
+      .legacy-accordion .section-summary {
+        width: auto;
+        min-height: clamp(56px, 6vw, 72px);
+        margin: 0 auto;
+        display: inline-grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+        gap: clamp(12px, 1.5vw, 18px);
+        text-align: center;
+        padding: clamp(16px, 1.8vw, 20px) clamp(20px, 3vw, 34px);
+        border-radius: 999px;
+        background: rgb(245 241 232 / 0.035);
+        box-shadow: none;
+      }
+
+      .legacy-accordion .section-summary h2 {
+        font-size: clamp(0.95rem, 1.25vw, 1.28rem);
+        font-weight: 850;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .legacy-accordion .section-summary .micro {
+        display: none;
+      }
+
+      .legacy-accordion .section-expand {
+        width: 30px;
+        font-size: 1.2rem;
+      }
+
+      .legacy-accordion[open] .section-summary {
+        background: rgb(9 9 9 / 0.78);
+      }
+
+      .legacy-tabs {
+        width: min(1280px, 100%);
+        margin: clamp(28px, 4vw, 52px) auto 0;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(12px, 1.8vw, 20px);
+      }
+
+      .legacy-tab {
+        min-width: 0;
+        min-height: clamp(76px, 8vw, 104px);
+        border: 1px solid rgb(245 241 232 / 0.18);
+        border-radius: 18px;
+        padding: clamp(18px, 2.4vw, 28px) clamp(14px, 2vw, 26px);
+        color: var(--white);
+        background: rgb(245 241 232 / 0.055);
+        cursor: pointer;
+        font-size: clamp(0.95rem, 1.55vw, 1.28rem);
+        font-weight: 850;
+        text-transform: uppercase;
+        transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
+      }
+
+      .legacy-tab:hover,
+      .legacy-tab[aria-selected="true"] {
+        border-color: rgb(242 107 47 / 0.72);
+        color: var(--accent);
+        background: rgb(242 107 47 / 0.1);
+      }
+
+      .legacy-gallery {
+        display: grid;
+        gap: 18px;
+        margin-top: clamp(22px, 3vw, 40px);
+      }
+
+      .legacy-gallery[hidden] {
+        display: none;
+      }
+
+      .legacy-gallery-head {
+        width: min(1280px, 100%);
+        margin: 0 auto;
+        display: block;
+        text-align: left;
+      }
+
+      .legacy-gallery-head h3 {
+        margin: 0;
+        font-size: clamp(1.35rem, 2.8vw, 2.7rem);
+        line-height: 0.96;
+      }
+
+      .legacy-gallery-head p {
+        display: none;
+        max-width: 42ch;
+        margin: 0;
+        color: rgb(245 241 232 / 0.68);
+        font-size: 0.95rem;
+        line-height: 1.45;
+      }
+
+      .legacy-carousel {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        display: grid;
+        gap: 16px;
+      }
+
+      .legacy-rail {
+        display: flex;
+        gap: clamp(12px, 1.5vw, 20px);
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x proximity;
+        scroll-padding-inline: clamp(18px, 5vw, 72px);
+        padding: 0 clamp(18px, 5vw, 72px) 8px;
+        cursor: grab;
+        user-select: none;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .legacy-rail.is-dragging {
+        cursor: grabbing;
+        scroll-snap-type: none;
+      }
+
+      .legacy-rail::-webkit-scrollbar {
+        display: none;
+      }
+
+      .legacy-slide {
+        flex: 0 0 auto;
+        width: clamp(220px, 26vw, 420px);
+        margin: 0;
+        border: 1px solid rgb(245 241 232 / 0.12);
+        border-radius: 16px;
+        background: rgb(245 241 232 / 0.04);
+        overflow: clip;
+        scroll-snap-align: center;
+      }
+
+      .legacy-slide img {
+        display: block;
+        width: 100%;
+        height: clamp(280px, 35vw, 560px);
+        object-fit: contain;
+        cursor: zoom-in;
+      }
+
+      .legacy-gallery[data-project-gallery="design"] .legacy-slide {
+        background: rgb(245 241 232 / 0.04);
+      }
+
+      .legacy-gallery[data-project-gallery="design"] .legacy-slide img {
+        object-fit: contain;
+      }
+
+      .legacy-carousel-controls {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .legacy-carousel-controls .arrow {
+        width: 46px;
+        font-size: 1.35rem;
+      }
+
       .lightbox {
         position: fixed;
         inset: 0;
@@ -630,7 +814,8 @@
         object-fit: contain;
       }
 
-      .cv-viewer {
+      .cv-viewer,
+      .showreel-viewer {
         position: fixed;
         inset: 0;
         z-index: 82;
@@ -640,8 +825,135 @@
         background: rgb(0 0 0 / 0.92);
       }
 
-      .cv-viewer.is-open {
+      .showreel-viewer {
+        background: rgb(0 0 0 / 0.96);
+      }
+
+      .cv-viewer.is-open,
+      .showreel-viewer.is-open {
         display: grid;
+      }
+
+      .showreel-choice-panel {
+        width: min(92vw, 620px);
+        display: grid;
+        gap: clamp(16px, 2vw, 24px);
+      }
+
+      .showreel-choice-panel h2 {
+        margin: 0;
+        color: var(--paper);
+        font-family: "Syne", sans-serif;
+        font-size: clamp(2rem, 7vw, 4.8rem);
+        line-height: 0.88;
+        text-transform: uppercase;
+      }
+
+      .showreel-choice-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .showreel-choice {
+        min-height: clamp(86px, 10vw, 128px);
+        border: 1px solid rgb(245 241 232 / 0.22);
+        border-radius: 10px;
+        background: rgb(245 241 232 / 0.06);
+        color: var(--paper);
+        font-family: "Syne", sans-serif;
+        font-size: clamp(1.2rem, 2.3vw, 2rem);
+        font-weight: 700;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .showreel-choice:hover,
+      .showreel-choice:focus-visible {
+        border-color: rgb(242 107 47 / 0.74);
+        background: rgb(242 107 47 / 0.14);
+        outline: none;
+      }
+
+      .showreel-viewer.is-playing .showreel-choice-panel {
+        display: none;
+      }
+
+      .showreel-viewer:not(.is-playing) .showreel-player {
+        display: none;
+      }
+
+      .showreel-player {
+        width: min(96vw, 1280px);
+        max-height: 90vh;
+        border: 1px solid rgb(245 241 232 / 0.28);
+        border-radius: 4px;
+        background: #000;
+      }
+
+      .showreel-end-panel {
+        width: min(92vw, 680px);
+        display: none;
+        gap: clamp(18px, 2.4vw, 26px);
+        padding: clamp(24px, 3.4vw, 40px);
+        border: 1px solid rgb(245 241 232 / 0.18);
+        border-radius: 10px;
+        background:
+          linear-gradient(180deg, rgb(245 241 232 / 0.085), rgb(245 241 232 / 0.035)),
+          rgb(5 5 5 / 0.88);
+        box-shadow: 0 30px 110px rgb(0 0 0 / 0.48);
+      }
+
+      .showreel-end-panel h2 {
+        max-width: 11ch;
+        margin: 0;
+        color: var(--paper);
+        font-family: "Syne", sans-serif;
+        font-size: clamp(1.85rem, 7.6vw, 4rem);
+        line-height: 0.94;
+        text-transform: uppercase;
+      }
+
+      .showreel-end-panel p {
+        max-width: 42ch;
+        margin: 0;
+        color: var(--muted);
+        font-size: clamp(0.82rem, 1.4vw, 1.05rem);
+        line-height: 1.35;
+      }
+
+      .showreel-end-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .showreel-end-actions .button {
+        min-height: 58px;
+        background: rgb(245 241 232 / 0.06);
+      }
+
+      .showreel-end-actions .button:first-child {
+        border-color: rgb(242 107 47 / 0.72);
+        background: rgb(242 107 47 / 0.13);
+      }
+
+      .showreel-viewer.is-ended .showreel-player,
+      .showreel-viewer.is-ended .showreel-choice-panel {
+        display: none;
+      }
+
+      .showreel-viewer.is-ended .showreel-end-panel {
+        display: grid;
+      }
+
+      .showreel-viewer.is-horizontal-mobile .showreel-player {
+        width: 100vw;
+        height: 100vh;
+        max-height: none;
+        border: 0;
+        border-radius: 0;
       }
 
       .cv-frame {
@@ -696,6 +1008,300 @@
 
       .hero + .strip {
         padding-top: clamp(36px, 4.8vw, 64px);
+      }
+
+      .clients-strip {
+        position: relative;
+        scroll-margin-top: 112px;
+        padding: clamp(54px, 7vw, 92px) clamp(18px, 5vw, 72px);
+        background: transparent;
+      }
+
+      .about-strip {
+        position: relative;
+        scroll-margin-top: 112px;
+        padding: clamp(46px, 6vw, 76px) clamp(18px, 5vw, 72px) clamp(24px, 3vw, 40px);
+      }
+
+      .about-inner {
+        width: min(1120px, 100%);
+        margin: 0 auto;
+        display: grid;
+        gap: clamp(20px, 3vw, 34px);
+        justify-items: center;
+      }
+
+      .about-title {
+        display: grid;
+        justify-items: center;
+        text-align: center;
+      }
+
+      .about-title .micro {
+        margin: 0;
+      }
+
+      .about-title h2 {
+        margin: 0;
+        color: var(--paper);
+        font-size: clamp(2.25rem, 5.5vw, 5.2rem);
+        line-height: 0.9;
+      }
+
+      .about-card {
+        position: relative;
+        width: min(980px, 100%);
+        min-height: clamp(210px, 23vw, 285px);
+        display: grid;
+        grid-template-columns: clamp(136px, 15vw, 190px) minmax(0, 1fr);
+        align-items: center;
+        gap: clamp(22px, 4vw, 52px);
+        padding: clamp(24px, 3vw, 40px) clamp(22px, 4.6vw, 58px);
+        border: 1px solid rgb(245 241 232 / 0.15);
+        border-radius: 8px;
+        background:
+          linear-gradient(135deg, rgb(245 241 232 / 0.085), rgb(245 241 232 / 0.025)),
+          rgb(5 5 5 / 0.64);
+        box-shadow: 0 24px 90px rgb(0 0 0 / 0.24);
+      }
+
+      .about-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: clamp(24px, 3vw, 42px);
+        width: clamp(62px, 8vw, 112px);
+        height: 2px;
+        background: var(--accent);
+      }
+
+      .about-photo {
+        width: 100%;
+        aspect-ratio: 1;
+        border: 1px solid rgb(200 162 75 / 0.72);
+        border-radius: 50%;
+        padding: clamp(5px, 0.65vw, 8px);
+        background: rgb(2 2 2 / 0.58);
+        box-shadow: 0 20px 56px rgb(0 0 0 / 0.34);
+      }
+
+      .about-photo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        object-fit: cover;
+      }
+
+      .about-copy {
+        min-width: 0;
+      }
+
+      .about-card p {
+        margin: 0;
+        color: rgb(245 241 232 / 0.78);
+        font-size: clamp(0.98rem, 1.35vw, 1.14rem);
+        line-height: 1.55;
+      }
+
+      .about-card p + p {
+        margin-top: 1em;
+      }
+
+      .about-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: clamp(20px, 2.8vw, 32px);
+      }
+
+      .about-tags span {
+        border: 1px solid rgb(245 241 232 / 0.18);
+        border-radius: 999px;
+        padding: 8px 11px;
+        color: rgb(245 241 232 / 0.72);
+        font-size: 0.72rem;
+        font-weight: 850;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        background: rgb(245 241 232 / 0.04);
+      }
+
+      .clients-inner {
+        position: relative;
+        width: min(1280px, 100%);
+        margin: 0 auto;
+      }
+
+      .clients-head {
+        display: flex;
+        align-items: end;
+        justify-content: center;
+        margin-bottom: clamp(24px, 3vw, 42px);
+      }
+
+      .clients-head h2 {
+        margin: 0;
+        color: var(--paper);
+        font-size: clamp(2.4rem, 5vw, 5.4rem);
+        line-height: 1;
+        text-align: center;
+      }
+
+      .clients-grid {
+        --client-gap: clamp(8px, 1.2vw, 16px);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--client-gap);
+      }
+
+      .client-tile {
+        position: relative;
+        box-sizing: border-box;
+        flex: 0 1 calc((100% - (var(--client-gap) * 3)) / 4);
+        min-width: 0;
+        min-height: clamp(154px, 16vw, 218px);
+        display: grid;
+        grid-template-rows: 1fr auto;
+        gap: 16px;
+        align-items: center;
+        padding: clamp(18px, 2.2vw, 28px);
+        border: 1px solid rgb(200 162 75 / 0.62);
+        border-radius: 12px;
+        background:
+          linear-gradient(180deg, rgb(245 241 232 / 0.035), transparent),
+          rgb(2 2 2 / 0.68);
+        overflow: hidden;
+      }
+
+      .client-wide {
+        flex-basis: calc(((100% - (var(--client-gap) * 3)) / 4) * 2 + var(--client-gap));
+      }
+
+      .client-logo-frame {
+        width: 100%;
+        height: clamp(86px, 9.2vw, 132px);
+        display: grid;
+        place-items: center;
+      }
+
+      .client-logo-frame img {
+        display: block;
+        max-width: 112%;
+        max-height: 112%;
+        object-fit: contain;
+      }
+
+      .redbull-logo img {
+        max-width: 86%;
+        max-height: 86%;
+        transform: translateY(-30px);
+      }
+
+      .poster-logo img {
+        width: clamp(86px, 8.2vw, 122px);
+        height: clamp(86px, 8.2vw, 122px);
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .un-logo img {
+        max-width: 84%;
+        max-height: 76%;
+        transform: translateY(-10px);
+        filter: brightness(1.18);
+      }
+
+      .dark-logo img {
+        filter: brightness(0) invert(1);
+      }
+
+      .compact-logo img {
+        max-width: 88%;
+        max-height: 88%;
+      }
+
+      .wide-logo img {
+        max-width: 112%;
+      }
+
+      .r2-logo img {
+        max-width: 138%;
+        max-height: 138%;
+      }
+
+      .jameson-logo img {
+        max-width: 126%;
+        max-height: 126%;
+      }
+
+      .next-level-logo img {
+        max-width: 104%;
+        max-height: 104%;
+      }
+
+      .client-tile span {
+        display: block;
+        color: rgb(245 241 232 / 0.78);
+        font-size: clamp(0.82rem, 0.9vw, 0.94rem);
+        font-weight: 850;
+        letter-spacing: 0.08em;
+        line-height: 1.2;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .clients-proof {
+        margin: clamp(28px, 4vw, 48px) auto 0;
+        color: var(--paper);
+        font-weight: 950;
+        letter-spacing: 0.04em;
+        line-height: 0.94;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .clients-proof::before,
+      .clients-proof::after {
+        content: "";
+      }
+
+      .clients-proof::before {
+        display: none;
+      }
+
+      .clients-proof::after {
+        display: block;
+        width: clamp(34px, 8vw, 96px);
+        height: 1px;
+        margin: 10px auto 0;
+        background: linear-gradient(90deg, transparent, rgb(200 162 75 / 0.85), transparent);
+      }
+
+      .clients-proof strong {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(10px, 2vw, 18px);
+        font-size: clamp(1.35rem, 3.6vw, 3.25rem);
+      }
+
+      .clients-proof strong::before,
+      .clients-proof strong::after {
+        content: "";
+        display: block;
+        flex: 0 0 clamp(34px, 8vw, 96px);
+        width: clamp(34px, 8vw, 96px);
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgb(200 162 75 / 0.85), transparent);
+      }
+
+      .clients-proof span {
+        display: block;
+        margin-top: 4px;
+        font-size: clamp(0.82rem, 1.6vw, 1.32rem);
+        letter-spacing: 0.18em;
       }
 
       .section-summary.strip-head,
@@ -815,8 +1421,13 @@
         gap: clamp(16px, 2vw, 26px);
       }
 
+      .videos .project-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .project-card {
         min-width: 0;
+        scroll-margin-top: 118px;
         border: 1px solid rgb(245 241 232 / 0.16);
         border-radius: 22px;
         background:
@@ -870,6 +1481,35 @@
         aspect-ratio: 16 / 9;
       }
 
+      .video-project > .project-summary {
+        min-height: clamp(92px, 9vw, 132px);
+        display: flex;
+        align-items: center;
+      }
+
+      .video-project > .project-summary .project-body {
+        width: 100%;
+        padding: clamp(24px, 3vw, 38px);
+      }
+
+      .video-project > .project-summary .project-title-row {
+        align-items: center;
+      }
+
+      .video-project > .project-summary h3 {
+        font-size: clamp(1.5rem, 3.2vw, 2.65rem);
+        line-height: 0.95;
+      }
+
+      .video-project > .project-summary .project-meta,
+      .video-project > .project-summary .project-description {
+        display: none;
+      }
+
+      .video-project .video-expanded {
+        display: block;
+      }
+
       .project-cover img,
       .project-cover video {
         width: 100%;
@@ -882,7 +1522,7 @@
       .design .project-cover img,
       .design-project .project-cover img {
         object-fit: contain;
-        background: #f5f1e8;
+        background: transparent;
       }
 
       .project-card:hover .project-cover img,
@@ -994,7 +1634,7 @@
       .design .media-grid img,
       .design-project .media-grid img {
         object-fit: contain;
-        background: #f5f1e8;
+        background: transparent;
       }
 
       .video-expanded {
@@ -1002,6 +1642,10 @@
         grid-template-columns: minmax(0, 1fr) 280px;
         gap: clamp(14px, 2vw, 26px);
         align-items: start;
+      }
+
+      .video-project .video-expanded {
+        display: block;
       }
 
       .video-expanded video {
@@ -1018,16 +1662,319 @@
         line-height: 1.55;
       }
 
+      .ai-clip-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(12px, 1.6vw, 20px);
+      }
+
+      .clip-project {
+        min-width: 0;
+        border: 1px solid rgb(245 241 232 / 0.12);
+        border-radius: 16px;
+        background: rgb(245 241 232 / 0.04);
+        overflow: clip;
+        transition: border-color 180ms ease, background 180ms ease;
+      }
+
+      .clip-project[open] {
+        grid-column: 1 / -1;
+        border-color: rgb(242 107 47 / 0.58);
+        background: rgb(245 241 232 / 0.065);
+      }
+
+      .clip-project summary {
+        list-style: none;
+        cursor: pointer;
+      }
+
+      .clip-project summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .clip-summary {
+        display: grid;
+        grid-template-columns: minmax(116px, 0.42fr) minmax(0, 1fr);
+        min-height: 118px;
+      }
+
+      .clip-thumb {
+        position: relative;
+        min-height: 118px;
+        background: #050505;
+        overflow: hidden;
+      }
+
+      .clip-thumb img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+      }
+
+      .clip-copy {
+        display: grid;
+        align-content: center;
+        gap: 10px;
+        padding: clamp(14px, 2vw, 22px);
+      }
+
+      .clip-copy h4 {
+        margin: 0;
+        font-size: clamp(1.05rem, 1.7vw, 1.55rem);
+        line-height: 1.04;
+      }
+
+      .clip-tag {
+        display: none;
+        width: fit-content;
+        border: 1px solid rgb(242 107 47 / 0.5);
+        border-radius: 999px;
+        padding: 7px 11px;
+        color: var(--white);
+        background: rgb(242 107 47 / 0.12);
+        font-size: 0.68rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .clip-project[open] .clip-tag {
+        display: inline-flex;
+      }
+
+      .clip-meta {
+        margin: 0;
+        color: rgb(245 241 232 / 0.62);
+        font-size: 0.68rem;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .clip-expand {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        width: 34px;
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgb(245 241 232 / 0.28);
+        border-radius: 50%;
+        color: var(--white);
+        background: rgb(5 5 5 / 0.66);
+        font-size: 1.15rem;
+        line-height: 1;
+        transition: transform 180ms ease, border-color 180ms ease, color 180ms ease;
+      }
+
+      .clip-project[open] .clip-expand {
+        transform: rotate(45deg);
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .clip-panel {
+        display: grid;
+        grid-template-columns: minmax(0, 1.35fr) minmax(240px, 0.65fr);
+        gap: clamp(12px, 1.6vw, 20px);
+        padding: 0 clamp(10px, 1.6vw, 18px) clamp(12px, 1.8vw, 20px);
+      }
+
+      .clip-video-item {
+        margin: 0;
+      }
+
+      .clip-panel video {
+        width: 100%;
+        max-height: 72vh;
+        display: block;
+        border-radius: 12px;
+        background: #000;
+      }
+
+      .clip-panel.is-single .clip-video-item {
+        grid-column: 1 / -1;
+      }
+
+      .clip-video-item figcaption {
+        margin-top: 8px;
+        color: rgb(245 241 232 / 0.72);
+        font-size: 0.78rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .reference-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .reference-grid figure {
+        display: grid;
+        gap: 8px;
+        margin: 0;
+        padding: 8px;
+        border: 1px solid rgb(245 241 232 / 0.12);
+        border-radius: 12px;
+        background: rgb(5 5 5 / 0.34);
+      }
+
+      .reference-grid img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        display: block;
+        border-radius: 8px;
+        object-fit: contain;
+        background: rgb(245 241 232 / 0.92);
+        cursor: zoom-in;
+      }
+
+      .reference-grid figcaption {
+        color: rgb(245 241 232 / 0.68);
+        font-size: 0.68rem;
+        font-weight: 850;
+        letter-spacing: 0.08em;
+        line-height: 1.25;
+        text-transform: uppercase;
+      }
+
+      .ai-clip {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid rgb(245 241 232 / 0.12);
+        border-radius: 16px;
+        background: rgb(245 241 232 / 0.04);
+      }
+
+      .ai-clip video {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        display: block;
+        border-radius: 10px;
+        object-fit: cover;
+        background: #000;
+      }
+
+      .ai-clip img {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        display: block;
+        border-radius: 10px;
+        object-fit: cover;
+        background: #0a0a0a;
+        cursor: zoom-in;
+      }
+
+      .ai-clip.is-process img {
+        object-fit: contain;
+        background: rgb(245 241 232 / 0.92);
+      }
+
+      .ai-clip figcaption {
+        color: rgb(245 241 232 / 0.72);
+        font-size: 0.78rem;
+        font-weight: 850;
+        letter-spacing: 0.08em;
+        line-height: 1.35;
+        text-transform: uppercase;
+      }
+
+      .clip-type {
+        display: inline-block;
+        margin-right: 8px;
+        color: var(--accent);
+      }
+
+      .process-grid {
+        position: relative;
+        width: min(1280px, 100%);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: clamp(16px, 2vw, 26px);
+      }
+
+      .process-card {
+        border: 1px solid rgb(245 241 232 / 0.16);
+        border-radius: 22px;
+        padding: clamp(18px, 2.2vw, 26px);
+        background:
+          linear-gradient(180deg, rgb(245 241 232 / 0.085), rgb(245 241 232 / 0.03)),
+          rgb(5 5 5 / 0.62);
+        box-shadow: 0 22px 80px rgb(0 0 0 / 0.24);
+      }
+
+      .process-card h3 {
+        margin: 10px 0 12px;
+        font-size: clamp(1.08rem, 1.55vw, 1.42rem);
+        line-height: 1.08;
+      }
+
+      .process-card p {
+        margin: 0;
+        color: rgb(245 241 232 / 0.72);
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
       .rail-tools,
       .rail,
       .video-layout {
         display: none;
       }
 
+      @media (max-width: 1360px) {
+        .nav {
+          gap: 10px;
+        }
+
+        .nav a {
+          min-height: 50px;
+          padding: 14px 18px;
+          font-size: 0.92rem;
+        }
+      }
+
       @media (max-width: 980px) {
+        .nav {
+          gap: 8px;
+        }
+
+        .nav a {
+          min-height: 48px;
+          padding: 13px 16px;
+          font-size: 0.9rem;
+        }
+
         .strip-head,
         .videos .strip-head {
           grid-template-columns: 1fr;
+        }
+
+        .clients-head {
+          align-items: start;
+          justify-content: center;
+        }
+
+        .clients-grid {
+          --client-gap: clamp(8px, 1.2vw, 16px);
+        }
+
+        .client-tile {
+          flex-basis: calc((100% - (var(--client-gap) * 2)) / 3);
+        }
+
+        .client-wide {
+          flex-basis: calc(((100% - (var(--client-gap) * 2)) / 3) * 2 + var(--client-gap));
+        }
+
+        .process-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
         .project-grid {
@@ -1041,11 +1988,52 @@
         .video-expanded {
           grid-template-columns: 1fr;
         }
+
+        .clip-panel {
+          grid-template-columns: 1fr;
+        }
       }
 
       @media (max-width: 760px) {
         .strip {
           padding-inline: 18px;
+        }
+
+        .clients-strip {
+          padding-inline: 18px;
+        }
+
+        .about-strip {
+          padding-inline: 18px;
+        }
+
+        .about-inner {
+          grid-template-columns: 1fr;
+        }
+
+        .about-card {
+          grid-template-columns: 1fr;
+          justify-items: center;
+          gap: 22px;
+          padding: 28px 22px 30px;
+        }
+
+        .about-photo {
+          width: min(48vw, 172px);
+        }
+
+        .clients-grid {
+          --client-gap: 10px;
+        }
+
+        .client-wide {
+          flex-basis: calc((100% - var(--client-gap)) / 2);
+        }
+
+        .client-tile {
+          flex-basis: calc((100% - var(--client-gap)) / 2);
+          min-height: 146px;
+          padding: 16px;
         }
 
         .project-grid {
@@ -1056,12 +2044,51 @@
           grid-column: auto;
         }
 
+        .project-card[open].video-project {
+          grid-column: 1 / -1;
+        }
+
         .project-cover,
         .video-project .project-cover {
           aspect-ratio: 16 / 10;
         }
 
         .media-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .ai-clip-grid,
+        .process-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .clip-project[open] {
+          grid-column: auto;
+        }
+
+        .clip-summary {
+          grid-template-columns: 96px minmax(0, 1fr);
+          min-height: 92px;
+        }
+
+        .clip-thumb {
+          min-height: 92px;
+        }
+
+        .clip-copy {
+          gap: 7px;
+          padding: 12px;
+        }
+
+        .clip-copy h4 {
+          font-size: 0.96rem;
+        }
+
+        .clip-meta {
+          font-size: 0.56rem;
+        }
+
+        .reference-grid {
           grid-template-columns: 1fr;
         }
       }
@@ -1126,12 +2153,10 @@
           transform: translateY(8vh);
         }
 
-        .hero-sound {
+        .hero-controls {
           top: 82px;
           right: 24px;
           bottom: auto;
-          width: 46px;
-          min-height: 46px;
           z-index: 31;
         }
 
@@ -1165,8 +2190,36 @@
           font-size: 0.76rem;
         }
 
+        .showreel-end-panel h2 {
+          max-width: 14ch;
+          font-size: clamp(1.22rem, 6.4vw, 1.78rem);
+          line-height: 1.24;
+        }
+
         .contact h2 {
           font-size: clamp(1.9rem, 9.5vw, 3.2rem);
+        }
+
+        .clients-proof strong {
+          gap: 12px;
+          font-size: clamp(1.02rem, 5.2vw, 1.36rem);
+          white-space: nowrap;
+        }
+
+        .clients-proof strong::before,
+        .clients-proof strong::after {
+          flex-basis: clamp(34px, 12vw, 54px);
+          width: clamp(34px, 12vw, 54px);
+          min-width: 34px;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, rgb(200 162 75 / 0.9), transparent);
+        }
+
+        .clients-proof::after {
+          width: clamp(42px, 15vw, 68px);
+          height: 1px;
+          margin-top: 10px;
+          background: linear-gradient(90deg, transparent, rgb(200 162 75 / 0.9), transparent);
         }
 
         .button {
@@ -1174,9 +2227,32 @@
           font-size: 0.74rem;
         }
 
+        .showreel-end-actions {
+          grid-template-columns: 1fr;
+        }
+
         .contact .button {
           min-width: 0;
           width: 100%;
+        }
+
+        .legacy-accordion .section-summary,
+        .legacy-gallery-head {
+          width: 100%;
+        }
+
+        .legacy-accordion .section-summary {
+          width: min(100%, 320px);
+        }
+
+        .legacy-tabs {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+
+        .legacy-tab {
+          min-height: 68px;
+          border-radius: 16px;
         }
 
         .piece img {
@@ -1387,24 +2463,171 @@
 
         .project-body,
         .project-card[open] .project-body {
-          padding: 12px;
+          gap: 5px;
+          padding: 10px;
         }
 
         .project-card[open] .project-title-row h3,
+        .video-project > .project-summary h3,
         .project-title-row h3 {
-          font-size: 1rem;
+          font-size: 0.9rem;
+          line-height: 1.08;
         }
 
         .project-meta {
-          font-size: 0.58rem;
+          font-size: 0.54rem;
+          letter-spacing: 0.08em;
+        }
+
+        .project-title-row {
+          gap: 8px;
         }
 
         .project-expand {
-          width: 30px;
+          width: 26px;
+          font-size: 0.96rem;
         }
 
         .project-card[open] .project-description {
           display: none;
+        }
+
+        .project-card[open].video-project {
+          grid-column: 1 / -1;
+        }
+
+        .ai-clip-grid,
+        .process-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .clip-project[open] {
+          grid-column: auto;
+        }
+
+        .clip-summary {
+          grid-template-columns: 96px minmax(0, 1fr);
+          min-height: 92px;
+        }
+
+        .clip-thumb {
+          min-height: 92px;
+        }
+
+        .clip-copy {
+          gap: 7px;
+          padding: 12px;
+        }
+
+        .clip-copy h4 {
+          font-size: 0.88rem;
+          line-height: 1.08;
+        }
+
+        .clip-meta {
+          font-size: 0.52rem;
+          letter-spacing: 0.08em;
+        }
+
+        .clip-expand {
+          right: 8px;
+          bottom: 8px;
+          width: 28px;
+          font-size: 1rem;
+        }
+
+        .section-summary {
+          min-height: 82px;
+          gap: 14px;
+          padding: 20px 18px;
+        }
+
+        .section-summary h2 {
+          font-size: clamp(1.22rem, 6.7vw, 1.72rem);
+          line-height: 1.02;
+        }
+
+        .section-expand {
+          width: 42px;
+          font-size: 1.35rem;
+        }
+
+        .clip-panel {
+          grid-template-columns: 1fr;
+        }
+
+        .reference-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 420px) {
+        .showreel-end-panel h2 {
+          max-width: 15ch;
+          font-size: clamp(1.16rem, 6vw, 1.52rem);
+          line-height: 1.28;
+        }
+
+        .project-summary,
+        .project-card[open] .project-summary {
+          grid-template-columns: 76px minmax(0, 1fr);
+          min-height: 76px;
+        }
+
+        .project-cover,
+        .video-project .project-cover,
+        .project-card[open] .project-cover,
+        .project-card[open].video-project .project-cover {
+          width: 76px;
+          min-height: 76px;
+        }
+
+        .project-body,
+        .project-card[open] .project-body {
+          padding: 9px;
+        }
+
+        .project-card[open] .project-title-row h3,
+        .video-project > .project-summary h3,
+        .project-title-row h3 {
+          font-size: 0.82rem;
+        }
+
+        .project-expand {
+          width: 24px;
+          font-size: 0.9rem;
+        }
+
+        .section-summary {
+          min-height: 76px;
+          gap: 10px;
+          padding: 18px 16px;
+        }
+
+        .section-summary h2 {
+          font-size: clamp(1.08rem, 6.2vw, 1.42rem);
+        }
+
+        .section-expand {
+          width: 36px;
+          font-size: 1.18rem;
+        }
+
+        .clip-summary {
+          grid-template-columns: 82px minmax(0, 1fr);
+          min-height: 78px;
+        }
+
+        .clip-thumb {
+          min-height: 78px;
+        }
+
+        .clip-copy {
+          padding: 9px 10px;
+        }
+
+        .clip-copy h4 {
+          font-size: 0.82rem;
         }
       }
     </style>
@@ -1413,11 +2636,13 @@
     <header class="topbar">
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
       <nav class="nav" id="site-nav" aria-label="Navegacao">
-        <a href="#videos">Vídeos</a>
-        <a href="#fotografia">Fotografia</a>
-        <a href="#design">Design</a>
-        <a href="#arte-grafica">Arte Gráfica</a>
-        <a href="assets/curriculo-regis-2026.pdf" data-cv-open>Currículo</a>
+        <a href="#showreel" data-showreel-open>Showreel</a>
+        <a href="#stylized-branded-films">Comercial</a>
+        <a href="#cinematic-vfx">Cinematic & VFX</a>
+        <a href="#nature-wildlife">3D/Animação</a>
+        <a href="#sports-performance">Sports</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#clientes">Clientes</a>
         <a href="#contact">Contato</a>
       </nav>
     </header>
@@ -1425,83 +2650,207 @@
     <main id="top">
       <section class="hero" aria-label="Régis Kraeski">
         <div class="video-bg" aria-hidden="true">
-          <video autoplay muted loop playsinline preload="auto">
-            <source src="assets/hero-demo-web.mp4" type="video/mp4" />
+          <video
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            data-desktop-src="assets/videos/ai/hero-ai-showcase.mp4"
+            data-mobile-src="assets/videos/ai/hero-ai-showcase-mobile.mp4"
+          >
+            <source src="assets/videos/ai/hero-ai-showcase.mp4" type="video/mp4" />
           </video>
         </div>
-        <button class="hero-sound" type="button" aria-label="Ativar som do video principal" aria-pressed="false">
-          <svg class="sound-off" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-            <line x1="22" y1="9" x2="16" y2="15"></line>
-            <line x1="16" y1="9" x2="22" y2="15"></line>
-          </svg>
-          <svg class="sound-on" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-            <path d="M15.5 8.5a5 5 0 0 1 0 7"></path>
-            <path d="M19 5a10 10 0 0 1 0 14"></path>
-          </svg>
-        </button>
+        <div class="hero-controls" aria-label="Controles do showreel">
+          <button class="hero-action hero-sound" type="button" aria-label="Ativar som do video principal" aria-pressed="false">
+            <svg class="sound-off" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <line x1="22" y1="9" x2="16" y2="15"></line>
+              <line x1="16" y1="9" x2="22" y2="15"></line>
+            </svg>
+            <svg class="sound-on" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M15.5 8.5a5 5 0 0 1 0 7"></path>
+              <path d="M19 5a10 10 0 0 1 0 14"></path>
+            </svg>
+          </button>
+        </div>
         <div class="hero-inner">
-          <p class="micro">Audiovisual / Comunicação / Tecnologia</p>
+          <p class="micro">Filmagem / VFX / Publicidade</p>
           <h1>Régis Kraeski</h1>
           <div class="hero-foot">
-            <p>Criação, VFX, direção e edição audiovisual para empresas, campanhas e marcas.<br />Fotografia, design, clipes e conteúdo para bandas e criadores.</p>
+            <p>Vídeos comerciais e institucionais para marcas, campanhas e redes.<br />Filmagem, direção, VFX, edição, sound design e finalização com impacto.</p>
           </div>
         </div>
       </section>
 
       <section class="strip videos" id="videos">
-        <details class="section-accordion">
-          <summary class="strip-head section-summary">
-            <div>
-              <h2>Vídeos</h2>
-            </div>
-            <span class="section-expand" aria-hidden="true">+</span>
-          </summary>
-          <div class="section-panel">
-            <div class="project-grid" data-video-projects aria-label="Projetos de vídeo"></div>
-          </div>
-        </details>
+        <div class="section-panel">
+          <div class="project-grid" data-video-projects aria-label="Categorias de videos comerciais"></div>
+        </div>
       </section>
 
-      <section class="strip fotografia" id="fotografia" data-project-gallery="photo">
-        <details class="section-accordion">
-          <summary class="strip-head section-summary">
-            <div>
-              <h2>Fotografia</h2>
-            </div>
-            <span class="section-expand" aria-hidden="true">+</span>
-          </summary>
-          <div class="section-panel">
-            <div class="project-grid" aria-label="Projetos de fotografia"></div>
+      <section class="about-strip" id="sobre" aria-labelledby="sobre-title">
+        <div class="about-inner">
+          <div class="about-title">
+            <h2 id="sobre-title">Sobre</h2>
           </div>
-        </details>
+          <div class="about-card">
+            <div class="about-photo">
+              <img src="assets/regis-kraeski-about.jpg" alt="Retrato de Régis Kraeski" loading="lazy" decoding="async" />
+            </div>
+            <div class="about-copy">
+              <p>Oi, eu sou o Régis, criativo audiovisual com foco em vídeos comerciais, institucionais e conteúdo para marcas. Trabalho unindo filmagem, direção, edição, VFX, design e ferramentas de IA para transformar campanhas, produtos e ideias em peças visuais com impacto. Desenvolvo projetos para marcas, artistas, instituições e negócios de diferentes segmentos, com entregas pensadas para redes, apresentações, lançamentos e campanhas com impacto!</p>
+              <div class="about-tags" aria-label="Especialidades">
+                <span>Filmagem</span>
+                <span>VFX</span>
+                <span>Edição</span>
+                <span>Design</span>
+                <span>IA criativa</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section class="strip design" id="design" data-project-gallery="design">
-        <details class="section-accordion">
-          <summary class="strip-head section-summary">
-            <div>
-              <h2>Design</h2>
-            </div>
-            <span class="section-expand" aria-hidden="true">+</span>
-          </summary>
-          <div class="section-panel">
-            <div class="project-grid" aria-label="Projetos de design"></div>
+      <section class="clients-strip" id="clientes" aria-labelledby="clientes-title">
+        <div class="clients-inner">
+          <div class="clients-head">
+            <h2 id="clientes-title">Clientes</h2>
           </div>
-        </details>
+          <div class="clients-grid" aria-label="Clientes e projetos atendidos">
+            <article class="client-tile">
+              <div class="client-logo-frame redbull-logo">
+                <img src="assets/clients/red-bull.svg" alt="Red Bull Brasilia" loading="lazy" decoding="async" />
+              </div>
+              <span>Red Bull Brasilia</span>
+            </article>
+            <article class="client-tile">
+              <div class="client-logo-frame r2-logo">
+                <img src="assets/clients/r2.svg" alt="R2" loading="lazy" decoding="async" />
+              </div>
+              <span>R2</span>
+            </article>
+            <article class="client-tile">
+              <div class="client-logo-frame un-logo">
+                <img src="assets/clients/onu-brasil.svg" alt="ONU Brasilia" loading="lazy" decoding="async" />
+              </div>
+              <span>ONU Brasilia</span>
+            </article>
+            <article class="client-tile">
+              <div class="client-logo-frame poster-logo">
+                <img src="assets/clients/a-republica.png" alt="A Republica" loading="lazy" decoding="async" />
+              </div>
+              <span>A Republica</span>
+            </article>
+            <article class="client-tile">
+              <div class="client-logo-frame poster-logo">
+                <img src="assets/clients/jean-tassy.jpg" alt="Jean Tassy" loading="lazy" decoding="async" />
+              </div>
+              <span>Jean Tassy</span>
+            </article>
+            <article class="client-tile">
+              <div class="client-logo-frame poster-logo">
+                <img src="assets/clients/plantae-band.png" alt="O PlantaE" loading="lazy" decoding="async" />
+              </div>
+              <span>O PlantaE</span>
+            </article>
+            <article class="client-tile">
+              <div class="client-logo-frame">
+                <img src="assets/clients/aje-df.png" alt="AJE-DF" loading="lazy" decoding="async" />
+              </div>
+              <span>AJE-DF</span>
+            </article>
+            <article class="client-tile">
+              <div class="client-logo-frame">
+                <img src="assets/clients/jusbrasil.svg" alt="Jusbrasil" loading="lazy" decoding="async" />
+              </div>
+              <span>JusBrasil</span>
+            </article>
+            <article class="client-tile">
+              <div class="client-logo-frame jameson-logo">
+                <img src="assets/clients/jameson-black-barrel.svg" alt="Jameson Black Barrel" loading="lazy" decoding="async" />
+              </div>
+              <span>Jameson Black Barrel</span>
+            </article>
+            <article class="client-tile">
+              <div class="client-logo-frame">
+                <img src="assets/clients/brasilia-office.png" alt="Brasília Office" loading="lazy" decoding="async" />
+              </div>
+              <span>Brasília Office</span>
+            </article>
+            <article class="client-tile">
+              <div class="client-logo-frame compact-logo">
+                <img src="assets/clients/vital-implantes.webp" alt="Vital Implantes" loading="lazy" decoding="async" />
+              </div>
+              <span>Vital Implantes</span>
+            </article>
+            <article class="client-tile">
+              <div class="client-logo-frame wide-logo next-level-logo">
+                <img src="assets/clients/next-level-sports.png" alt="Next Level Sports" loading="lazy" decoding="async" />
+              </div>
+              <span>Next Level Sports</span>
+            </article>
+          </div>
+          <div class="clients-proof" aria-label="+ de 100 projetos entregues em Brasilia DF">
+            <strong>+ de 100 projetos</strong>
+            <span>entregues em Brasilia - DF</span>
+          </div>
+        </div>
       </section>
 
-      <section class="strip design" id="arte-grafica" data-project-gallery="art">
-        <details class="section-accordion">
-          <summary class="strip-head section-summary">
+      <section class="strip legacy-work" id="outros-trabalhos">
+        <details class="section-accordion legacy-accordion">
+          <summary class="section-summary">
             <div>
-              <h2>Arte Gráfica</h2>
+              <p class="micro">Arquivo</p>
+              <h2>Outros trabalhos</h2>
             </div>
             <span class="section-expand" aria-hidden="true">+</span>
           </summary>
           <div class="section-panel">
-            <div class="project-grid" aria-label="Projetos de arte gráfica"></div>
+            <div class="legacy-tabs" role="tablist" aria-label="Classificacoes dos outros trabalhos">
+              <button class="legacy-tab" type="button" role="tab" aria-selected="false" data-legacy-tab="photo">Fotografia</button>
+              <button class="legacy-tab" type="button" role="tab" aria-selected="false" data-legacy-tab="design">Design grafico</button>
+              <button class="legacy-tab" type="button" role="tab" aria-selected="false" data-legacy-tab="art">Arte grafica</button>
+            </div>
+            <section class="legacy-gallery" data-project-gallery="photo" aria-label="Fotografia" hidden>
+              <div class="legacy-gallery-head">
+                <h3>Fotografia</h3>
+              </div>
+              <div class="legacy-carousel">
+                <div class="legacy-rail" data-legacy-rail></div>
+                <div class="legacy-carousel-controls">
+                  <button class="arrow" type="button" data-legacy-scroll="-1" aria-label="Ver imagens anteriores">&lt;</button>
+                  <button class="arrow" type="button" data-legacy-scroll="1" aria-label="Ver proximas imagens">&gt;</button>
+                </div>
+              </div>
+            </section>
+            <section class="legacy-gallery" data-project-gallery="design" aria-label="Design grafico" hidden>
+              <div class="legacy-gallery-head">
+                <h3>Design grafico</h3>
+              </div>
+              <div class="legacy-carousel">
+                <div class="legacy-rail" data-legacy-rail></div>
+                <div class="legacy-carousel-controls">
+                  <button class="arrow" type="button" data-legacy-scroll="-1" aria-label="Ver imagens anteriores">&lt;</button>
+                  <button class="arrow" type="button" data-legacy-scroll="1" aria-label="Ver proximas imagens">&gt;</button>
+                </div>
+              </div>
+            </section>
+            <section class="legacy-gallery" data-project-gallery="art" aria-label="Arte grafica" hidden>
+              <div class="legacy-gallery-head">
+                <h3>Arte grafica</h3>
+              </div>
+              <div class="legacy-carousel">
+                <div class="legacy-rail" data-legacy-rail></div>
+                <div class="legacy-carousel-controls">
+                  <button class="arrow" type="button" data-legacy-scroll="-1" aria-label="Ver imagens anteriores">&lt;</button>
+                  <button class="arrow" type="button" data-legacy-scroll="1" aria-label="Ver proximas imagens">&gt;</button>
+                </div>
+              </div>
+            </section>
           </div>
         </details>
       </section>
@@ -1529,26 +2878,126 @@
       <iframe class="cv-frame" title="Currículo de Régis Kraeski" src="" data-src="assets/curriculo-regis-2026.pdf"></iframe>
     </div>
 
+    <div class="showreel-viewer" aria-hidden="true">
+      <button class="close" type="button" aria-label="Fechar showreel">x</button>
+      <div class="showreel-choice-panel" role="dialog" aria-label="Escolher formato do showreel">
+        <h2>Showreel</h2>
+        <div class="showreel-choice-actions">
+          <button class="showreel-choice" type="button" data-showreel-format="horizontal">Horizontal</button>
+          <button class="showreel-choice" type="button" data-showreel-format="vertical">Vertical</button>
+        </div>
+      </div>
+      <video
+        class="showreel-player"
+        controls
+        playsinline
+        preload="metadata"
+        poster="assets/video-posters/ai/hero-ai-showcase.jpg"
+      ></video>
+      <div class="showreel-end-panel" role="dialog" aria-label="Fim do showreel">
+        <h2>Vamos criar seu próximo vídeo?</h2>
+        <p>Tem uma ideia, produto ou campanha que precise de um pouco de mágica?</p>
+        <div class="showreel-end-actions">
+          <a class="button" href="https://wa.me/5561981638256?text=Oi%2C%20Regis.%20Quero%20solicitar%20um%20or%C3%A7amento%20para%20um%20projeto%20de%20v%C3%ADdeo." rel="noreferrer">Solicitar orçamento</a>
+          <button class="button" type="button" data-showreel-explore>Explore mais</button>
+        </div>
+      </div>
+    </div>
+
     <script>
       const videoProjects = [
-        { title: "Jameson - Planned Heat", category: "Vertical / Campanha", src: "assets/videos/jameson-planned-heat.mp4", note: "Formato vertical pensado para redes sociais, com foco em impacto rápido e leitura direta." },
-        { title: "Storys Animados", category: "Motion / Social", src: "assets/videos/33story.mp4", note: "Peças animadas para stories, com ritmo de consumo mobile." },
-        { title: "Cards Animados", category: "Motion / Feed", src: "assets/videos/23feed.mp4", note: "Cards animados para feed e campanhas digitais." },
-        { title: "Club 309", category: "Ação / Evento", src: "assets/videos/acao-club-309.mp4", note: "Registro audiovisual com linguagem de ação e presença de marca." },
-        { title: "JusMobile", category: "Animação / Institucional", src: "assets/videos/animacao-jusmobile.mp4", note: "Vídeo de animação para comunicação de produto e serviço." },
-        { title: "Barbearia Dom João", category: "Publicidade", src: "assets/videos/15-de-beethoven.mp4", note: "Peça publicitária com foco em atmosfera, cortes e identidade do cliente." },
-        { title: "Next Level Sports", category: "Esporte / Publicidade", src: "assets/videos/next-level-sports.mp4", note: "Conteúdo esportivo com energia de campanha e performance." },
-        { title: "Makebelê", category: "Beleza / Conteúdo", src: "assets/videos/drinks-e-makebele.mp4", note: "Conteúdo visual para marca de beleza, com apelo social e comercial." },
-        { title: "Vital Implantes", category: "Institucional", src: "assets/videos/institucional-vital-implantes.mp4", note: "Vídeo institucional para apresentar estrutura, confiança e serviço." },
-        { title: "Campanha #GoChape", category: "Campanha", src: "assets/videos/campanha-gochape.mp4", note: "Campanha com ritmo de chamada e reforço de mensagem." },
-        { title: "Top Body + Federal Music", category: "Evento / Marca", src: "assets/videos/acao-top-body-federal-music.mp4", note: "Ação de marca integrada a evento musical." },
-        { title: "Closet Delas", category: "Moda / Coleção", src: "assets/videos/colecao-closet-delas.mp4", note: "Peça para coleção de moda com foco em produto e lifestyle." },
-        { title: "Drinks&Tips", category: "Gastronomia / Social", src: "assets/videos/criacao-de-drinks-lindos.mp4", note: "Conteúdo de preparo e apresentação de drinks para redes sociais." },
-        { title: "Eu e o Mundo", category: "Clipe / Música", src: "assets/videos/eu-e-o-mundo.mp4", note: "Projeto musical com narrativa e direção audiovisual." },
-        { title: "Natal Rouge", category: "Campanha sazonal", src: "assets/videos/natal-rouge.mp4", note: "Conteúdo sazonal para marca, com estética de campanha." },
-        { title: "Bodywork", category: "Publicidade", src: "assets/videos/publicidade-bodywork.mp4", note: "Vídeo publicitário para serviço/produto com entrega comercial." },
-        { title: "Rouge Hair", category: "Beleza / Marca", src: "assets/videos/rouge-hair-2.mp4", note: "Conteúdo para marca de beleza com foco em acabamento visual." },
-        { title: "O Plantae Showreel", category: "Showreel", src: "assets/videos/showreel-o-plantae.mp4", note: "Compilado/showreel de projeto audiovisual." },
+        {
+          title: "Comercial",
+          slug: "stylized-branded-films",
+          category: "Publicidade / Produto / Social",
+          note: "Filmes publicitarios, produto, gastronomia, musica e universos visuais para marcas.",
+          media: [
+            { title: "Red Bolt", src: "assets/videos/ai/red-bolt-commercial.mp4", references: [
+              { title: "Character sheet do produto", src: "assets/process/ai/red-bolt-product-character-sheet.png" },
+            ] },
+            { title: "Jameson", src: "assets/videos/jameson-planned-heat.mp4", poster: "assets/video-posters/jameson-black-barrel-poster.jpg", tag: "Live Action + AI/VFX" },
+            { title: "Cuisine", src: "assets/videos/ai/cuisine-cook1.mp4", videos: [
+              { title: "Cook 1", src: "assets/videos/ai/cuisine-cook1.mp4" },
+              { title: "Preparo na cozinha", src: "assets/videos/ai/cuisine-cooks2.mp4" },
+              { title: "Food close-up", src: "assets/videos/ai/cuisine-food1.mp4" },
+            ] },
+          ],
+        },
+        {
+          title: "Cinematic & VFX",
+          slug: "cinematic-vfx",
+          category: "Cinema / VFX / Campanhas",
+          note: "Cenas cinematograficas, VFX, acao e impacto visual para campanhas e filmes de marca.",
+          media: [
+            { title: "Subject K", src: "assets/videos/ai/subject-k7f.mp4", poster: "assets/video-posters/ai/subject-k7f.jpg", references: [
+              { title: "Character sheet planeta", src: "assets/process/ai/subject-k7f-planet-sheet.png" },
+              { title: "Character sheet astronauta", src: "assets/process/ai/subject-k7f-astronaut-sheet.png" },
+              { title: "Character sheet personagem", src: "assets/process/ai/subject-k7f-character-sheet.png" },
+            ] },
+            { title: "Epics", src: "assets/videos/ai/cinematic-vfx-dragon-knight.mp4", videos: [
+              { title: "Dragon knight sequence", src: "assets/videos/ai/cinematic-vfx-dragon-knight.mp4" },
+              { title: "Dragknight 1", src: "assets/videos/ai/cinematic-vfx-dragknight1.mp4" },
+            ] },
+            { title: "Cenas de guerra", src: "assets/videos/ai/cinematic-vfx-jato1.mp4", videos: [
+              { title: "Jato 1", src: "assets/videos/ai/cinematic-vfx-jato1.mp4" },
+              { title: "Jet pursuit", src: "assets/videos/ai/cinematic-vfx-jet.mp4" },
+              { title: "Tankseed", src: "assets/videos/ai/cinematic-vfx-tank.mp4" },
+              { title: "Battlefield soldiers", src: "assets/videos/ai/cinematic-vfx-soldier.mp4" },
+            ] },
+            { title: "Concept", src: "assets/videos/ai/cinematic-vfx-glass-forest.mp4", poster: "assets/video-posters/ai/cinematic-vfx-concept.jpg", videos: [
+              { title: "Glass Forest", src: "assets/videos/ai/cinematic-vfx-glass-forest.mp4" },
+              { title: "Lantern Forest", src: "assets/videos/ai/cinematic-vfx-lantree.mp4" },
+              { title: "Sea Burst", src: "assets/videos/ai/cinematic-vfx-sea-burst.mp4" },
+              { title: "Paint Motion", src: "assets/videos/ai/cinematic-vfx-paint.mp4" },
+            ] },
+          ],
+        },
+        {
+          title: "3D/Animação",
+          slug: "nature-wildlife",
+          category: "3D / Animação / Atmosfera",
+          note: "Cenas em 3D, animacao e atmosfera para storytelling, inserts cinematograficos e marcas.",
+          media: [
+            { title: "Eagle flight", src: "assets/videos/ai/nature-wildlife-eagle.mp4", references: [
+              { title: "Scene reference", src: "assets/process/ai/nature-eagle-scene.jpg" },
+              { title: "Character sheet", src: "assets/process/ai/nature-eagle-character-sheet.jpg" },
+            ] },
+            { title: "Wolf pack", src: "assets/videos/ai/nature-wildlife-wolves.mp4", references: [
+              { title: "Character sheet", src: "assets/process/ai/nature-wolf-character-sheet.jpg" },
+            ] },
+            { title: "Lightfall", src: "assets/videos/ai/3d-animation-lightfall.mp4", videos: [
+              { title: "Lightfall Anime", src: "assets/videos/ai/3d-animation-lightfall.mp4" },
+            ], references: [
+              { title: "Character sheet Kael", src: "assets/process/ai/lightfall-kael-character-sheet.png" },
+              { title: "Character sheet minion", src: "assets/process/ai/lightfall-minion-character-sheet.png" },
+            ] },
+            { title: "JusMobile", src: "assets/videos/ai/3d-animation-jusmobile.mp4" },
+          ],
+        },
+        {
+          title: "Sports & Performance",
+          slug: "sports-performance",
+          category: "Esporte / Ritmo / Performance",
+          note: "Videos de performance com ritmo, velocidade e impacto para comerciais, reels e campanhas.",
+          media: [
+            { title: "Automobilístico", src: "assets/videos/ai/sports-performance-bike.mp4", videos: [
+              { title: "Moto no tunel", src: "assets/videos/ai/sports-performance-bike.mp4" },
+              { title: "Carro noturno", src: "assets/videos/ai/sports-performance-car.mp4" },
+            ] },
+            { title: "Dança", src: "assets/videos/ai/sports-performance-dancer.mp4", videos: [
+              { title: "Dancer spotlight", src: "assets/videos/ai/sports-performance-dancer.mp4" },
+              { title: "Danca de palco", src: "assets/videos/ai/sports-performance-dancer2.mp4" },
+            ] },
+            { title: "Basquete", src: "assets/videos/ai/sports-performance-dunk.mp4" },
+            { title: "MMA", src: "assets/videos/ai/sports-performance-mma.mp4" },
+            { title: "Skate", src: "assets/videos/ai/sports-performance-sports1.mp4" },
+            { title: "Futebol", src: "assets/videos/ai/sports-performance-chest.mp4", videos: [
+              { title: "Controle de peito", src: "assets/videos/ai/sports-performance-chest.mp4" },
+              { title: "Futebol 01", src: "assets/videos/ai/sports-performance-football-1.mp4" },
+              { title: "Futebol 02", src: "assets/videos/ai/sports-performance-football-2.mp4" },
+            ] },
+          ],
+        },
       ];
 
       const projectGalleries = {
@@ -1560,8 +3009,6 @@
         ],
         art: [
           { title: "Quadros", category: "Série visual / Formas e animais", indexes: [8, 10, 11, 15, 18, 19, 20, 26, 27], prefix: "assets/arte-grafica/art-", alt: "Quadro de arte gráfica de Régis Kraeski" },
-          { title: "Lendas", category: "Campanha automotiva", indexes: [1, 12, 22], prefix: "assets/arte-grafica/art-", alt: "Campanha Lendas de Régis Kraeski" },
-          { title: "Desgarrados", category: "Embalagem / Produto", indexes: [6], prefix: "assets/arte-grafica/art-", alt: "Projeto Desgarrados de Régis Kraeski" },
           { title: "Paisagens Fantásticas", category: "Composição digital / Concept art", indexes: [2, 3, 4, 5, 7, 9, 13, 14, 16, 21, 24, 25], prefix: "assets/arte-grafica/art-", alt: "Paisagem fantástica de Régis Kraeski" },
           { title: "Narrativas Surreais", category: "Composição digital / Atmosfera", indexes: [17, 23], prefix: "assets/arte-grafica/art-", alt: "Narrativa surreal de Régis Kraeski" },
         ],
@@ -1570,9 +3017,11 @@
             title: "Avafer",
             category: "Design gráfico / Social media",
             files: [
-              "assets/design/avafer/feed-01.png",
-              "assets/design/avafer/feed-02.png",
-              "assets/design/avafer/story-01.png",
+              "assets/design/tupa/avafer/avafer-01.png",
+              "assets/design/tupa/avafer/avafer-02.png",
+              "assets/design/tupa/avafer/avafer-03.png",
+              "assets/design/tupa/avafer/avafer-04.png",
+              "assets/design/tupa/avafer/avafer-05.png",
             ],
             alt: "Design gráfico para Avafer"
           },
@@ -1580,14 +3029,11 @@
             title: "Vó Leda",
             category: "Design gráfico / Social media",
             files: [
-              "assets/design/vo-leda/post-01.png",
-              "assets/design/vo-leda/post-02.png",
-              "assets/design/vo-leda/post-03.png",
-              "assets/design/vo-leda/story-01.png",
-              "assets/design/vo-leda/copa-01.jpg",
-              "assets/design/vo-leda/copa-02.jpg",
-              "assets/design/vo-leda/copa-03.jpg",
-              "assets/design/vo-leda/copa-04.jpg",
+              "assets/design/tupa/vo-leda/vo-leda-07.png",
+              "assets/design/tupa/vo-leda/vo-leda-08.png",
+              "assets/design/tupa/vo-leda/vo-leda-09.png",
+              "assets/design/tupa/vo-leda/vo-leda-10.png",
+              "assets/design/tupa/vo-leda/vo-leda-11.png",
             ],
             alt: "Design gráfico para Vó Leda"
           },
@@ -1595,22 +3041,35 @@
             title: "Baurufer",
             category: "Design gráfico / Social media",
             files: [
-              "assets/design/baurufer/baurufer-confianca.jpg",
-              "assets/design/baurufer/baurufer-01.png",
-              "assets/design/baurufer/baurufer-02.png",
-              "assets/design/baurufer/baurufer-feed.png",
+              "assets/design/tupa/baufer/baufer-01.png",
+              "assets/design/tupa/baufer/baufer-02.png",
+              "assets/design/tupa/baufer/baufer-03.png",
+              "assets/design/tupa/baufer/baufer-04.png",
             ],
             alt: "Design gráfico para Baurufer"
+          },
+          {
+            title: "Lendas e Desgarrados",
+            category: "Design gráfico / Campanha e produto",
+            files: [
+              "assets/design/arte-grafica/lendas-01.jpg",
+              "assets/design/arte-grafica/lendas-12.jpg",
+              "assets/design/arte-grafica/lendas-22.jpg",
+              "assets/design/arte-grafica/desgarrados-06.jpg",
+            ],
+            alt: "Design gráfico Lendas e Desgarrados"
           },
           {
             title: "Cegarra Imóveis",
             category: "Design gráfico / Social media",
             files: [
-              "assets/design/cegarra-imoveis/post-04.png",
-              "assets/design/cegarra-imoveis/post-05.png",
-              "assets/design/cegarra-imoveis/post-06.png",
-              "assets/design/cegarra-imoveis/post-07.png",
-              "assets/design/cegarra-imoveis/story-07.png",
+              "assets/design/tupa/cegarra-imoveis/cegarra-01.png",
+              "assets/design/tupa/cegarra-imoveis/cegarra-03.png",
+              "assets/design/tupa/cegarra-imoveis/cegarra-05.png",
+              "assets/design/tupa/cegarra-imoveis/cegarra-06.png",
+              "assets/design/tupa/cegarra-imoveis/cegarra-07.png",
+              "assets/design/tupa/cegarra-imoveis/cegarra-08.png",
+              "assets/design/tupa/cegarra-imoveis/cegarra-12.png",
             ],
             alt: "Design gráfico para Cegarra Imóveis"
           },
@@ -1622,6 +3081,9 @@
       const lightboxImage = lightbox.querySelector("img");
       const cvViewer = document.querySelector(".cv-viewer");
       const cvFrame = cvViewer.querySelector(".cv-frame");
+      const showreelViewer = document.querySelector(".showreel-viewer");
+      const showreelPlayer = showreelViewer.querySelector(".showreel-player");
+      const showreelMobileQuery = window.matchMedia("(max-width: 760px)");
       const heroVideo = document.querySelector(".video-bg video");
       const heroSoundButton = document.querySelector(".hero-sound");
       const topbar = document.querySelector(".topbar");
@@ -1643,6 +3105,20 @@
       });
 
       if (heroVideo && heroSoundButton) {
+        const heroMobileQuery = window.matchMedia("(max-width: 760px)");
+
+        const setHeroSource = () => {
+          const nextSource = heroMobileQuery.matches ? heroVideo.dataset.mobileSrc : heroVideo.dataset.desktopSrc;
+          if (!nextSource || heroVideo.getAttribute("src") === nextSource) return;
+
+          const wasMuted = heroVideo.muted;
+          const wasPaused = heroVideo.paused;
+          heroVideo.setAttribute("src", nextSource);
+          heroVideo.load();
+          heroVideo.muted = wasMuted;
+          if (!wasPaused) heroVideo.play().catch(() => {});
+        };
+
         const setHeroSound = (enabled) => {
           heroVideo.volume = 0.75;
           heroVideo.muted = !enabled;
@@ -1653,7 +3129,14 @@
           );
         };
 
+        setHeroSource();
         setHeroSound(false);
+        if (heroMobileQuery.addEventListener) {
+          heroMobileQuery.addEventListener("change", setHeroSource);
+        } else {
+          heroMobileQuery.addListener(setHeroSource);
+        }
+
         heroSoundButton.addEventListener("click", () => {
           setHeroSound(heroVideo.muted);
         });
@@ -1684,6 +3167,82 @@
         cvFrame.removeAttribute("src");
       }
 
+      function openShowreelViewer() {
+        showreelViewer.classList.remove("is-playing", "is-ended", "is-horizontal-mobile");
+        showreelPlayer.pause();
+        showreelPlayer.removeAttribute("src");
+        showreelPlayer.load();
+        showreelViewer.classList.add("is-open");
+        showreelViewer.setAttribute("aria-hidden", "false");
+      }
+
+      async function requestHorizontalFullscreen() {
+        if (!showreelMobileQuery.matches) return;
+        showreelViewer.classList.add("is-horizontal-mobile");
+
+        try {
+          if (showreelPlayer.requestFullscreen) {
+            await showreelPlayer.requestFullscreen();
+          } else if (showreelViewer.requestFullscreen) {
+            await showreelViewer.requestFullscreen();
+          } else if (showreelPlayer.webkitEnterFullscreen) {
+            showreelPlayer.webkitEnterFullscreen();
+          }
+        } catch (error) {
+          // Fullscreen can be blocked by the browser; keep the modal player open.
+        }
+
+        try {
+          if (screen.orientation?.lock) await screen.orientation.lock("landscape");
+        } catch (error) {
+          // Orientation lock is not available in every mobile browser.
+        }
+      }
+
+      async function playShowreel(format) {
+        const source = format === "vertical" ? heroVideo?.dataset.mobileSrc : heroVideo?.dataset.desktopSrc;
+        if (source) showreelPlayer.src = source;
+        showreelViewer.classList.add("is-playing");
+        showreelViewer.classList.remove("is-ended");
+        showreelViewer.setAttribute("aria-hidden", "false");
+        showreelPlayer.currentTime = 0;
+        showreelPlayer.muted = false;
+        showreelPlayer.volume = 0.85;
+        if (format === "horizontal") await requestHorizontalFullscreen();
+        showreelPlayer.play().catch(() => {});
+      }
+
+      function showShowreelEndPanel() {
+        showreelPlayer.pause();
+        showreelViewer.classList.remove("is-playing", "is-horizontal-mobile");
+        showreelViewer.classList.add("is-ended");
+        if (document.fullscreenElement) {
+          document.exitFullscreen().catch(() => {});
+        }
+        if (screen.orientation?.unlock) {
+          try { screen.orientation.unlock(); } catch (error) {}
+        }
+      }
+
+      function exploreAfterShowreel() {
+        closeShowreelViewer();
+        document.querySelector("#videos")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      function closeShowreelViewer() {
+        showreelPlayer.pause();
+        showreelPlayer.removeAttribute("src");
+        showreelPlayer.load();
+        showreelViewer.classList.remove("is-open", "is-playing", "is-ended", "is-horizontal-mobile");
+        showreelViewer.setAttribute("aria-hidden", "true");
+        if (document.fullscreenElement) {
+          document.exitFullscreen().catch(() => {});
+        }
+        if (screen.orientation?.unlock) {
+          try { screen.orientation.unlock(); } catch (error) {}
+        }
+      }
+
       function imageSource(project, item) {
         return typeof item === "string" ? item : `${project.prefix}${pad(item)}.jpg`;
       }
@@ -1712,46 +3271,86 @@
       function renderProjectGallery(section) {
         const type = section.dataset.projectGallery;
         const projects = projectGalleries[type] || [];
-        const grid = section.querySelector(".project-grid");
-        grid.innerHTML = "";
+        const rail = section.querySelector("[data-legacy-rail]");
+        rail.innerHTML = "";
 
-        projects.forEach((project, projectIndex) => {
-          const details = document.createElement("details");
-          details.className = `project-card ${type === "design" ? "design-project" : ""}`;
+        let imageCount = 0;
+        projects.forEach((project) => {
+          projectItems(project).forEach((item) => {
+            const figure = createImageFigure(project, item, imageCount < 3);
+            figure.className = "legacy-slide";
+            rail.append(figure);
+            imageCount += 1;
+          });
+        });
 
-          const summary = document.createElement("summary");
-          summary.className = "project-summary";
-          const items = projectItems(project);
-          const coverItem = items[0];
-          summary.innerHTML = `
-            <div class="project-cover">
-              <img src="${imageSource(project, coverItem)}" alt="${imageAlt(project, coverItem)}" loading="${projectIndex === 0 ? "eager" : "lazy"}" decoding="async" draggable="false" />
-              <span class="project-count">${items.length} imagens</span>
-            </div>
-            <div class="project-body">
-              <p class="project-meta">${project.category}</p>
-              <div class="project-title-row">
-                <h3>${project.title}</h3>
-                <span class="project-expand" aria-hidden="true">+</span>
-              </div>
-              <p class="project-description">Clique para expandir e ver todas as imagens deste projeto.</p>
-            </div>
-          `;
-
-          const panel = document.createElement("div");
-          panel.className = "project-panel";
-          const mediaGrid = document.createElement("div");
-          mediaGrid.className = "media-grid";
-          items.forEach((item, imageIndex) => mediaGrid.append(createImageFigure(project, item, projectIndex === 0 && imageIndex < 2)));
-          panel.append(mediaGrid);
-          details.append(summary, panel);
-          grid.append(details);
+        section.querySelectorAll("[data-legacy-scroll]").forEach((button) => {
+          button.addEventListener("click", () => {
+            rail.scrollBy({
+              left: Number(button.dataset.legacyScroll) * Math.max(rail.clientWidth * 0.82, 280),
+              behavior: "smooth",
+            });
+          });
         });
       }
 
+      function setupLegacyTabs() {
+        const legacyWork = document.querySelector(".legacy-work");
+        if (!legacyWork) return;
+
+        const accordion = legacyWork.querySelector(".legacy-accordion");
+        const tabs = Array.from(legacyWork.querySelectorAll("[data-legacy-tab]"));
+        const galleries = Array.from(legacyWork.querySelectorAll("[data-project-gallery]"));
+
+        const setActiveGallery = (activeType) => {
+          tabs.forEach((tab) => {
+            tab.setAttribute("aria-selected", String(Boolean(activeType) && tab.dataset.legacyTab === activeType));
+          });
+
+          galleries.forEach((gallery) => {
+            const isActive = gallery.dataset.projectGallery === activeType;
+            gallery.hidden = !isActive;
+            if (!isActive) {
+              gallery.querySelectorAll("details.project-card[open]").forEach((card) => {
+                card.open = false;
+              });
+            }
+          });
+        };
+
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", () => setActiveGallery(tab.dataset.legacyTab));
+        });
+
+        accordion?.addEventListener("toggle", () => {
+          if (accordion.open) {
+            setActiveGallery(null);
+          }
+        });
+
+        setActiveGallery(null);
+      }
+
       function videoPoster(src) {
-        const fileName = src.split("/").pop().replace(/\.mp4$/i, ".jpg");
-        return `assets/video-posters/${fileName}`;
+        return src
+          .replace(/^assets\/videos\//, "assets/video-posters/")
+          .replace(/\.mp4$/i, ".jpg");
+      }
+
+      function renderReferences(item) {
+        const references = item.references || [];
+        if (!references.length) return "";
+
+        return `
+          <div class="reference-grid" aria-label="Arquivos de referencia do projeto">
+            ${references.map((reference) => `
+              <figure>
+                <img src="${reference.src}" alt="${reference.title}" loading="lazy" decoding="async" draggable="false" />
+                <figcaption>${reference.title}</figcaption>
+              </figure>
+            `).join("")}
+          </div>
+        `;
       }
 
       function renderVideoProjects() {
@@ -1759,33 +3358,73 @@
         if (!grid) return;
         grid.innerHTML = "";
 
-        videoProjects.forEach((project, index) => {
-          const poster = videoPoster(project.src);
+        videoProjects.forEach((project) => {
+          const media = project.media || [];
+          const clipMarkup = media.map((item) => {
+            const videos = item.videos?.length ? item.videos : [{ title: item.title, src: item.src }];
+            const clipPoster = item.poster || videoPoster(videos[0].src);
+            const referenceCount = item.references?.length || 0;
+            const videoCountLabel = videos.length === 1 ? "1 video" : `${videos.length} videos`;
+            const fileCountLabel = referenceCount ? `${videos.length + referenceCount} arquivos` : videoCountLabel;
+            const videoMarkup = videos.map((video) => `
+              <figure class="clip-video-item">
+                <video controls playsinline preload="metadata" poster="${video.poster || item.poster || videoPoster(video.src)}" src="${video.src}"></video>
+                ${videos.length > 1 ? `<figcaption>${video.title}</figcaption>` : ""}
+              </figure>
+            `).join("");
+            return `
+              <details class="clip-project">
+                <summary class="clip-summary">
+                  <div class="clip-thumb">
+                    <img src="${clipPoster}" alt="${item.title}" loading="lazy" decoding="async" draggable="false" />
+                    <span class="clip-expand" aria-hidden="true">+</span>
+                  </div>
+                  <div class="clip-copy">
+                    <p class="clip-meta">${fileCountLabel}</p>
+                    <h4>${item.title}</h4>
+                    ${item.tag ? `<span class="clip-tag">${item.tag}</span>` : ""}
+                  </div>
+                </summary>
+                <div class="clip-panel ${referenceCount ? "" : "is-single"}">
+                  ${videoMarkup}
+                  ${renderReferences(item)}
+                </div>
+              </details>
+            `;
+          }).join("");
           const details = document.createElement("details");
           details.className = "project-card video-project";
+          details.id = project.slug;
           details.innerHTML = `
             <summary class="project-summary">
-              <div class="project-cover">
-                <video muted playsinline preload="metadata" poster="${poster}" src="${project.src}"></video>
-                <span class="project-count">Vídeo</span>
-              </div>
               <div class="project-body">
-                <p class="project-meta">${project.category}</p>
                 <div class="project-title-row">
                   <h3>${project.title}</h3>
                   <span class="project-expand" aria-hidden="true">+</span>
                 </div>
-                <p class="project-description">Clique para abrir este projeto em destaque.</p>
               </div>
             </summary>
             <div class="project-panel">
               <div class="video-expanded">
-                <video controls playsinline preload="metadata" poster="${poster}" src="${project.src}"></video>
-                <p class="video-notes">${project.note}</p>
+                <div class="ai-clip-grid">
+                  ${clipMarkup}
+                </div>
               </div>
             </div>
           `;
           grid.append(details);
+          details.querySelectorAll(".reference-grid img").forEach((image) => {
+            image.addEventListener("click", () => openLightbox(image));
+          });
+          details.querySelectorAll(".ai-clip-grid").forEach((clipGrid) => {
+            clipGrid.addEventListener("toggle", (event) => {
+              const opened = event.target;
+              if (!opened.matches("details.clip-project") || !opened.open) return;
+              clipGrid.querySelectorAll("details.clip-project[open]").forEach((card) => {
+                if (card !== opened) card.open = false;
+              });
+            }, true);
+          });
         });
       }
 
@@ -1796,12 +3435,14 @@
         let startY = 0;
         let scrollLeft = 0;
         let scrollTop = 0;
+        let pressedImage = null;
 
         rail.addEventListener("pointerdown", (event) => {
           if (event.target.closest("button, a")) return;
 
           isDragging = true;
           didDrag = false;
+          pressedImage = event.target.closest("img");
           startX = event.clientX;
           startY = event.clientY;
           scrollLeft = rail.scrollLeft;
@@ -1814,7 +3455,8 @@
           if (!isDragging) return;
           const deltaX = event.clientX - startX;
           const deltaY = event.clientY - startY;
-          if (Math.abs(deltaX) > 4 || Math.abs(deltaY) > 4) didDrag = true;
+          if (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10) didDrag = true;
+          if (!didDrag) return;
           event.preventDefault();
           if (axis === "y") {
             rail.scrollTop = scrollTop - deltaY;
@@ -1829,6 +3471,15 @@
           rail.classList.remove("is-dragging");
           if (rail.hasPointerCapture(event.pointerId)) {
             rail.releasePointerCapture(event.pointerId);
+          }
+          if (!didDrag && pressedImage) {
+            openLightbox(pressedImage);
+          }
+          pressedImage = null;
+          if (didDrag) {
+            window.setTimeout(() => {
+              didDrag = false;
+            }, 0);
           }
         };
 
@@ -1854,8 +3505,24 @@
       cvViewer.addEventListener("click", (event) => {
         if (event.target === cvViewer) closeCvViewer();
       });
+      showreelViewer.querySelector(".close").addEventListener("click", closeShowreelViewer);
+      showreelViewer.addEventListener("click", (event) => {
+        if (event.target === showreelViewer) closeShowreelViewer();
+      });
+      showreelViewer.querySelectorAll("[data-showreel-format]").forEach((button) => {
+        button.addEventListener("click", () => {
+          playShowreel(button.dataset.showreelFormat);
+        });
+      });
+      showreelPlayer.addEventListener("ended", showShowreelEndPanel);
+      showreelViewer.querySelector("[data-showreel-explore]")?.addEventListener("click", exploreAfterShowreel);
+      document.querySelector("[data-showreel-open]")?.addEventListener("click", (event) => {
+        event.preventDefault();
+        openShowreelViewer();
+        closeMenu();
+      });
 
-      document.querySelector("[data-cv-open]").addEventListener("click", (event) => {
+      document.querySelector("[data-cv-open]")?.addEventListener("click", (event) => {
         event.preventDefault();
         openCvViewer();
       });
@@ -1864,12 +3531,14 @@
         if (event.key === "Escape") {
           closeLightbox();
           closeCvViewer();
+          closeShowreelViewer();
           closeMenu();
         }
       });
 
       renderVideoProjects();
       document.querySelectorAll("[data-project-gallery]").forEach(renderProjectGallery);
+      setupLegacyTabs();
 
 
 
@@ -1886,14 +3555,16 @@
       document.querySelectorAll('.nav a[href^="#"]').forEach((link) => {
         link.addEventListener("click", () => {
           const target = document.querySelector(link.getAttribute("href"));
-          const accordion = target?.querySelector(".section-accordion");
+          const accordion = target?.querySelector(".section-accordion") || target?.closest("section")?.querySelector(".section-accordion");
           if (accordion) accordion.open = true;
+          if (target?.matches("details.project-card")) target.open = true;
         });
       });
 
       const initialHashTarget = window.location.hash ? document.querySelector(window.location.hash) : null;
-      const initialAccordion = initialHashTarget?.querySelector(".section-accordion");
+      const initialAccordion = initialHashTarget?.querySelector(".section-accordion") || initialHashTarget?.closest("section")?.querySelector(".section-accordion");
       if (initialAccordion) initialAccordion.open = true;
+      if (initialHashTarget?.matches("details.project-card")) initialHashTarget.open = true;
 
       document.querySelectorAll(".project-grid").forEach((grid) => {
         grid.addEventListener("toggle", (event) => {
@@ -1907,6 +3578,7 @@
 
       document.querySelectorAll(".video-board").forEach((rail) => enableDragScroll(rail, "x"));
       document.querySelectorAll(".video-stack").forEach((rail) => enableDragScroll(rail, "y"));
+      document.querySelectorAll(".legacy-rail").forEach((rail) => enableDragScroll(rail, "x"));
     </script>
   </body>
 </html>

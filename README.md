@@ -1,15 +1,6 @@
-# Regis Kraeski Portfolio
+# Regis K Lab
 
-Static one-page HTML portfolio focused on visual work: photography, graphic art, audiovisual, and creative direction.
+AI video portfolio for Regis Kraeski.
 
-## Open Locally
-
-Open `index.html` directly in a browser. No build step is required.
-
-## Before Publishing
-
-- Photography carousel images live in `assets/fotografia/`.
-- Graphic art carousel images live in `assets/arte-grafica/`.
-- Videos live in `assets/videos/`.
-- The site is ready for GitHub Pages from the repository root.
-- Use the `main` branch and set Pages to deploy from `/ (root)`.
+Published with GitHub Pages at:
+https://regisvs.github.io/portfolio/
